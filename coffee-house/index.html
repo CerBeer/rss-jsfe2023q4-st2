@@ -6,31 +6,48 @@
     <title>Coffee House</title>
     <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png">
     <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/vars.css">
+    <link rel="stylesheet" href="./css/typo.css">
     <link rel="stylesheet" href="./css/body.css">
     <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-<div class="outer-box">
-<div class="wrapper">
+<div class="wrapper typo-text-color-dark">
 
     <header class="header">
-        <nav class="header-menu">
-            <ul class="header-nav">
-                <li class="header-nav-item"><a href="#" class="header-nav-link">Favorite coffee</a>
-                <li class="header-nav-item"><a href="#" class="header-nav-link">About</a>
-                <li class="header-nav-item"><a href="#" class="header-nav-link">Mobile app</a>
-                <li class="header-nav-item"><a href="#" class="header-nav-link">Contact us</a>
+        <div class="header-logo">
+            <a href="./" class="header-logo-link typo-desktop-action-linkNbutton"><img src="./img/svg/logo.svg" alt="logo"></a>
+        </div>
+        <nav class="header-nav">
+            <ul class="header-nav-list">
+                <li class="header-nav-list-item"><a href="#" class="header-nav-list-link typo-desktop-action-linkNbutton typo-text-color-dark">Favorite coffee</a>
+                <li class="header-nav-list-item"><a href="#" class="header-nav-list-link typo-desktop-action-linkNbutton typo-text-color-dark">About</a>
+                <li class="header-nav-list-item"><a href="#" class="header-nav-list-link typo-desktop-action-linkNbutton typo-text-color-dark">Mobile app</a>
+                <li class="header-nav-list-item"><a href="#" class="header-nav-list-link typo-desktop-action-linkNbutton typo-text-color-dark">Contact us</a>
             </ul>
         </nav>
-        <div class="header-hero">
-            <h1 class="header-hero-h1">
-                Enjoy premium coffee at our charming cafe
-            </h1>
+        <div class="header-coffee-menu">
+            Menu
+            <a href="./" class="header-coffee-menu typo-desktop-action-linkNbutton"><img src="./img/svg/coffee-cup.svg" alt="cup"></a>
         </div>
-    </header>
+</header>
 
-    <main>
+    <main class="main">
 
+        <section class="hero">
+            <div class="hero-offer">
+                <h1 class="hero-offer-h1 typo-desktop-heading-heading1 typo-text-color-light">
+                    <span class="typo-desktop-heading-heading1-accent typo-text-color-accent">Enjoy</span> premium coffee at our charming cafe
+                </h1>
+                <div class="hero-offer-text typo-desktop-body-medium typo-text-color-light">
+                    With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.
+                </div>
+            </div>
+            <div class="hero-btn-primary">
+                Menu
+                <a href="./" class="header-top-coffee-menu typo-desktop-action-linkNbutton"><img src="./img/svg/coffee-cup.svg" alt="cup"></a>
+            </div>
+        </section>
         <section class="favorite-coffee">
             <h2 class="favorite-coffee-title">
                 Choose your favorite coffee
@@ -60,7 +77,6 @@
         </div>
     </footer>
 
-</div>
 </div>
 </body>
 </html>
