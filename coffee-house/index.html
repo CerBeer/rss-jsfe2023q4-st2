@@ -12,25 +12,25 @@
     <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-<div class="wrapper typo-text-color-dark">
+<div class="outerbox typo-text-color-dark">
 
     <header class="header">
         <div class="header-logo">
-            <a href="./" class="header-logo-link typo-desktop-action-linkNbutton"><img src="./img/svg/logo.svg" alt="logo"></a>
+            <a href="./" class="header-logo-link"><img src="./img/svg/logo.svg" alt="logo"></a>
         </div>
         <nav class="header-nav">
             <ul class="header-nav-list">
-                <li class="header-nav-list-item"><a href="#" class="header-nav-list-link typo-desktop-action-linkNbutton typo-text-color-dark">Favorite coffee</a>
-                <li class="header-nav-list-item"><a href="#" class="header-nav-list-link typo-desktop-action-linkNbutton typo-text-color-dark">About</a>
-                <li class="header-nav-list-item"><a href="#" class="header-nav-list-link typo-desktop-action-linkNbutton typo-text-color-dark">Mobile app</a>
-                <li class="header-nav-list-item"><a href="#" class="header-nav-list-link typo-desktop-action-linkNbutton typo-text-color-dark">Contact us</a>
+                <li class="header-nav-list-item"><a href="#favorite-coffee" class="header-nav-list-link typo-desktop-action-linkNbutton typo-text-color-dark">Favorite coffee</a>
+                <li class="header-nav-list-item"><a href="#about" class="header-nav-list-link typo-desktop-action-linkNbutton typo-text-color-dark">About</a>
+                <li class="header-nav-list-item"><a href="#mobile-app" class="header-nav-list-link typo-desktop-action-linkNbutton typo-text-color-dark">Mobile app</a>
+                <li class="header-nav-list-item"><a href="#contact-us" class="header-nav-list-link typo-desktop-action-linkNbutton typo-text-color-dark">Contact us</a>
             </ul>
         </nav>
-        <div class="header-coffee-menu">
+        <a href="./" class="header-coffee-menu typo-desktop-action-linkNbutton typo-text-color-dark">
             Menu
-            <a href="./" class="header-coffee-menu typo-desktop-action-linkNbutton"><img src="./img/svg/coffee-cup.svg" alt="cup"></a>
-        </div>
-</header>
+            <img src="./img/svg/coffee-cup.svg" alt="cup"></a>
+        </a>
+    </header>
 
     <main class="main">
 
@@ -43,24 +43,57 @@
                     With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.
                 </div>
             </div>
-            <div class="hero-btn-primary">
+            <div class="hero-btn-primary typo-desktop-action-linkNbutton">
                 Menu
                 <a href="./" class="header-top-coffee-menu typo-desktop-action-linkNbutton"><img src="./img/svg/coffee-cup.svg" alt="cup"></a>
             </div>
         </section>
-        <section class="favorite-coffee">
-            <h2 class="favorite-coffee-title">
-                Choose your favorite coffee
+
+        <section class="favorite-coffee" id="favorite-coffee">
+            <h2 class="favorite-coffee-title typo-desktop-heading-heading2">
+                Choose your <span class="typo-desktop-heading-heading2-accent typo-text-color-accent">favorite</span> coffee
             </h2>
+            <div class="favorite-coffee-slider">
+                <div class="favorite-coffee-slider-row">
+                    <button aria-label="prev" class="favorite-coffee-slider-row-side-l">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M18.5 12H6M6 12L12 6M6 12L12 18" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="favorite-coffee-slider-row-side-c">
+                        <div class="favorite-coffee-slider-row-side-c-item">
+                            <div class="favorite-coffee-slider-row-side-c-item-pic"><img src="./img/png/coffee-slider-1.png" alt="coffee"></div>
+                            <div class="favorite-coffee-slider-row-side-c-item-title typo-desktop-heading-heading3">S’mores Frappuccino</div>
+                            <div class="favorite-coffee-slider-row-side-c-item-desc typo-desktop-body-medium">
+                                This new drink takes an espresso and mixes it with brown sugar and cinnamon before being topped with oat milk.
+                            </div>
+                            <div class="favorite-coffee-slider-row-side-c-item-price typo-desktop-heading-heading3">$5.50</div>
+                        </div>
+                    </div>
+                    <button aria-label="next" class="favorite-coffee-slider-row-side-r">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 12H18.5M18.5 12L12.5 6M18.5 12L12.5 18" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="favorite-coffee-slider-control">
+                    <div aria-label="first" class="favorite-coffee-slider-control-element favorite-coffee-slider-control-element-selected">
+                    </div>
+                    <div aria-label="second" class="favorite-coffee-slider-control-element">
+                    </div>
+                    <div aria-label="third" class="favorite-coffee-slider-control-element">
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="about">
+        <section class="about" id="about">
             <div class="about-title">
                 Resource is the perfect and cozy place where you can enjoy a variety of hot beverages, relax, catch up with friends, or get some work done.
             </div>
         </section>
 
-        <section class="mobile-app">
+        <section class="mobile-app" id="mobile-app">
             <div class="mobile-app-offer">
                 <h2>Download our apps to start ordering</h2>
                 Download the Resource app today and experience the comfort of ordering your favorite coffee from wherever you are
@@ -69,9 +102,9 @@
 
     </main>
 
-    <footer class="footer">
-        <div class="footer-contacts">
-            <div class="footer-contacts-offer">
+    <footer class="contact-us" id="contact-us">
+        <div class="contact-us-contacts">
+            <div class="contact-us-contacts-offer">
                 Sip, Savor, Smile. It’s coffee time!
             </div>
         </div>
