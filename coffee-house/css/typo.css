@@ -47,7 +47,6 @@
 /* heading1 */
 
 .typo-desktop-heading-heading1 {
-    /* color: var(--text-dark, #403F3D); */
     font-feature-settings: 'clig' off, 'liga' off;
     
     /* Desktop/Heading/heading-1 */
@@ -59,7 +58,6 @@
 }
 
 .typo-desktop-heading-heading1-accent {
-    /* color: var(--text-dark, #403F3D); */
     font-feature-settings: 'clig' off, 'liga' off;
     
     /* Desktop/Heading/heading-1.accent */
@@ -73,7 +71,6 @@
 /* heading2 */
 
 .typo-desktop-heading-heading2 {
-    /* color: var(--text-dark, #403F3D); */
     font-feature-settings: 'clig' off, 'liga' off;
     
     /* Desktop/Heading/heading-2 */
@@ -85,7 +82,6 @@
 }
 
 .typo-desktop-heading-heading2-accent {
-    /* color: var(--text-dark, #403F3D); */
     font-feature-settings: 'clig' off, 'liga' off;
     
     /* Desktop/Heading/heading-2.accent */
@@ -99,7 +95,6 @@
 /* heading3 */
 
 .typo-desktop-heading-heading3 {
-    /* color: var(--text-dark, #403F3D); */
     font-feature-settings: 'clig' off, 'liga' off;
     
     /* Desktop/Heading/heading-3 */
@@ -113,7 +108,6 @@
 /* Desktop/Body */
 
 .typo-desktop-body-medium {
-    /* color: var(--text-dark, #403F3D); */
     font-feature-settings: 'clig' off, 'liga' off;
     
     /* Desktop/Body/medium */
@@ -125,7 +119,6 @@
 }
 
 .typo-desktop-body-caption {
-    /* color: var(--text-dark, #403F3D); */
     font-feature-settings: 'clig' off, 'liga' off;
     
     /* Desktop/Body/caption */
@@ -139,7 +132,6 @@
 /* Desktop/Action */
 
 .typo-desktop-action-linkNbutton {
-    /* color: var(--text-dark, #403F3D); */
     font-feature-settings: 'clig' off, 'liga' off;
     
     /* Desktop/Action/link & button */
@@ -151,7 +143,6 @@
 }
 
 .typo-desktop-action-burger-link {
-    /* color: var(--text-dark, #403F3D); */
     font-feature-settings: 'clig' off, 'liga' off;
     
     /* Desktop/Action/burger-link */
