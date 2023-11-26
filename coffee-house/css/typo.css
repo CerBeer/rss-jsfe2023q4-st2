@@ -48,7 +48,7 @@
 
 .typo-desktop-heading-heading1 {
     font-feature-settings: 'clig' off, 'liga' off;
-    
+
     /* Desktop/Heading/heading-1 */
     font-family: Inter;
     font-size: 72px;
@@ -59,7 +59,7 @@
 
 .typo-desktop-heading-heading1-accent {
     font-feature-settings: 'clig' off, 'liga' off;
-    
+
     /* Desktop/Heading/heading-1.accent */
     font-family: Inter;
     font-size: 72px;
@@ -72,7 +72,7 @@
 
 .typo-desktop-heading-heading2 {
     font-feature-settings: 'clig' off, 'liga' off;
-    
+
     /* Desktop/Heading/heading-2 */
     font-family: Inter;
     font-size: 60px;
@@ -83,7 +83,7 @@
 
 .typo-desktop-heading-heading2-accent {
     font-feature-settings: 'clig' off, 'liga' off;
-    
+
     /* Desktop/Heading/heading-2.accent */
     font-family: Inter;
     font-size: 60px;
@@ -96,7 +96,7 @@
 
 .typo-desktop-heading-heading3 {
     font-feature-settings: 'clig' off, 'liga' off;
-    
+
     /* Desktop/Heading/heading-3 */
     font-family: Inter;
     font-size: 24px;
@@ -109,7 +109,7 @@
 
 .typo-desktop-body-medium {
     font-feature-settings: 'clig' off, 'liga' off;
-    
+
     /* Desktop/Body/medium */
     font-family: Inter;
     font-size: 16px;
@@ -120,7 +120,7 @@
 
 .typo-desktop-body-caption {
     font-feature-settings: 'clig' off, 'liga' off;
-    
+
     /* Desktop/Body/caption */
     font-family: Inter;
     font-size: 10px;
@@ -133,7 +133,7 @@
 
 .typo-desktop-action-linkNbutton {
     font-feature-settings: 'clig' off, 'liga' off;
-    
+
     /* Desktop/Action/link & button */
     font-family: Inter;
     font-size: 16px;
@@ -144,7 +144,7 @@
 
 .typo-desktop-action-burger-link {
     font-feature-settings: 'clig' off, 'liga' off;
-    
+
     /* Desktop/Action/burger-link */
     font-family: Inter;
     font-size: 32px;
