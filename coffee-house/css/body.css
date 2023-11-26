@@ -1,0 +1,60 @@
+/* General styles for the entire page. */
+
+/* Basic */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    width: 1440px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--background-body, #E1D4C9);
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    padding: 0;
+    margin: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+.outerbox {
+    display: flex;
+    padding: 20px 40px 40px 40px;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+@media (max-width: 600px) {
+    body {
+        min-height: 100vh;
+        margin: 0 auto;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow-x: scroll;
+        overflow-y: scroll;
+    }
+}

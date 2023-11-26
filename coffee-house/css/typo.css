@@ -1,0 +1,154 @@
+/* Typography */
+
+/* inter-regular*/
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/Inter-Regular.woff2') format('woff2');
+}
+
+/* inter-600*/
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    src: url('../fonts/Inter-SemiBold.woff2') format('woff2');
+}
+
+/* inter-600 - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 600;
+    src: url('../fonts/Inter-SemiBoldItalic.woff2') format('woff2');
+}
+
+/* text color */
+.typo-text-color-dark {
+    color: var(--text-dark, #403F3D);
+}
+
+.typo-text-color-light {
+    color: var(--text-light, #E1D4C9);
+}
+
+.typo-text-color-accent {
+    color: var(--text-accent, #B0907A);
+}
+
+/* typo */
+
+/* Desktop/Heading */
+
+/* heading1 */
+
+.typo-desktop-heading-heading1 {
+    font-feature-settings: 'clig' off, 'liga' off;
+
+    /* Desktop/Heading/heading-1 */
+    font-family: Inter;
+    font-size: 72px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 105%; /* 75.6px */
+}
+
+.typo-desktop-heading-heading1-accent {
+    font-feature-settings: 'clig' off, 'liga' off;
+
+    /* Desktop/Heading/heading-1.accent */
+    font-family: Inter;
+    font-size: 72px;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 105%; /* 75.6px */
+}
+
+/* heading2 */
+
+.typo-desktop-heading-heading2 {
+    font-feature-settings: 'clig' off, 'liga' off;
+
+    /* Desktop/Heading/heading-2 */
+    font-family: Inter;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 125%; /* 75px */
+}
+
+.typo-desktop-heading-heading2-accent {
+    font-feature-settings: 'clig' off, 'liga' off;
+
+    /* Desktop/Heading/heading-2.accent */
+    font-family: Inter;
+    font-size: 60px;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 125%; /* 75px */
+}
+
+/* heading3 */
+
+.typo-desktop-heading-heading3 {
+    font-feature-settings: 'clig' off, 'liga' off;
+
+    /* Desktop/Heading/heading-3 */
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 125%; /* 30px */
+}
+
+/* Desktop/Body */
+
+.typo-desktop-body-medium {
+    font-feature-settings: 'clig' off, 'liga' off;
+
+    /* Desktop/Body/medium */
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+}
+
+.typo-desktop-body-caption {
+    font-feature-settings: 'clig' off, 'liga' off;
+
+    /* Desktop/Body/caption */
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 14px */
+}
+
+/* Desktop/Action */
+
+.typo-desktop-action-linkNbutton {
+    font-feature-settings: 'clig' off, 'liga' off;
+
+    /* Desktop/Action/link & button */
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 24px */
+}
+
+.typo-desktop-action-burger-link {
+    font-feature-settings: 'clig' off, 'liga' off;
+
+    /* Desktop/Action/burger-link */
+    font-family: Inter;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 125%; /* 40px */
+}
