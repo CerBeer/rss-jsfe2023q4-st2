@@ -293,3 +293,49 @@
     }
 }
 
+/* section mobile-app */
+
+.mobile-app {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
+.mobile-app-offer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+}
+
+.mobile-app-offer-apps {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.mobile-app-offer-apps-app {
+    display: flex;
+    width: 200px;
+    padding: 12px 20px;
+    align-items: center;
+    border-radius: 100px;
+    border: 1px solid var(--border-dark, #665F55);
+    gap: 8px;
+    cursor: pointer;
+    transition: background-color var(--effect-duration-long, .3s) ease-out;
+}
+
+.app-svg-path {
+    fill: var(--text-dark, #403F3D);;
+}
+
+@media (hover: hover) {
+    .mobile-app-offer-apps-app:hover {
+        background: var(--background-container, #665F55);
+        color: var(--text-light, #E1D4C9);
+    }
+    .mobile-app-offer-apps-app:hover .app-svg-path {
+        fill: var(--text-light, #E1D4C9);
+    }
+}
