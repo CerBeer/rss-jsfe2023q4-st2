@@ -144,11 +144,16 @@
 
 .typo-desktop-action-burger-link {
     font-feature-settings: 'clig' off, 'liga' off;
+}
 
-    /* Desktop/Action/burger-link */
-    font-family: Inter;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 125%; /* 40px */
+@media (max-width: 768px) {
+    .typo-desktop-action-burger-link {
+        /* Desktop/Action/burger-link */
+        font-family: Inter;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 125%; /* 40px */
+
+    }
 }

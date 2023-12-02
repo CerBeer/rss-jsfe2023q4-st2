@@ -18,6 +18,9 @@ body {
     flex-direction: column;
     justify-content: space-between;
     background: var(--background-body, #E1D4C9);
+
+    /* max-width: 768px; */
+    overflow-y: hidden;
 }
 
 a {
@@ -38,9 +41,17 @@ button {
     cursor: pointer;
 }
 
+ul {
+    /* margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px; */
+    padding-inline-start: 0px;
+}
+
 .outerbox {
     display: flex;
-    padding: 15px 40px 40px 40px;
+    padding: 12px 40px 40px 40px;
     flex-direction: column;
     align-items: center;
 }
