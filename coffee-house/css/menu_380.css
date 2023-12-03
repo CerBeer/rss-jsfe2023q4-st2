@@ -1,0 +1,64 @@
+
+@media (max-width: 380px) {
+
+    /* section menu */
+
+    .menu-tabs {
+        gap: 8px;
+    }
+    
+    .menu-tabs-tab-img {
+        margin-right: -2px;
+    }
+
+    /* section contact-us */
+
+    .contacts {
+        padding: 60px 16px 64px 16px;
+        gap: 40px;
+    }
+
+}
+
+
+@media (max-width: 370px) {
+
+    /* section menu */
+
+    .menu-tabs {
+        flex-wrap: wrap;
+        gap: 1px;
+    }
+
+    .menu-card {
+        width: 90%;
+        height: auto;
+    }
+    
+    .menu-card-top {
+        width: 100%;
+        height: auto;
+    }
+    
+    .menu-card-top-img {
+        width: 100%;
+        height: auto;
+    }
+
+    .menu-card-bottom-title {
+        width: 100%;
+        height: auto;
+    }
+
+    .menu-card-bottom-descr {
+        width: 100%;
+        height: auto;
+    }
+
+    .menu-card-bottom-price {
+        width: 100%;
+        height: auto;
+
+    }
+
+}
