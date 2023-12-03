@@ -157,6 +157,8 @@
     justify-content: center;
     align-items: center;
     border-radius: 100px;
+    border-color: var(--background-body, #E1D4C9);
+    border-width: 0;
     background: var(--background-body, #E1D4C9);
     cursor: pointer;
 }
@@ -165,7 +167,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .hero-btn-primary-link-text {
