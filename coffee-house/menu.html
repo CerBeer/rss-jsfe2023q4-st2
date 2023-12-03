@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./css/typo.css">
     <link rel="stylesheet" href="./css/body.css">
     <link rel="stylesheet" href="./css/menu.css">
+    <link rel="stylesheet" href="./css/menu_768.css">
 </head>
 
 <body>
@@ -20,27 +21,24 @@
             <div class="header-logo">
                 <a href="./index.html" class="header-logo-link"><img src="./img/svg/logo.svg" alt="logo"></a>
             </div>
-            <nav class="header-nav">
+            <nav class="header-nav typo-desktop-action-linkNbutton typo-desktop-action-burger-link">
                 <ul class="header-nav-list">
-                    <li class="header-nav-list-item"><a href="./index.html#favorite-coffee"
-                            class="header-nav-list-link typo-desktop-action-linkNbutton typo-text-color-dark">Favorite
-                            coffee</a>
-                    <li class="header-nav-list-item"><a href="./index.html#about"
-                            class="header-nav-list-link typo-desktop-action-linkNbutton typo-text-color-dark">About</a>
-                    <li class="header-nav-list-item"><a href="./index.html#mobile-app"
-                            class="header-nav-list-link typo-desktop-action-linkNbutton typo-text-color-dark">Mobile
-                            app</a>
-                    <li class="header-nav-list-item"><a href="#contacts"
-                            class="header-nav-list-link typo-desktop-action-linkNbutton typo-text-color-dark">Contact
-                            us</a>
+                    <li class="header-nav-list-item"><a href="#favorite-coffee" class="header-nav-list-link typo-text-color-dark">Favorite coffee</a>
+                    <li class="header-nav-list-item"><a href="#about" class="header-nav-list-link typo-text-color-dark">About</a>
+                    <li class="header-nav-list-item"><a href="#mobile-app" class="header-nav-list-link typo-text-color-dark">Mobile app</a>
+                    <li class="header-nav-list-item"><a href="#contacts" class="header-nav-list-link typo-text-color-dark">Contact us</a>
                 </ul>
+                <div class="header-coffee-menu typo-text-color-dark">
+                    Menu
+                    <img class="header-coffee-menu-cup" src="./img/svg/coffee-cup.svg" alt="Menu">
+                </div>
             </nav>
-            <div class="header-coffee-menu typo-desktop-action-linkNbutton typo-text-color-dark">
-                Menu
-                <img src="./img/svg/coffee-cup.svg" alt="Menu">
-            </div>
+            <button aria-label="burger-menu-button" class="burger-menu-button">
+                <span class="burger-menu-button-hr-top"></span>
+                <span class="burger-menu-button-hr-bottom"></span>
+            </button>
         </header>
-
+    
         <main class="main">
 
             <section class="menu">
@@ -69,94 +67,102 @@
             </section>
 
             <section class="menu-cards" id="menu-cards">
-                <div class="menu-card">
-                    <div class="menu-card-top">
-                        <img class="menu-card-top-img" src="./img/jpg/coffee-1.jpg" alt="Coffee">
+                <div class="menu-cards-grid">
+                    <div class="menu-card">
+                        <div class="menu-card-top">
+                            <img class="menu-card-top-img" src="./img/jpg/coffee-1.jpg" alt="Coffee">
+                        </div>
+                        <div class="menu-card-bottom">
+                            <h2 class="menu-card-bottom-title typo-desktop-heading-heading3">Irish coffee</h2>
+                            <div class="menu-card-bottom-descr typo-desktop-body-medium">Fragrant black coffee with Jameson Irish whiskey and whipped milk</div>
+                            <div class="menu-card-bottom-price typo-desktop-heading-heading3">$7.00</div>
+                        </div>
                     </div>
-                    <div class="menu-card-bottom">
-                        <h2 class="menu-card-bottom-title typo-desktop-heading-heading3">Irish coffee</h2>
-                        <div class="menu-card-bottom-descr typo-desktop-body-medium">Fragrant black coffee with Jameson Irish whiskey and whipped milk</div>
-                        <div class="menu-card-bottom-price typo-desktop-heading-heading3">$7.00</div>
+                    <div class="menu-card">
+                        <div class="menu-card-top">
+                            <img class="menu-card-top-img" src="./img/jpg/coffee-2.jpg" alt="Coffee">
+                        </div>
+                        <div class="menu-card-bottom">
+                            <h2 class="menu-card-bottom-title typo-desktop-heading-heading3">Kahlua coffee</h2>
+                            <div class="menu-card-bottom-descr typo-desktop-body-medium">Classic coffee with milk and Kahlua liqueur under a cap of frothed milk</div>
+                            <div class="menu-card-bottom-price typo-desktop-heading-heading3">$7.00</div>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="menu-card-top">
+                            <img class="menu-card-top-img" src="./img/jpg/coffee-3.jpg" alt="Coffee">
+                        </div>
+                        <div class="menu-card-bottom">
+                            <h2 class="menu-card-bottom-title typo-desktop-heading-heading3">Honey raf</h2>
+                            <div class="menu-card-bottom-descr typo-desktop-body-medium">Espresso with frothed milk, cream and aromatic honey</div>
+                            <div class="menu-card-bottom-price typo-desktop-heading-heading3">$5.50</div>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="menu-card-top">
+                            <img class="menu-card-top-img" src="./img/jpg/coffee-4.jpg" alt="Coffee">
+                        </div>
+                        <div class="menu-card-bottom">
+                            <h2 class="menu-card-bottom-title typo-desktop-heading-heading3">Ice cappuccino</h2>
+                            <div class="menu-card-bottom-descr typo-desktop-body-medium">Cappuccino with soft thick foam in summer version with ice</div>
+                            <div class="menu-card-bottom-price typo-desktop-heading-heading3">$5.00</div>
+                        </div>
+                    </div>
+                    <div class="menu-card menu-card-full">
+                        <div class="menu-card-top">
+                            <img class="menu-card-top-img" src="./img/jpg/coffee-5.jpg" alt="Coffee">
+                        </div>
+                        <div class="menu-card-bottom">
+                            <h2 class="menu-card-bottom-title typo-desktop-heading-heading3">Espresso</h2>
+                            <div class="menu-card-bottom-descr typo-desktop-body-medium">Classic black coffee</div>
+                            <div class="menu-card-bottom-price typo-desktop-heading-heading3">$4.50</div>
+                        </div>
+                    </div>
+                    <div class="menu-card menu-card-full">
+                        <div class="menu-card-top">
+                            <img class="menu-card-top-img" src="./img/jpg/coffee-6.jpg" alt="Coffee">
+                        </div>
+                        <div class="menu-card-bottom">
+                            <h2 class="menu-card-bottom-title typo-desktop-heading-heading3">Latte</h2>
+                            <div class="menu-card-bottom-descr typo-desktop-body-medium">Espresso coffee with the addition of steamed milk and dense milk foam</div>
+                            <div class="menu-card-bottom-price typo-desktop-heading-heading3">$5.50</div>
+                        </div>
+                    </div>
+                    <div class="menu-card menu-card-full">
+                        <div class="menu-card-top">
+                            <img class="menu-card-top-img" src="./img/jpg/coffee-7.jpg" alt="Coffee">
+                        </div>
+                        <div class="menu-card-bottom">
+                            <h2 class="menu-card-bottom-title typo-desktop-heading-heading3">Latte macchiato</h2>
+                            <div class="menu-card-bottom-descr typo-desktop-body-medium">Espresso with frothed milk and chocolate</div>
+                            <div class="menu-card-bottom-price typo-desktop-heading-heading3">$5.50</div>
+                        </div>
+                    </div>
+                    <div class="menu-card menu-card-full">
+                        <div class="menu-card-top">
+                            <img class="menu-card-top-img" src="./img/jpg/coffee-8.jpg" alt="Coffee">
+                        </div>
+                        <div class="menu-card-bottom">
+                            <h2 class="menu-card-bottom-title typo-desktop-heading-heading3">Coffee with cognac</h2>
+                            <div class="menu-card-bottom-descr typo-desktop-body-medium">Fragrant black coffee with cognac and whipped cream</div>
+                            <div class="menu-card-bottom-price typo-desktop-heading-heading3">$6.50</div>
+                        </div>
                     </div>
                 </div>
-                <div class="menu-card">
-                    <div class="menu-card-top">
-                        <img class="menu-card-top-img" src="./img/jpg/coffee-2.jpg" alt="Coffee">
-                    </div>
-                    <div class="menu-card-bottom">
-                        <h2 class="menu-card-bottom-title typo-desktop-heading-heading3">Kahlua coffee</h2>
-                        <div class="menu-card-bottom-descr typo-desktop-body-medium">Classic coffee with milk and Kahlua liqueur under a cap of frothed milk</div>
-                        <div class="menu-card-bottom-price typo-desktop-heading-heading3">$7.00</div>
-                    </div>
-                </div>
-                <div class="menu-card">
-                    <div class="menu-card-top">
-                        <img class="menu-card-top-img" src="./img/jpg/coffee-3.jpg" alt="Coffee">
-                    </div>
-                    <div class="menu-card-bottom">
-                        <h2 class="menu-card-bottom-title typo-desktop-heading-heading3">Honey raf</h2>
-                        <div class="menu-card-bottom-descr typo-desktop-body-medium">Espresso with frothed milk, cream and aromatic honey</div>
-                        <div class="menu-card-bottom-price typo-desktop-heading-heading3">$5.50</div>
-                    </div>
-                </div>
-                <div class="menu-card">
-                    <div class="menu-card-top">
-                        <img class="menu-card-top-img" src="./img/jpg/coffee-4.jpg" alt="Coffee">
-                    </div>
-                    <div class="menu-card-bottom">
-                        <h2 class="menu-card-bottom-title typo-desktop-heading-heading3">Ice cappuccino</h2>
-                        <div class="menu-card-bottom-descr typo-desktop-body-medium">Cappuccino with soft thick foam in summer version with ice</div>
-                        <div class="menu-card-bottom-price typo-desktop-heading-heading3">$5.00</div>
-                    </div>
-                </div>
-                <div class="menu-card">
-                    <div class="menu-card-top">
-                        <img class="menu-card-top-img" src="./img/jpg/coffee-5.jpg" alt="Coffee">
-                    </div>
-                    <div class="menu-card-bottom">
-                        <h2 class="menu-card-bottom-title typo-desktop-heading-heading3">Espresso</h2>
-                        <div class="menu-card-bottom-descr typo-desktop-body-medium">Classic black coffee</div>
-                        <div class="menu-card-bottom-price typo-desktop-heading-heading3">$4.50</div>
-                    </div>
-                </div>
-                <div class="menu-card">
-                    <div class="menu-card-top">
-                        <img class="menu-card-top-img" src="./img/jpg/coffee-6.jpg" alt="Coffee">
-                    </div>
-                    <div class="menu-card-bottom">
-                        <h2 class="menu-card-bottom-title typo-desktop-heading-heading3">Latte</h2>
-                        <div class="menu-card-bottom-descr typo-desktop-body-medium">Espresso coffee with the addition of steamed milk and dense milk foam</div>
-                        <div class="menu-card-bottom-price typo-desktop-heading-heading3">$5.50</div>
-                    </div>
-                </div>
-                <div class="menu-card">
-                    <div class="menu-card-top">
-                        <img class="menu-card-top-img" src="./img/jpg/coffee-7.jpg" alt="Coffee">
-                    </div>
-                    <div class="menu-card-bottom">
-                        <h2 class="menu-card-bottom-title typo-desktop-heading-heading3">Latte macchiato</h2>
-                        <div class="menu-card-bottom-descr typo-desktop-body-medium">Espresso with frothed milk and chocolate</div>
-                        <div class="menu-card-bottom-price typo-desktop-heading-heading3">$5.50</div>
-                    </div>
-                </div>
-                <div class="menu-card">
-                    <div class="menu-card-top">
-                        <img class="menu-card-top-img" src="./img/jpg/coffee-8.jpg" alt="Coffee">
-                    </div>
-                    <div class="menu-card-bottom">
-                        <h2 class="menu-card-bottom-title typo-desktop-heading-heading3">Coffee with cognac</h2>
-                        <div class="menu-card-bottom-descr typo-desktop-body-medium">Fragrant black coffee with cognac and whipped cream</div>
-                        <div class="menu-card-bottom-price typo-desktop-heading-heading3">$6.50</div>
-                    </div>
-                </div>
+                <button aria-label="reload" class="menu-cards-button-dark">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M21.8883 13.5C21.1645 18.3113 17.013 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C16.1006 2 19.6248 4.46819 21.1679 8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M17 8H21.4C21.7314 8 22 7.73137 22 7.4V3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
             </section>
 
         </main>
 
         <footer class="contacts" id="contacts">
             <div class="contacts-offer">
-                <div class="contacts-offer-title typo-desktop-heading-heading2 typo-text-color-light">
-                    Sip, Savor, Smile. <span class="typo-desktop-heading-heading2-accent typo-text-color-accent">It’s coffee time!</span>
+                <div class="contacts-offer-title typo-desktop-heading-heading2 typo-mobile-heading-heading-2 typo-text-color-light">
+                    Sip, Savor, Smile. <span class="typo-desktop-heading-heading2-accent typo-mobile-heading-heading-2-accent typo-text-color-accent">It’s coffee time!</span>
                 </div>
                 <div class="contact-offer-socials">
                     <a aria-label="twitter" href="#" class="contact-offer-socials-button contact-offer-socials-twit">
@@ -164,7 +170,7 @@
                             <path d="M23 3.01006C23 3.01006 20.9821 4.20217 19.86 4.54006C19.2577 3.84757 18.4573 3.35675 17.567 3.13398C16.6767 2.91122 15.7395 2.96725 14.8821 3.29451C14.0247 3.62177 13.2884 4.20446 12.773 4.96377C12.2575 5.72309 11.9877 6.62239 12 7.54006V8.54006C10.2426 8.58562 8.50127 8.19587 6.93101 7.4055C5.36074 6.61513 4.01032 5.44869 3 4.01006C3 4.01006 -1 13.0101 8 17.0101C5.94053 18.408 3.48716 19.109 1 19.0101C10 24.0101 21 19.0101 21 7.51006C20.9991 7.23151 20.9723 6.95365 20.92 6.68006C21.9406 5.67355 23 3.01006 23 3.01006Z" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </a>
-                    <a aria-label="instafram" href="#" class="contact-offer-socials-button contact-offer-socials-insta">
+                    <a aria-label="instagram" href="#" class="contact-offer-socials-button contact-offer-socials-insta">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M3 16V8C3 5.23858 5.23858 3 8 3H16C18.7614 3 21 5.23858 21 8V16C21 18.7614 18.7614 21 16 21H8C5.23858 21 3 18.7614 3 16Z"/>
@@ -214,7 +220,7 @@
                 </div>
             </div>
         </footer>
-    
+        
     </div>
 </body>
 
