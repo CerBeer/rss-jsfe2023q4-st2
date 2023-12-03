@@ -19,8 +19,8 @@ body {
     justify-content: space-between;
     background: var(--background-body, #E1D4C9);
 
-    /* max-width: 768px; */
-    overflow-y: hidden;
+    max-width: 768px;
+    /* overflow-y: hidden; */
 }
 
 a {

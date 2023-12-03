@@ -92,6 +92,15 @@
         }
     }
     
+    
+    .favorite-coffee-slider-row-side-l {
+        margin-left: 0;
+    }
+
+    .favorite-coffee-slider-row-side-r {
+        margin-right: 0;
+    }
+
     .about-imgs-col-img-small {
         display: none;
     }
