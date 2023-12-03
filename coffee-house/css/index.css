@@ -115,7 +115,7 @@
     display: flex;
     width: 100%;
     max-width: 1360px;
-    padding: 100px 60px;
+    padding: 100px;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
@@ -356,8 +356,15 @@
 .mobile-app {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 100px;
+}
+
+@media (max-width: 1210px) {
+    .mobile-app {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
 }
 
 .mobile-app-offer {

@@ -1,5 +1,7 @@
 
 @media (max-width: 768px) {
+
+    /* header */
     
     .header-logo {
         z-index: 1;
@@ -64,7 +66,15 @@
         height: 1px;
         background-color: var(--text-dark, #403F3D);
     }
+    
+    /* main */
 
+    /* section hero */
+
+    .hero {
+        padding: 100px 60px;
+    }
+    
     .hero-btn-primary-link {
         display: flex;
         flex-direction: row;
@@ -91,7 +101,9 @@
             opacity: 1;
         }
     }
-    
+
+    /* section favorite coffee */
+
     .favorite-coffee-slider-row-side-l {
         margin-left: 0;
     }
@@ -125,15 +137,22 @@
         }
     }
     
-    /* section mobile-app */
-    
     .about-imgs-col-img-small {
         display: none;
     }
 
+    /* section mobile-app */
+
+    .mobile-app {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+     
     .mobile-app-img-img {
         margin-left: 29px;
     }
+
+    /* section contact-us */
 
     .contacts {
         padding: 100px 60px 105px 60px;
