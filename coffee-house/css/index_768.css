@@ -65,8 +65,35 @@
         background-color: var(--text-dark, #403F3D);
     }
 
+    .hero-btn-primary-link {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        /* margin-right: 2px; */
+    }
+
+    .hero-btn-primary-link-text {
+        margin-left: 0;
+    }
+    
+    .hero-btn-primary-link-img {
+        opacity: 1;
+        margin-left: 0;
+    }
+
+    @media (hover: hover) {
+        .hero-btn-primary:hover .hero-btn-primary-link-text {
+            transform: none;
+        }
+        .hero-btn-primary:hover .hero-btn-primary-link-img {
+            opacity: 1;
+        }
+    }
+    
     .about-imgs-col-img-small {
         display: none;
     }
-    
+
 }
