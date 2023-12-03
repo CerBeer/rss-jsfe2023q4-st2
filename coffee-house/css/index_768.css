@@ -92,7 +92,6 @@
         }
     }
     
-    
     .favorite-coffee-slider-row-side-l {
         margin-left: 0;
     }
@@ -101,8 +100,51 @@
         margin-right: 0;
     }
 
+    /* section about */
+    
+    .about-imgs-col {
+        width: 688px;
+    }
+        
+    .about-imgs-col-img-large {
+        width: 688px;
+        height: 590px;
+    }
+    
+    .about-imgs-col-img-small {
+        height: 430px;
+    }
+    
+    .about-imgs-img {
+        transform: scale(1.055);
+    }
+    
+    @media (hover: hover) {
+        .about-imgs-img:hover {
+            transform: scale(1);
+        }
+    }
+    
+    /* section mobile-app */
+    
     .about-imgs-col-img-small {
         display: none;
+    }
+
+    .mobile-app-img-img {
+        margin-left: 29px;
+    }
+
+    .contacts {
+        padding: 100px 60px 105px 60px;
+    }
+
+    .contacts-offer {
+        width: 100%;
+    }
+    .contacts-info {
+        margin-top: 0;
+        width: 100%;
     }
 
 }
