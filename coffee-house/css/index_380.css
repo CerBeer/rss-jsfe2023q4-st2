@@ -68,10 +68,23 @@
 
     /* section about */
     
-    .about {
-        /* display: none; */
+    .about-imgs-col {
+        display: flex;
+        flex-direction: column;
+        width: 348px;
+    }
+    
+    .about-imgs-img {
+        width: auto;
+        height: 100%;
+        transform: scale(1.24);
     }
 
+    .about-imgs-col-img-large {
+        width: 348px;
+        height: 590px;
+    }
+    
     /* section mobile-app */
 
     .mobile-app {
