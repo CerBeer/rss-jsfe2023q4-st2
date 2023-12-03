@@ -101,12 +101,14 @@
         margin-left: 0;
         max-width: 348px;
     }
+
     /* section contact-us */
 
     .contacts {
         padding: 60px 16px 64px 16px;
         gap: 40px;
     }
+    
 }
 
 

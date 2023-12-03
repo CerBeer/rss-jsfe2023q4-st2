@@ -297,6 +297,7 @@
     border: 1px solid var(--border-dark, #665F55);
     transition: background-color var(--effect-duration-normal, .25s) ease-out;
     cursor: pointer;
+    display: none;
 }
 
 .menu-cards-button-dark svg {
