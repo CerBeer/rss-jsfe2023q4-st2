@@ -68,6 +68,11 @@
 
     /* section about */
     
+    .about {
+        max-width: 100%;
+        align-self: stretch;
+    }
+
     .about-imgs-col {
         display: flex;
         flex-direction: column;
@@ -88,7 +93,23 @@
     /* section mobile-app */
 
     .mobile-app {
-        display: none;
+        max-width: 100%;
+        align-self: stretch;
+        gap: 40px;
     }
     
+    .mobile-app-offer-apps {
+        flex-wrap: wrap;
+    }
+
+    .mobile-app-img-img {
+        margin-left: 0;
+        max-width: 348px;
+    }
+    /* section contact-us */
+
+    .contacts {
+        padding: 60px 16px 64px 16px;
+        gap: 40px;
+    }
 }
