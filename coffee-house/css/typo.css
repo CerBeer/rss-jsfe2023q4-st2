@@ -157,3 +157,28 @@
 
     }
 }
+
+/* Mobile/Heading/heading-1 */
+
+.typo-mobile-heading-heading-1 {
+    font-feature-settings: 'clig' off, 'liga' off;
+}
+
+/* Mobile/Heading/heading-1.accent */
+
+.typo-mobile-heading-heading-1-accent {
+    font-feature-settings: 'clig' off, 'liga' off;
+}
+
+/* Mobile/Heading/heading-2 */
+
+.typo-mobile-heading-heading-2 {
+    font-feature-settings: 'clig' off, 'liga' off;
+}
+
+/* Mobile/Heading/heading-2.accent  */
+
+.typo-mobile-heading-heading-2-accent {
+    font-feature-settings: 'clig' off, 'liga' off;
+}
+

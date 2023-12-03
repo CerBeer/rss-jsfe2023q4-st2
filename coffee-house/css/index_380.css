@@ -1,0 +1,81 @@
+
+@media (max-width: 480px) {
+
+    body {
+        max-width: 380px;
+        /* overflow-y: hidden; */
+    }
+    
+    /* outerbox */
+
+    .outerbox {
+        display: flex;
+        padding: 12px 16px 40px 16px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* header */
+
+    /* main */
+
+    /* section hero */
+
+    .hero-offer {
+        width: 100%;
+    }
+
+    .hero {
+        padding: 60px 16px;
+    }
+    
+    /* section favorite coffee */
+
+    .favorite-coffee {
+        align-self: stretch;
+    }
+
+    .favorite-coffee-slider-row-side-l {
+        display: none;
+    }
+    
+    .favorite-coffee-slider-row-side-c {
+        min-width: 100px;
+        width: 100%;
+        max-width: 348px;
+        /* overflow: hidden; */
+    }
+
+    .favorite-coffee-slider-row-side-c-item {
+        width: 100%;
+        max-width: 348px;
+    }
+    
+    .favorite-coffee-slider-row-side-c-item-pic {
+        width: auto;
+        height: auto;
+        margin-bottom: -2px;
+    }
+
+    .favorite-coffee-slider-row-side-c-item-pic-img {
+        width: 100%;
+        height: auto;
+    }
+
+    .favorite-coffee-slider-row-side-r {
+        display: none;
+    }
+
+    /* section about */
+    
+    .about {
+        /* display: none; */
+    }
+
+    /* section mobile-app */
+
+    .mobile-app {
+        display: none;
+    }
+    
+}

@@ -11,8 +11,6 @@
         position: fixed;
         top: 0;
         right: 0;
-        /* flex-direction: column; */
-        /* background: #000; */
         color: #FFFFFF;
         display: flex;
         width: 100%;
@@ -81,7 +79,6 @@
         flex-wrap: wrap;
         align-items: center;
         gap: 10px;
-        /* margin-right: 2px; */
     }
 
     .hero-btn-primary-link-text {
