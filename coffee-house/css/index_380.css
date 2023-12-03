@@ -1,11 +1,6 @@
 
 @media (max-width: 480px) {
 
-    body {
-        max-width: 380px;
-        /* overflow-y: hidden; */
-    }
-    
     /* outerbox */
 
     .outerbox {
@@ -113,3 +108,47 @@
         gap: 40px;
     }
 }
+
+
+@media (max-width: 370px) {
+    
+    /* section favorite coffee */
+ 
+    .favorite-coffee-slider-row {
+        justify-content: center;
+    }
+
+    .favorite-coffee-slider-row-side-c {
+        max-width: 248px;
+        /* overflow: hidden; */
+    }
+
+    .favorite-coffee-slider-row-side-c-item {
+        max-width: 248px;
+    }
+    
+    /* section about */
+    
+    .about-imgs-col {
+        display: flex;
+        flex-direction: column;
+        width: 348px;
+        align-items: center;
+    }
+
+    .about-imgs-col-img-large {
+        width: 248px;
+        height: 290px;
+    }
+
+    /* section mobile-app */
+    .mobile-app {
+        justify-content: flex-end;
+    }
+
+    .mobile-app-img-img {
+        margin-left: 0;
+        max-width: 248px;
+    }
+
+}    

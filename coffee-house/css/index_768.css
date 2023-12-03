@@ -164,3 +164,129 @@
     }
 
 }
+
+
+@media (max-width: 758px) {
+
+    /* outerbox */
+
+    .outerbox {
+        display: flex;
+        padding: 12px 16px 40px 16px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* section hero */
+
+    .hero-offer {
+        width: 100%;
+    }
+    
+    /* section favorite coffee */
+ 
+    .favorite-coffee-slider-row {
+        gap: 0;
+    }
+    
+    .favorite-coffee-slider-row-side-c {
+        min-width: 100px;
+        width: 100%;
+        max-width: 348px;
+        /* overflow: hidden; */
+    }
+
+    .favorite-coffee-slider-row-side-c-item {
+        width: 100%;
+        max-width: 348px;
+    }
+    
+    .favorite-coffee-slider-row-side-c-item-pic {
+        width: auto;
+        height: auto;
+        margin-bottom: -2px;
+    }
+
+    .favorite-coffee-slider-row-side-c-item-pic-img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* section about */
+    
+    .about {
+        max-width: 100%;
+        align-self: stretch;
+    }
+
+    .about-imgs-col {
+        display: flex;
+        flex-direction: column;
+        width: 548px;
+    }
+    
+    .about-imgs-img {
+        width: auto;
+        height: 100%;
+        transform: scale(1.24);
+    }
+
+    .about-imgs-col-img-large {
+        width: 548px;
+        height: 590px;
+    }
+
+    /* section mobile-app */
+
+    .mobile-app {
+        max-width: 100%;
+        align-self: stretch;
+        gap: 40px;
+    }
+    
+    .mobile-app-offer-apps {
+        flex-wrap: wrap;
+    }
+
+    .mobile-app-img-img {
+        margin-left: 0;
+        max-width: 548px;
+    }
+
+}    
+
+
+@media (max-width: 580px) {
+    
+    /* section favorite coffee */
+ 
+    .favorite-coffee-slider-row-side-c {
+        max-width: 348px;
+        /* overflow: hidden; */
+    }
+
+    .favorite-coffee-slider-row-side-c-item {
+        max-width: 348px;
+    }
+    
+    /* section about */
+    
+    .about-imgs-col {
+        display: flex;
+        flex-direction: column;
+        width: 348px;
+    }
+
+    .about-imgs-col-img-large {
+        width: 348px;
+        height: 390px;
+    }
+
+    /* section mobile-app */
+
+    .mobile-app-img-img {
+        margin-left: 0;
+        max-width: 348px;
+    }
+
+}    
