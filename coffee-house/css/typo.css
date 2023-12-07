@@ -18,15 +18,6 @@
     src: url('../fonts/Inter-SemiBold.woff2') format('woff2');
 }
 
-/* inter-600 - latin */
-/* @font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: italic;
-    font-weight: 600;
-    src: url('../fonts/Inter-SemiBoldItalic.woff2') format('woff2');
-} */
-
 /* text color */
 .typo-text-color-dark {
     color: var(--text-dark, #403F3D);
@@ -182,3 +173,43 @@
     font-feature-settings: 'clig' off, 'liga' off;
 }
 
+/* Mobile */
+
+@media (max-width: 690px) {
+
+    .typo-mobile-heading-heading-1 {
+        /* Mobile/Heading/heading-1 */
+        font-family: Inter;
+        font-size: 42px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 115%;
+    }
+
+    .typo-mobile-heading-heading-1-accent {
+        /* Mobile/Heading/heading-1.accent */
+        font-family: Inter;
+        font-size: 42px;
+        font-style: italic;
+        font-weight: 600;
+        line-height: 115%; /* 48.3px */
+    }
+
+    .typo-mobile-heading-heading-2 {
+        /* Mobile/Heading/heading-2 */
+        font-family: Inter;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 125%; /* 40px */
+    }
+
+    .typo-mobile-heading-heading-2-accent {
+        /* Mobile/Heading/heading-2.accent */
+        font-family: Inter;
+        font-size: 32px;
+        font-style: italic;
+        font-weight: 600;
+        line-height: 125%; /* 40px */
+    }
+}
