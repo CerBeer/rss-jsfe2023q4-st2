@@ -43,6 +43,12 @@ body {
     background: var(--background-body, #E1D4C9);
 }
 
+.block-scroll {
+    overflow: hidden;
+    padding-right: 16px; /* Avoid width reflow */
+    position: fixed;
+}
+
 .outerbox {
     display: flex;
     padding: 12px 40px 40px 40px;

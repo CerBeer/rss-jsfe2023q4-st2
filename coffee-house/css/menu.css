@@ -201,70 +201,6 @@
 
 @media (max-width: 768px) {
 
-    /* header */
-    
-    .header-logo {
-        z-index: 1;
-    }
-
-    .header-nav {
-        position: fixed;
-        top: 0;
-        right: 0;
-        color: #FFFFFF;
-        display: flex;
-        width: 100%;
-        height: 100%;
-        padding: 160px 40px;
-        flex-direction: column;
-        align-items: center;
-        gap: 100px;
-        transform: translateX(100%);
-    }
-    
-    .header-nav-list {
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        align-self: center;
-        gap: 60px;
-    }
-
-    .header-nav-item {
-        padding: 0;
-        color: #FFF;
-        font-family: Inter;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 50px;
-    }
-
-    .header-coffee-menu {
-        gap: 16px;
-    }
-
-    .header-coffee-menu-cup {
-        width: 40px;
-    }
-
-    .burger-menu-button {
-        display: flex;
-    }
-
-    .burger-menu-button-hr-top {
-        width: 16px;
-        height: 1px;
-        background-color: var(--text-dark, #403F3D);
-    }
-
-    .burger-menu-button-hr-bottom {
-        width: 16px;
-        height: 1px;
-        background-color: var(--text-dark, #403F3D);
-    }
-    
     /* section menu-cards */
     
     .menu-card-full {
@@ -291,6 +227,11 @@
 
 }
 
+@media (max-width: 760px) {
+    .menu-offer {
+        max-width: 650px;
+    }
+}
 
 @media (max-width: 448px) {
     
