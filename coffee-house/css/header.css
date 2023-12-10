@@ -1,0 +1,200 @@
+
+/* header */
+
+.header {
+    display: flex;
+    margin: 0;
+    margin-bottom: 17px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    z-index: 2;
+}
+
+.header-logo {
+    margin-top: 8px;
+}
+
+.header-nav {
+    display: flex;
+    /* margin-right: 40px; */
+    /* margin-top: -2px; */
+    align-items: center;
+    /* justify-content: center; */
+    /* align-content: center; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    background: var(--background-body, #E1D4C9);
+}
+
+.header-nav-list {
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin: 0 auto;
+    /* align-self: center; */
+}
+
+.header-nav-list-link{
+    position: relative;
+}
+
+.header-nav-list-link::after,
+.header-coffee-menu::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--border-dark, #665F55);
+    transform: scaleX(0);
+    transition: transform var(--effect-duration-short, .3s) ease-out
+}
+
+@media (hover: hover) {
+    .header-nav-list-link:hover::after,
+    .header-coffee-menu:hover::after {
+        transform: scaleX(1);
+    }
+}
+
+.header-nav-list-link:focus::after,
+.header-coffee-menu:focus::after {
+    transform: scaleX(1);
+}
+
+.header-coffee-menu {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.header-coffee-menu-disable-link {
+    cursor: default;
+    /* pointer-events: none; */
+}
+
+.header-coffee-menu-disable-link::after {
+    transform: none;
+}
+
+.burger-menu-button {
+    margin-top: 3px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    border-radius: 100px;
+    border: 1px solid var(--border-dark, #665F55);
+    background: var(--background-body, #E1D4C9);
+    gap: 8px;
+    z-index: 1;
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    /* header */
+    
+    .header-logo {
+        z-index: 2;
+    }
+
+    .header-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        color: #FFFFFF;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        padding: 160px 40px;
+        flex-direction: column;
+        align-items: center;
+        gap: 100px;
+        /* transform: translateX(100%); */
+        z-index: 1;
+    }
+    
+    .header-nav-slow-mo {
+        transition: transform var(--effect-duration-normal, .3s) ease-out;
+         /* all linear; */
+    }
+
+    .header-nav-list {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        gap: 60px;
+    }
+
+    .header-nav-item {
+        padding: 0;
+        color: #FFF;
+        font-family: Inter;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 50px;
+    }
+
+    li.header-nav-list-item {
+        text-align: center;
+    }
+
+    .header-coffee-menu {
+        gap: 16px;
+    }
+
+    .header-coffee-menu-cup {
+        width: 40px;
+    }
+
+    .burger-menu-button {
+        display: flex;
+        cursor: pointer;
+    }
+        
+    .burger-menu-button span {
+        width: 16px;
+        height: 1px;
+        background-color: var(--text-dark, #403F3D);
+        transition: all var(--effect-duration-normal, .3s) ease;
+    }
+
+    @media (hover: hover) {
+        
+        .burger-menu-button:hover {
+            background: var(--background-container, #665F55);
+        }
+
+        .burger-menu-button:hover span {
+            background-color: var(--text-light, #E1D4C9);
+        }
+    }
+    
+    .burger-menu-button-active span:first-child {
+        transform: translateY(4.5px) rotate(45deg);
+    }
+
+    .burger-menu-button-active span:last-child {
+        transform: translateY(-4.5px) rotate(-45deg);
+    }
+
+    .header-burger-menu-active {
+        transform: translateX(-100%);
+    }
+
+}
