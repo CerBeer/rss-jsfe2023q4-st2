@@ -178,6 +178,8 @@
     justify-content: flex-start;
     overflow: hidden;
     width: 35%;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .favorite-coffee-slider-row-side-c-items {
@@ -208,6 +210,7 @@
     width: 480px;
     height: 480px;
     margin-bottom: 4px;
+    pointer-events: none;
 }
 
 .favorite-coffee-slider-control {

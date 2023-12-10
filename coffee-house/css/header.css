@@ -150,6 +150,10 @@
         line-height: 50px;
     }
 
+    li.header-nav-list-item {
+        text-align: center;
+    }
+
     .header-coffee-menu {
         gap: 16px;
     }

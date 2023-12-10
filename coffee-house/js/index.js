@@ -1,13 +1,8 @@
+
 window.addEventListener('resize', function(event) {
     burgerMenu_Close();
+    slider_elements_calc_state_slide();
 }, true);
-
-var observer = new IntersectionObserver(function(entries) {
-    if(entries[0].isIntersecting === true)
-        console.log('Element has just become visible in screen');
-}, { threshold: [0] });
-
-observer.observe(document.querySelector(".favorite-coffee-slider"));
 
 // slider
 
@@ -18,6 +13,8 @@ const slider_control = document.querySelector(".favorite-coffee-slider-control")
 const slider_items = document.querySelector(".favorite-coffee-slider-row-side-c-items");
 let slider_element_active = 0;
 let slider_state_continues = true;
+let slider_event_down_startX = 0;
+let slider_moveX_to_change = 75;
 
 
 let slider_timerId = setInterval(slider_elements_calc_state, 130);
@@ -82,13 +79,41 @@ function slider_elements_calc_state_controls() {
 }
 
 function slider_pause(e) {
-    e.stopPropagation();
     slider_state_continues = false;
 }
 
 function slider_continues(e) {
-    e.stopPropagation();
     slider_state_continues = true;
+}
+
+function slider_mouse_down(e) {
+    slider_state_continues = false;
+    slider_event_down_startX = e.offsetX;
+}
+
+function slider_mouse_up(e) {
+    slider_state_continues = true;
+    let slider_event_down_stoptX = e.offsetX;
+    slider_touch_end_result(slider_event_down_startX, slider_event_down_stoptX);
+}
+
+function slider_touch_start(e) {
+    slider_state_continues = false;
+    slider_event_down_startX = e.touches[0].clientX;
+}
+
+function slider_touch_end(e) {
+    let slider_event_down_stoptX = e.changedTouches[0].clientX;
+    slider_state_continues = true;
+    slider_touch_end_result(slider_event_down_startX, slider_event_down_stoptX);
+}
+
+function slider_touch_end_result(startX, stopX) {
+    moveX = Math.abs(startX - stopX);
+    if (moveX > slider_moveX_to_change) {
+        if (startX > stopX) slider_move_next();
+        else slider_move_prev();
+    }
 }
 
 const slider_button_prev = document.querySelector(".favorite-coffee-slider-row-side-l");
@@ -99,3 +124,7 @@ slider_button_next.addEventListener('click', slider_move_next);
 const slider_row_side_c = document.querySelector(".favorite-coffee-slider-row-side-c");
 slider_row_side_c.addEventListener('mouseover', slider_pause);
 slider_row_side_c.addEventListener('mouseout', slider_continues);
+slider_row_side_c.addEventListener('mousedown', slider_mouse_down);
+slider_row_side_c.addEventListener('mouseup', slider_mouse_up);
+slider_row_side_c.addEventListener('touchstart', slider_touch_start);
+slider_row_side_c.addEventListener('touchend', slider_touch_end);
