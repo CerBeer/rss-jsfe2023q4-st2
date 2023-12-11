@@ -6,11 +6,21 @@ window.addEventListener(
     true
 );
 
-// const products;
+const menu_cards_grid = document.querySelector(".menu-cards-grid");
 
+const product_categories = {
+    'coffee': 'coffee',
+    'tea': 'tea',
+    'dessert': 'dessert',
+};
+
+let current_category = product_categories.coffee;
+let current_products_count = 8;
+
+let products = [];
 async function products_getData() {
     //const requestURL = "https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json";
-    const requestURL = "https://github.com/rolling-scopes-school/tasks/blob/master/tasks/coffee-house/products.json";
+    const requestURL = "https://rolling-scopes-school.github.io/cerbeer-JSFE2023Q4/coffee-house/resources/products.json";
     const request = new Request(requestURL);
 
     const response = await fetch(request);
@@ -20,41 +30,80 @@ async function products_getData() {
 }
 
 function products_dataRead(obj) {
-
     console.log(obj);
-    return;
+    products = structuredClone(obj);
+    products_create_cards();
+    menu_cards_grid.classList.add('menu-cards-grid-change');
+    products_create_cards_continue();
+}
 
-    const section = document.querySelector(".menu-cards-grid");
-    const heroes = obj.members;
+function products_create_cards() {
+    menu_cards_grid.classList.add('menu-cards-grid-change');
+    setTimeout(products_create_cards_continue, 500);
+}
+    
+function products_create_cards_continue() {
+    
+    menu_cards_grid.innerHTML = '';
 
-    for (const hero of heroes) {
-        const myArticle = document.createElement("article");
-        const myH2 = document.createElement("h2");
-        const myPara1 = document.createElement("p");
-        const myPara2 = document.createElement("p");
-        const myPara3 = document.createElement("p");
-        const myList = document.createElement("ul");
+    let cards_created_count = 0;
+    let i = 0;
+    while (cards_created_count < current_products_count && i < products.length) {
+        
+        if (products[i].category === current_category) {
+            const newCard = document.createElement("article");
+            newCard.classList.add('menu-card');
+            newCard.innerHTML = get_card_markup(cards_created_count, products[i]);
+            // newCard.addEventListener('click', () => {
+            //   toggle_Modal();
+            //   create_MenuItemModal(listItem, item);
+            // });
+            menu_cards_grid.appendChild(newCard);
 
-        myH2.textContent = hero.name;
-        myPara1.textContent = `Secret identity: ${hero.secretIdentity}`;
-        myPara2.textContent = `Age: ${hero.age}`;
-        myPara3.textContent = "Superpowers:";
+            // for (const power of superPowers) {
+            //     const listItem = document.createElement("li");
+            //     listItem.textContent = power;
+            //     myList.appendChild(listItem);
+            // }
 
-        const superPowers = hero.powers;
-        for (const power of superPowers) {
-            const listItem = document.createElement("li");
-            listItem.textContent = power;
-            myList.appendChild(listItem);
+            cards_created_count += 1;
         }
 
-        myArticle.appendChild(myH2);
-        myArticle.appendChild(myPara1);
-        myArticle.appendChild(myPara2);
-        myArticle.appendChild(myPara3);
-        myArticle.appendChild(myList);
-
-        section.appendChild(myArticle);
+        i += 1;
     }
+    menu_cards_grid.classList.remove('menu-cards-grid-change');
 }
 
 products_getData();
+
+const menu_tabs = document.querySelector(".menu-tabs");
+const menu_tabs_coffee = document.querySelector(".menu-tabs-tab-coffee");
+menu_tabs_coffee.addEventListener('click', menu_tabs_coffee_click);
+const menu_tabs_tea = document.querySelector(".menu-tabs-tab-tea");
+menu_tabs_tea.addEventListener('click', menu_tabs_tea_click);
+const menu_tabs_dessert = document.querySelector(".menu-tabs-tab-dessert");
+menu_tabs_dessert.addEventListener('click', menu_tabs_dessert_click);
+
+function menu_tabs_coffee_click(e) {
+    menu_tabs_coffee.classList.add("menu-tabs-tab-active");
+    menu_tabs_tea.classList.remove("menu-tabs-tab-active");
+    menu_tabs_dessert.classList.remove("menu-tabs-tab-active");
+    current_category = product_categories.coffee;
+    products_create_cards();
+}
+
+function menu_tabs_tea_click(e) {
+    menu_tabs_coffee.classList.remove("menu-tabs-tab-active");
+    menu_tabs_tea.classList.add("menu-tabs-tab-active");
+    menu_tabs_dessert.classList.remove("menu-tabs-tab-active");
+    current_category = product_categories.tea;
+    products_create_cards();
+}
+
+function menu_tabs_dessert_click(e) {
+    menu_tabs_coffee.classList.remove("menu-tabs-tab-active");
+    menu_tabs_tea.classList.remove("menu-tabs-tab-active");
+    menu_tabs_dessert.classList.add("menu-tabs-tab-active");
+    current_category = product_categories.dessert;
+    products_create_cards();
+}
