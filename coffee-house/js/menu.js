@@ -38,7 +38,6 @@ function current_products_calc_state() {
 }
 
 async function products_getData() {
-    //const requestURL = "https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json";
     const requestURL = "https://rolling-scopes-school.github.io/cerbeer-JSFE2023Q4/coffee-house/resources/products.json";
     const request = new Request(requestURL);
 
@@ -49,9 +48,7 @@ async function products_getData() {
 }
 
 function products_dataRead(obj) {
-    console.log(obj);
     products = structuredClone(obj);
-    // products_create_cards();
     menu_cards_grid.classList.add('menu-cards-grid-change');
     setTimeout(products_create_cards_continue, 200);
 }
@@ -80,16 +77,9 @@ function products_create_cards_continue() {
             newCard.innerHTML = get_card_markup(cards_created_count, products[i]);
             newCard.dataset.index = i;
             newCard.addEventListener('click', () => {
-                // toggle_Modal();
                 menu_item_modal_create(newCard);
             });
             menu_cards_grid.appendChild(newCard);
-
-            // for (const power of superPowers) {
-            //     const listItem = document.createElement("li");
-            //     listItem.textContent = power;
-            //     myList.appendChild(listItem);
-            // }
 
             cards_created_count += 1;
         }
