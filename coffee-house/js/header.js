@@ -6,7 +6,6 @@ function burgerMenu_ClickOpen(e) {
         burgerMenu_Close();
     }
     else {
-        // document.addEventListener('click', burgerMenu_ClickClose);
         burgerMenu_Menu.classList.add('header-burger-menu-active');
         burgerMenu_Button.classList.add('burger-menu-button-active');
         document.body.classList.add('block-scroll');

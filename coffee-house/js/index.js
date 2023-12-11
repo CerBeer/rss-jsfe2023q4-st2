@@ -26,14 +26,12 @@ function slider_move_next() {
 	slider_element_active += 1;
     if (slider_element_active > slider_element_last) slider_element_active = 0;
     slider_elements_calc_state_slide();
-//    slider_elements_calc_state_controls();
 };
 
 function slider_move_prev() {
 	slider_element_active -= 1;
     if (slider_element_active < 0) slider_element_active = slider_element_last;
     slider_elements_calc_state_slide();
-//    slider_elements_calc_state_controls();
 };
 
 function slider_elements_calc_state_slide() {
@@ -55,7 +53,6 @@ function slider_elements_calc_state_controls() {
         let element_current_width = parseInt(element_fill.style.width) || 0;
 		if (index === slider_element_active) {
             element_fill.classList.add('favorite-coffee-slider-control-element-fill-active');
-            // console.log(element_current_width);
             if (element_current_width < 100) {
                 element_new_width = element_current_width + slider_element_speed_up;
                 if (element_new_width > 100) element_new_width = 100;

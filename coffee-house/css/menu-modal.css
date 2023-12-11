@@ -16,27 +16,20 @@
     height: 100%;
     background: var(--background-backdrop, rgba(64, 63, 61, 0.80));
     z-index: 10;
-    /* overflow: hidden; */
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100vh;
-    /* background-color: #403f3dcc; */
-    /* opacity: 0; */
-    /* visibility: hidden; */
 }
 
 .modal-windows-window-card {
     z-index: 11;
-    /* display: flex; */
     width: 800px;
     height: 504px;
-    /* padding: 16px; */
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    /* border-radius: 40px; */
     background: var(--background-body, #E1D4C9);
     display: flex;
     border-radius: 40px;
@@ -103,27 +96,22 @@
     border-radius: 100px;
     border: 1px solid var(--border-light, #C1B6AD);
     background: var(--background-body, #E1D4C9);
+    transition: background-color .3s ease-out, color .3s ease-out;
 }
 
 .modal-card-right-buttons-buttons-button-active {
     color: var(--text-light);
     background-color: var(--background-container);
-    /* pointer-events: none; */
 }
 
 .modal-card-right-buttons-buttons-button-active .modal-card-right-buttons-buttons-button-name {
     color: var(--text-dark, #403F3D);
     background: var(--background-body, #E1D4C9);
-    /* pointer-events: none; */
 }
 
-.modal-card-right-buttons-buttons-button-name {
-    display: flex;
-    padding: 3px 7px 3px 8px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 100px;
-    background: var(--border-light, #C1B6AD);
+.modal-card-right-buttons-buttons-button-active-size {
+    pointer-events: none;
+    cursor: default;
 }
 
 .modal-card-right-buttons-buttons-button-name {    
@@ -133,13 +121,14 @@
     border-radius: 100px;
     width: 30px;
     height: 30px;
+    padding: 3px 7px 3px 8px;
+    background: var(--border-light, #C1B6AD);
 }
 
 .modal-card-right-total {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* margin-bottom: 11px; */
 }
 
 .modal-card-right-info {
@@ -164,6 +153,7 @@
     border-radius: 100px;
     border: 1px solid var(--border-dark, #665F55);    
     background: var(--background-body, #E1D4C9);
+    transition: background-color .3s ease-out, color .3s ease-out;
 }
 
 @media (hover: hover) {
@@ -171,14 +161,22 @@
     .modal-card-right-buttons-buttons-button:hover {
         color: var(--text-light);
         background-color: var(--background-container);
-        /* pointer-events: none; */
     }
 
     .modal-card-right-buttons-buttons-button:hover .modal-card-right-buttons-buttons-button-name {
         color: var(--text-dark, #403F3D);
         background: var(--background-body, #E1D4C9);
-        /* pointer-events: none; */
     }
+
+    .modal-card-right-buttons-buttons-button-active:hover .modal-card-right-buttons-buttons-button-name {
+        background: var(--border-light, #C1B6AD);
+    }
+
+    .modal-card-right-buttons-buttons-button-active-size:hover {
+        background: var(--background-body, #E1D4C9);
+        pointer-events: none;
+    }
+    
 
     .modal-card-right-button-close:hover {
         color: var(--text-light);
