@@ -44,9 +44,7 @@ function mbtn1_click() {
     document.querySelector('.mbtn2').classList.remove('modal-card-right-buttons-buttons-button-active');
     document.querySelector('.mbtn3').classList.remove('modal-card-right-buttons-buttons-button-active');
     
-    let cost = parseFloat(document.querySelector('.mbtn1').dataset.cost);
-    current_cost = base_cost + cost;
-    document.querySelector('.modal-card-right-total-sum').innerText = `$${current_cost}`;
+    count_total();
 
 }
 function mbtn2_click() {
@@ -54,22 +52,36 @@ function mbtn2_click() {
     document.querySelector('.mbtn2').classList.add('modal-card-right-buttons-buttons-button-active');
     document.querySelector('.mbtn3').classList.remove('modal-card-right-buttons-buttons-button-active');
 
-    let cost = parseFloat(document.querySelector('.mbtn2').dataset.cost);
-    current_cost = base_cost + cost;
-    document.querySelector('.modal-card-right-total-sum').innerText = `$${current_cost}`;
+    count_total();
 }
 function mbtn3_click() {
     document.querySelector('.mbtn1').classList.remove('modal-card-right-buttons-buttons-button-active');
     document.querySelector('.mbtn2').classList.remove('modal-card-right-buttons-buttons-button-active');
     document.querySelector('.mbtn3').classList.add('modal-card-right-buttons-buttons-button-active');
+
+    count_total();
 }
 
 function mbtn4_click() {
     document.querySelector('.mbtn4').classList.toggle('modal-card-right-buttons-buttons-button-active');
+    count_total();
 }
 function mbtn5_click() {
     document.querySelector('.mbtn5').classList.toggle('modal-card-right-buttons-buttons-button-active');
+    count_total();
 }
 function mbtn6_click() {
     document.querySelector('.mbtn6').classList.toggle('modal-card-right-buttons-buttons-button-active');
+    count_total();
+}
+
+function count_total() {
+    let total_cost = base_cost;
+    console.log(total_cost);
+    const activeButtons = document.querySelectorAll('.modal-card-right-buttons-buttons-button-active');
+    activeButtons.forEach((button) => {
+        total_cost = total_cost + parseFloat(button.dataset.cost);
+    });
+    const formattedCost = total_cost.toFixed(2);
+    document.querySelector('.modal-card-right-total-sum').innerText = `$${formattedCost}`;
 }
