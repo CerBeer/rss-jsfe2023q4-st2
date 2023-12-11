@@ -78,10 +78,11 @@ function products_create_cards_continue() {
                 newCard.classList.add('menu-card-hide');
             }
             newCard.innerHTML = get_card_markup(cards_created_count, products[i]);
-            // newCard.addEventListener('click', () => {
-            //   toggle_Modal();
-            //   create_MenuItemModal(listItem, item);
-            // });
+            newCard.dataset.index = i;
+            newCard.addEventListener('click', () => {
+                // toggle_Modal();
+                menu_item_modal_create(newCard);
+            });
             menu_cards_grid.appendChild(newCard);
 
             // for (const power of superPowers) {
