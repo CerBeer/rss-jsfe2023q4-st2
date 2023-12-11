@@ -80,6 +80,7 @@
     background-color: var(--background-container, #665F55);
     color: var(--background-body, #E1D4C9);
     cursor: default;
+    pointer-events: none;
 }
 
 .menu-tabs-tab-active .menu-tabs-tab-img{
@@ -210,11 +211,11 @@
 
     /* section menu-cards */
     
-    .menu-card-full {
+    .menu-card-hide {
         display: none;
     }
     
-    .menu-cards-button-dark {
+    .menu-cards-button-dark-visible {
         display: flex;
     }
     
