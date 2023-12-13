@@ -45,7 +45,7 @@ body {
 
 .block-scroll {
     overflow: hidden;
-    position: fixed;
+    /* position: fixed; */
 }
 
 .block-scroll-card {
@@ -54,7 +54,7 @@ body {
 
 @media (hover: hover) {
     .block-scroll {
-        padding-right: 16px; /* Avoid width reflow */
+        padding-right: 17px; /* Avoid width reflow */
     }
     .block-scroll-card {
         padding-right: 16px; /* Avoid width reflow */
