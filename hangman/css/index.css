@@ -214,6 +214,7 @@
 
 .right-side-keyboard-key-pushed {
   background-color: #aaabdd;
+  cursor: no-drop;
 }
 
 @media (min-width: 1240px) {
