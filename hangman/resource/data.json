@@ -1,4 +1,72 @@
 {
   "symbols_en": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-  "symbols_ru": "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ"
+  "symbols_ru": "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ",
+  "elements": {
+    "base": [
+      {"type": "div", "classes": "game-box", "text": "", "parent": "", "section": "base"},
+      {"type": "div", "classes": "left-side", "text": "", "parent": "game-box", "section": "base"},
+      {"type": "div", "classes": "left-side-game-name", "text": "HANGMAN GAME", "parent": "left-side", "section": "base"},
+      {"type": "div", "classes": "left-side-hanged", "text": "", "parent": "left-side", "section": "base"},
+      {"type": "div", "classes": "left-side-hanged-head", "text": "", "parent": "left-side-hanged", "section": "body"},
+      {"type": "div", "classes": "left-side-hanged-body", "text": "", "parent": "left-side-hanged", "section": "base"},
+      {"type": "div", "classes": "left-side-hanged-legs", "text": "", "parent": "left-side-hanged", "section": "base"},
+      {"type": "div", "classes": "left-side-ground", "text": "", "parent": "left-side", "section": "base"},
+      {"type": "div", "classes": "right-side", "text": "", "parent": "game-box", "section": "base"},
+      {"type": "div", "classes": "right-side-question", "text": "", "parent": "right-side", "section": "question"},
+      {"type": "div", "classes": "right-side-hint", "text": "", "parent": "right-side", "section": "hint"},
+      {"type": "div", "classes": "right-side-check", "text": "", "parent": "right-side", "section": "base"},
+      {"type": "span", "classes": "", "text": "Incorrect guesses:", "parent": "right-side-check", "section": "base"},
+      {"type": "span", "classes": "right-side-check-score", "text": "", "parent": "right-side-check", "section": "base"},
+      {"type": "span", "classes": "right-side-check-score-l", "text": "0", "parent": "right-side-check-score", "section": "score"},
+      {"type": "span", "classes": "right-side-check-score-m", "text": "/", "parent": "right-side-check-score", "section": "base"},
+      {"type": "span", "classes": "right-side-check-score-r", "text": "6", "parent": "right-side-check-score", "section": "score_max"},
+      {"type": "div", "classes": "right-side-keyboard", "text": "", "parent": "right-side", "section": "base"}
+    ],
+    "body": [
+      {"type": "div", "classes": "left-side-hanged-head", "text": "", "parent": "left-side-hanged", "section": "body"},
+      {"type": "div", "classes": "left-side-hanged-body-hand-one", "text": "", "parent": "left-side-hanged-body", "section": "body"},
+      {"type": "div", "classes": "left-side-hanged-body-body", "text": "", "parent": "left-side-hanged-body", "section": "body"},
+      {"type": "div", "classes": "left-side-hanged-body-hand-two", "text": "", "parent": "left-side-hanged-body", "section": "body"},
+      {"type": "div", "classes": "left-side-hanged-legs-one", "text": "", "parent": "left-side-hanged-legs", "section": "body"},
+      {"type": "div", "classes": "left-side-hanged-legs-two", "text": "", "parent": "left-side-hanged-legs", "section": "body"}
+    ],
+    "modal": {
+      "overlay": {"type": "div", "classes": "modal-window-overlay", "text": "", "parent": "", "section": "modal"},
+      "window": {"type": "div", "classes": "modal-window", "text": "", "parent": "modal-window-overlay", "section": "modal"},
+      "name": {"type": "div", "classes": "modal-window-name", "text": "HANGMAN GAME", "parent": "modal-window", "section": "modal"},
+      "result": {"type": "div", "classes": "modal-window-result", "text": "YOU WIN!", "parent": "modal-window", "section": "modal"},
+      "title": {"type": "div", "classes": "modal-window-word-title", "text": "The hidden word was: ", "parent": "modal-window", "section": "modal"},
+      "word": {"type": "div", "classes": "modal-window-word-word", "text": "helicopter", "parent": "modal-window", "section": "modal"},
+      "button": {"type": "div", "classes": "modal-window-button", "text": "New game", "parent": "modal-window", "section": "modal"}
+    },
+    "question": {"type": "div", "classes": "right-side-question", "text": "", "parent": "right-side", "section": "question"},
+    "question_sign": {"type": "div", "classes": "right-side-question-sign", "text": "_", "parent": "right-side-question", "section": "question"},
+    "hint": {"type": "span", "classes": "right-side-hint-hint", "text": "Hint:", "parent": "right-side-hint", "section": "hint"},
+    "score": {"type": "span", "classes": "right-side-check-score-l", "text": "", "parent": "right-side-check-score", "section": "score"},
+    "score_max": {"type": "span", "classes": "right-side-check-score-r", "text": "6", "parent": "right-side-check-score", "section": "score_max"},
+    "keyboard": {"type": "div", "classes": "right-side-keyboard", "text": "", "parent": "right-side", "section": "base"},
+    "keyboard_key": {"type": "div", "classes": "right-side-keyboard-key", "text": "", "parent": "right-side-keyboard", "section": "keyboard"}
+  },
+  "questions": [
+    {"hint": "What has legs but cannot walk?", "question": "chair"},
+    {"hint": "Clean, but not water, white, but not snow, sweet, but not ice-cream.", "question": "sugar"},
+    {"hint": "What has a head like a cat, feet like a cat, a tail like a cat, but isn’t a cat?", "question": "kitten"},
+    {"hint": "What do you call a snowman in the summer?", "question": "puddle"},
+    {"hint": "This is the season when fruit is sweet. This is the season when school-friends meet.", "question": "autumn"},
+    {"hint": "Up in the sky, above the clouds, propeller whirring fast and loud.", "question": "helicopter"},
+    {"hint": "I am yellow and brown. I have 4 long legs and a very long neck. I like to eat green leaves.", "question": "giraffe"},
+    {"hint": "The animal who can go without food and water for a long time", "question": "camel"},
+    {"hint": "Let me help you find a book on bears or bees or how to cook.", "question": "librarian"},
+    {"hint": "This man rescues kittens from trees and people from burning houses.", "question": "fireman"},
+    {"hint": "The teacher writes on me with a chalk. I have black face, I cannot talk.", "question": "blackboard"},
+    {"hint": "This table has no legs, but has many subjects.", "question": "timetable"},
+    {"hint": "My mother’s father is my ...", "question": "grandfather"},
+    {"hint": "This is the season when the birds return from the hot countries. Winter’s gone away.", "question": "spring"},
+    {"hint": "It is not a watch, but it ticks.", "question": "heart"},
+    {"hint": "Two brothers live across a path, but never see each other.", "question": "eyes"},
+    {"hint": "There’s mist in the garden, the summer is over. The trees are bare and frost in the air.", "question": "autumn"},
+    {"hint": "The flowers are blooming, the sun is shining. The rains are few, the sky is blue.", "question": "summer"},
+    {"hint": "The wind is blowing, the snow is falling. When all is white, short day and long night.", "question": "winter"},
+    {"hint": "In this sport, players all agile and high. They love to play ball. And in the ring to throw it. Ringing ball hits the floor.", "question": "basketball"}
+  ]
 }

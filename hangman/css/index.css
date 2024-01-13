@@ -149,7 +149,7 @@
   justify-content: center;
   /* border-radius: 10px; */
   /* border: 2px solid #d3c0a8; */
-  gap: 3%;
+  /* gap: 3%; */
   font-weight: 800;
   font-size: 5vw;
 }
@@ -178,6 +178,7 @@
   /* border: 2px solid #d3c0a8; */
   align-items: center;
   text-align: center;
+  justify-content: center;
 }
 
 .right-side-hint {
@@ -203,6 +204,10 @@
   color: #9b0202;
   font-weight: 800;
   margin: 0 2%;
+}
+
+.right-side-check-score-m {
+  margin: 0 10%;
 }
 
 /* keyboard */
@@ -237,6 +242,77 @@
 .right-side-keyboard-key-pushed {
   background-color: #aaabdd;
   cursor: no-drop;
+}
+
+/* modal-window */
+
+.modal-window-overlay {
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #70625157;
+  opacity: 1;
+  transition: opacity 1s ease-out, visibility 0.3s ease-out;
+  backdrop-filter: blur(8px);
+}
+
+.modal-window {
+  z-index: 11;
+  width: 60%;
+  aspect-ratio: 1.8/1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #b79f8a8c;
+  border-radius: 40px;
+  border: 2px solid #2e1b0b44;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+}
+
+.modal-window-name {
+  height: 10%;
+  font-size: 3vw;
+  font-weight: 600;
+}
+
+.modal-window-result {
+  font-size: 5vw;
+  font-weight: 800;
+}
+
+.modal-window-word-title {
+  font-size: 2vw;
+  font-weight: 600;
+  text-align: center;
+}
+
+.modal-window-word-word {
+  font-size: 4vw;
+  font-weight: 600;
+  text-align: center;
+}
+
+.modal-window-button {
+  /* width: 30%; */
+  padding: 2%;
+  aspect-ratio: 4/1;
+  outline: 1px solid #914405;
+  border-radius: 10px;
+  color: #000;
+  cursor: pointer;
+  background-color: #d3c0a882;
+  transition: background-color 0.3s ease-out;
+  font-size: 3vw;
+  text-align: center;
+}
+
+.modal-window-button:hover {
+  background-color: #926a3882;
 }
 
 @media (min-width: 1240px) {
@@ -304,6 +380,10 @@
   .right-side-keyboard-key {
     width: 10%;
     aspect-ratio: 1.6/1;
+  }
+
+  .modal-window {
+    width: 80%;
   }
   
 }
