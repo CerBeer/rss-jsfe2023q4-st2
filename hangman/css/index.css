@@ -34,6 +34,8 @@
   margin-top: 17%;
 }
 
+/* hangman */
+
 .left-side-hanged {
   width: 40%;
   height: 52%;
@@ -49,6 +51,8 @@
   aspect-ratio: 1/1;
   background-size: 100%;
   margin: 0 auto;
+  opacity: 0;
+  transition: opacity 1s;
 }
 
 .left-side-hanged-body {
@@ -66,12 +70,16 @@
   aspect-ratio: 1/1;
   background-size: 100%;
   width: 90%;
+  opacity: 0;
+  transition: opacity 1s;
 }
 
 .left-side-hanged-body-body {
   background: url(../img/body.svg) no-repeat center;
   aspect-ratio: 1/10;
   margin: 0 8%;
+  opacity: 0;
+  transition: opacity 1s;
 }
 
 .left-side-hanged-body-hand-two {
@@ -79,6 +87,8 @@
   width: 90%;
   aspect-ratio: 1/1;
   background-size: 100%;
+  opacity: 0;
+  transition: opacity 1s;
 }
 
 .left-side-hanged-legs {
@@ -94,6 +104,8 @@
   width: 40%;
   aspect-ratio: 1/1;
   background-size: 100%;
+  opacity: 0;
+  transition: opacity 1s;
 }
 
 .left-side-hanged-legs-two {
@@ -101,6 +113,8 @@
   width: 40%;
   aspect-ratio: 1/1;
   background-size: 100%;
+  opacity: 0;
+  transition: opacity 1s;
 }
 
 .left-side-ground {
@@ -122,6 +136,8 @@
   /* border-radius: 10px; */
   /* border: 2px solid #d3c0a8; */
 }
+
+/* question */
 
 .right-side-question {
   width: 90%;
@@ -150,6 +166,8 @@
   align-items: center;
 }
 
+/* hint */
+
 .right-side-hint {
   width: 90%;
   height: 25%;
@@ -165,6 +183,8 @@
 .right-side-hint {
   font-style: italic;
 }
+
+/* check */
 
 .right-side-check {
   width: 90%;
@@ -184,6 +204,8 @@
   font-weight: 800;
   margin: 0 2%;
 }
+
+/* keyboard */
 
 .right-side-keyboard {
   width: 90%;
@@ -320,4 +342,10 @@
     margin-top: 10%;
   }
 
+}
+
+/* auxiliary */
+
+.element-visible {
+  opacity: 1;
 }
