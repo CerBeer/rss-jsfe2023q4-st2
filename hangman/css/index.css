@@ -283,6 +283,7 @@
 .modal-window-result {
   font-size: 5vw;
   font-weight: 800;
+  color: #9f1c4b;
 }
 
 .modal-window-word-title {
@@ -295,6 +296,7 @@
   font-size: 4vw;
   font-weight: 600;
   text-align: center;
+  color: #2e4863;
 }
 
 .modal-window-button {

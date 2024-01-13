@@ -178,6 +178,15 @@ function game_check_letter(letter) {
 }
 
 function game_word_check() {
+  let allLettersAreGuessed = true;
+  question_letters.forEach(element => {
+    if (element.innerText !== element.dataset.letter) {
+      allLettersAreGuessed = false;
+    }
+  });
+  if (allLettersAreGuessed) {
+    pool_create_modal("You WIN!");
+  }
 }
 
 function game_score_check() {
@@ -188,15 +197,16 @@ function game_score_check() {
     }
   });
   if (game_score === game_score_max) {
-    console.log("Game over!");
-    pool_create_modal();
+    pool_create_modal("Man hanged!");
   }
 }
 
-function pool_create_modal() {
+function pool_create_modal(winOrLoss) {
+  if (document.querySelector(".modal-window-overlay") !== null) return;
   for (let key in data.elements.modal) {
     pool_create_or_find_one_element(data.elements.modal[key]);
   }
+  data.elements.modal.result.imp.innerText = winOrLoss;
   data.elements.modal.word.imp.innerText = data.questions[game_question].question;
   data.elements.modal.button.imp.addEventListener('click', new_game);
 }
