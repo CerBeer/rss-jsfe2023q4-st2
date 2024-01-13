@@ -255,7 +255,7 @@
   align-items: center;
   justify-content: center;
   background-color: #70625157;
-  opacity: 1;
+  opacity: 0;
   transition: opacity 1s ease-out, visibility 0.3s ease-out;
   backdrop-filter: blur(8px);
 }

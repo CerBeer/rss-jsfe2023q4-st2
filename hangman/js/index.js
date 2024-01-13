@@ -151,12 +151,17 @@ function new_game() {
     question_letters.push(new_letter);
   });
   data.elements.hint.imp.innerHTML = "<b>Hint: </b>" + data.questions[game_question].hint;
-  let modal = document.querySelector(".modal-window-overlay");
-  if (modal !== null) modal.remove();
+  game_score_check();
   document.querySelectorAll(".right-side-keyboard-key-pushed").forEach(el => {
     el.classList.remove("right-side-keyboard-key-pushed")
   });
-  game_score_check();
+  data.elements.body.forEach(element => {
+    element.imp.classList.remove('element-visible');
+  });
+  if (document.querySelector(".modal-window-overlay") !== null) {
+    data.elements.modal.overlay.imp.classList.remove('element-visible');
+    setTimeout(pool_hide_modal, 1000);
+  }
   console.log(data.questions[game_question].question);
 }
 
@@ -209,6 +214,15 @@ function pool_create_modal(winOrLoss) {
   data.elements.modal.result.imp.innerText = winOrLoss;
   data.elements.modal.word.imp.innerText = data.questions[game_question].question;
   data.elements.modal.button.imp.addEventListener('click', new_game);
+  setTimeout(pool_create_modal_continue, 100);
+}
+
+function pool_create_modal_continue() {
+  data.elements.modal.overlay.imp.classList.add('element-visible');
+}
+
+function pool_hide_modal() {
+  data.elements.modal.overlay.imp.remove();
 }
 
 document.addEventListener('keydown', keyboard_push);
