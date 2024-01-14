@@ -54,10 +54,11 @@ function data_read() {
   pool_create();
   localStorage_read();
   const letters_pushing = structuredClone(game_letters_probing);
-  new_game(game_question);
-  letters_pushing.forEach(el => {
-    keyboard_click_target(keyboard_buttons[el]);
-  });
+  // new_game(game_question);
+  new_game();
+  // letters_pushing.forEach(el => {
+  //   keyboard_click_target(keyboard_buttons[el]);
+  // });
 }
 
 function pool_create() {

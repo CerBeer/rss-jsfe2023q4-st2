@@ -9,7 +9,12 @@
       {"type": "div", "classes": "left-side-hanged", "text": "", "parent": "left-side", "section": "base"},
       {"type": "div", "classes": "left-side-hanged-head", "text": "", "parent": "left-side-hanged", "section": "body"},
       {"type": "div", "classes": "left-side-hanged-body", "text": "", "parent": "left-side-hanged", "section": "base"},
+      {"type": "div", "classes": "left-side-hanged-body-hand-one", "text": "", "parent": "left-side-hanged-body", "section": "body"},
+      {"type": "div", "classes": "left-side-hanged-body-body", "text": "", "parent": "left-side-hanged-body", "section": "body"},
+      {"type": "div", "classes": "left-side-hanged-body-hand-two", "text": "", "parent": "left-side-hanged-body", "section": "body"},
       {"type": "div", "classes": "left-side-hanged-legs", "text": "", "parent": "left-side-hanged", "section": "base"},
+      {"type": "div", "classes": "left-side-hanged-legs-one", "text": "", "parent": "left-side-hanged-legs", "section": "body"},
+      {"type": "div", "classes": "left-side-hanged-legs-two", "text": "", "parent": "left-side-hanged-legs", "section": "body"},
       {"type": "div", "classes": "left-side-ground", "text": "", "parent": "left-side", "section": "base"},
       {"type": "div", "classes": "right-side", "text": "", "parent": "game-box", "section": "base"},
       {"type": "div", "classes": "right-side-question", "text": "", "parent": "right-side", "section": "question"},
@@ -24,8 +29,8 @@
     ],
     "body": [
       {"type": "div", "classes": "left-side-hanged-head", "text": "", "parent": "left-side-hanged", "section": "body"},
-      {"type": "div", "classes": "left-side-hanged-body-hand-one", "text": "", "parent": "left-side-hanged-body", "section": "body"},
       {"type": "div", "classes": "left-side-hanged-body-body", "text": "", "parent": "left-side-hanged-body", "section": "body"},
+      {"type": "div", "classes": "left-side-hanged-body-hand-one", "text": "", "parent": "left-side-hanged-body", "section": "body"},
       {"type": "div", "classes": "left-side-hanged-body-hand-two", "text": "", "parent": "left-side-hanged-body", "section": "body"},
       {"type": "div", "classes": "left-side-hanged-legs-one", "text": "", "parent": "left-side-hanged-legs", "section": "body"},
       {"type": "div", "classes": "left-side-hanged-legs-two", "text": "", "parent": "left-side-hanged-legs", "section": "body"}
@@ -37,7 +42,7 @@
       "result": {"type": "div", "classes": "modal-window-result", "text": "YOU WIN!", "parent": "modal-window", "section": "modal"},
       "title": {"type": "div", "classes": "modal-window-word-title", "text": "The hidden word was: ", "parent": "modal-window", "section": "modal"},
       "word": {"type": "div", "classes": "modal-window-word-word", "text": "helicopter", "parent": "modal-window", "section": "modal"},
-      "button": {"type": "div", "classes": "modal-window-button", "text": "New game", "parent": "modal-window", "section": "modal"}
+      "button": {"type": "div", "classes": "modal-window-button", "text": "play again", "parent": "modal-window", "section": "modal"}
     },
     "question": {"type": "div", "classes": "right-side-question", "text": "", "parent": "right-side", "section": "question"},
     "question_sign": {"type": "div", "classes": "right-side-question-sign", "text": "_", "parent": "right-side-question", "section": "question"},
@@ -64,7 +69,6 @@
     {"hint": "This is the season when the birds return from the hot countries. Winter’s gone away.", "question": "spring"},
     {"hint": "It is not a watch, but it ticks.", "question": "heart"},
     {"hint": "Two brothers live across a path, but never see each other.", "question": "eyes"},
-    {"hint": "There’s mist in the garden, the summer is over. The trees are bare and frost in the air.", "question": "autumn"},
     {"hint": "The flowers are blooming, the sun is shining. The rains are few, the sky is blue.", "question": "summer"},
     {"hint": "The wind is blowing, the snow is falling. When all is white, short day and long night.", "question": "winter"},
     {"hint": "In this sport, players all agile and high. They love to play ball. And in the ring to throw it. Ringing ball hits the floor.", "question": "basketball"}
