@@ -9,8 +9,33 @@ let game_letters_probing = [];
 
 const keyboard = document.querySelector(".right-side-keyboard");
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
+function getRandomInt(max, exclude = -1) {
+  let result = Math.floor(Math.random() * max);
+  let count = 100;
+  while (result === exclude && count > 0) {
+    result = Math.floor(Math.random() * max);
+    count -= 1;
+  }
+  return result;
+}
+
+function localStorage_init() {
+  let keys = Object.keys(localStorage);
+  if (keys.indexOf('hangman') < 0) localStorage_save();
+}
+
+function localStorage_save() {
+  let game_state = {
+    "game_question": game_question,
+    "game_letters_probing": game_letters_probing,
+  };
+  localStorage.setItem('hangman', JSON.stringify(game_state));
+}
+
+function localStorage_read() {
+  const game_state = JSON.parse(localStorage.hangman);
+  game_question = parseInt(game_state.game_question, 10);
+  game_letters_probing = game_state.game_letters_probing;
 }
 
 async function get_data() {
@@ -27,7 +52,12 @@ async function get_data() {
 
 function data_read() {
   pool_create();
-  new_game();
+  localStorage_read();
+  const letters_pushing = structuredClone(game_letters_probing);
+  new_game(game_question);
+  letters_pushing.forEach(el => {
+    keyboard_click_target(keyboard_buttons[el]);
+  });
 }
 
 function pool_create() {
@@ -118,6 +148,7 @@ function keyboard_click_target(target) {
     // console.log(target.dataset.letter);
     target.classList.add("right-side-keyboard-key-pushed");
     game_letters_probing.push(target.dataset.letter);
+    localStorage_save();
     game_check_letter(target.dataset.letter);
   }
 }
@@ -137,8 +168,12 @@ function keyboard_push(event) {
   keyboard_click_target(keyboard_buttons[key]);
 };
 
-function new_game() {
-  game_question = getRandomInt(data.questions.length);
+function new_game(game_question_need = -1) {
+  if (game_question_need === -1) {
+    game_question = getRandomInt(data.questions.length, game_question);
+  } else {
+    game_question = game_question_need;
+  }
   game_score = 0;
   game_letters_probing = [];
   while (question_letters.length > 0) {
@@ -162,6 +197,8 @@ function new_game() {
     data.elements.modal.overlay.imp.classList.remove('element-visible');
     setTimeout(pool_hide_modal, 1000);
   }
+  localStorage_save();
+  document.addEventListener('keydown', keyboard_push);
   console.log(data.questions[game_question].question);
 }
 
@@ -208,13 +245,18 @@ function game_score_check() {
 
 function pool_create_modal(winOrLoss) {
   if (document.querySelector(".modal-window-overlay") !== null) return;
+  document.removeEventListener("keydown", keyboard_push);
   for (let key in data.elements.modal) {
     pool_create_or_find_one_element(data.elements.modal[key]);
   }
   data.elements.modal.result.imp.innerText = winOrLoss;
   data.elements.modal.word.imp.innerText = data.questions[game_question].question;
-  data.elements.modal.button.imp.addEventListener('click', new_game);
+  data.elements.modal.button.imp.addEventListener('click', start_new_game);
   setTimeout(pool_create_modal_continue, 100);
+}
+
+function start_new_game() {
+  new_game();
 }
 
 function pool_create_modal_continue() {
@@ -225,6 +267,5 @@ function pool_hide_modal() {
   data.elements.modal.overlay.imp.remove();
 }
 
-document.addEventListener('keydown', keyboard_push);
-
+localStorage_init();
 get_data();
