@@ -262,6 +262,7 @@ function start_new_game() {
 
 function pool_create_modal_continue() {
   data.elements.modal.overlay.imp.classList.add('element-visible');
+  data.elements.modal.button.imp.focus();
 }
 
 function pool_hide_modal() {

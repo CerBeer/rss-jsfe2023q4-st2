@@ -42,7 +42,7 @@
       "result": {"type": "div", "classes": "modal-window-result", "text": "YOU WIN!", "parent": "modal-window", "section": "modal"},
       "title": {"type": "div", "classes": "modal-window-word-title", "text": "The hidden word was: ", "parent": "modal-window", "section": "modal"},
       "word": {"type": "div", "classes": "modal-window-word-word", "text": "helicopter", "parent": "modal-window", "section": "modal"},
-      "button": {"type": "div", "classes": "modal-window-button", "text": "play again", "parent": "modal-window", "section": "modal"}
+      "button": {"type": "button", "classes": "modal-window-button", "text": "play again", "parent": "modal-window", "section": "modal"}
     },
     "question": {"type": "div", "classes": "right-side-question", "text": "", "parent": "right-side", "section": "question"},
     "question_sign": {"type": "div", "classes": "right-side-question-sign", "text": "_", "parent": "right-side-question", "section": "question"},
