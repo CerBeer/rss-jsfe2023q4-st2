@@ -1,15 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hangman game</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
-    <link rel="stylesheet" href="./css/body.css">
-    <link rel="stylesheet" href="./css/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nonograms</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+  <link rel="stylesheet" href="./css/body.css">
+  <link rel="stylesheet" href="./css/index.css">
 </head>
+
 <body>
-  <div class="game-box"></div>
+  <div class="game-box">
+    <div class="game-status">
+      <div class="game-status-row">
+        <div class="game-status-field">Size:
+          <div class="game-status-field-value game-status-field-size">15x15
+            <div class="game-status-field-size-list">
+              <div class="game-status-field-size-list-item" data-value="5">5x5</div>
+              <div class="game-status-field-size-list-item" data-value="10">10x10</div>
+              <div class="game-status-field-size-list-item" data-value="15">15x15</div>
+            </div>
+          </div>
+        </div>
+        <div class="game-status-field">Name:
+          <div class="game-status-field-value game-status-field-name">Something very long
+          </div>
+        </div>
+      </div>
+      <div class="game-status-row">
+      </div>
+    </div>
+    <div class="main-side">
+      <div class="comb">
+        <div class="comb-row">
+          <div class="top-left-corner">
+            <div class="road">
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+            </div>
+            <div class="road">
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="clue-h">
+            <div class="road">
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+            </div>
+            <div class="road">
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="comb-row">
+          <div class="clue-v">
+            <div class="road">
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+            </div>
+            <div class="road">
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+            </div>
+            <div class="road">
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="game-table">
+            <div class="road">
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+            </div>
+            <div class="road">
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+            </div>
+            <div class="road">
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+              <div class="jack">
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+                <div class="row"><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div><div class="ceil"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="game-options">
+        <div class="game-status-field-timer">00:00:00</div>
+        <div class="game-options-hr"> </div>
+        <div class="game-options-button game-options-button-random">Random</div>
+        <div class="game-options-button game-options-button-play">Play</div>
+        <div class="game-options-button game-options-button-reset">Reset</div>
+        <div class="game-options-button game-options-button-save">Save</div>
+        <div class="game-options-button game-options-button-load">Load</div>
+        <div class="game-options-button game-options-button-solution">Solution</div>
+        <div class="game-options-button game-options-button-sound">Sound</div>
+        <div class="game-options-button game-options-button-theme">Theme</div>
+      </div>
+    </div>
+  </div>
   <script src="./js/index.js"></script>
 </body>
+
 </html>
