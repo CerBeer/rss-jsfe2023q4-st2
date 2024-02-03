@@ -1,0 +1,261 @@
+
+/* main */
+
+.game-box {
+  max-width: 1400px;
+  width: 95%;
+  aspect-ratio: 10/6;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  border-radius: 10px;
+  border: 2px solid #d3c0a8;
+  font-size: 2.5vw;
+}
+
+.game-status {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: .1% auto;
+  overflow: hidden;
+}
+
+.game-status-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 1% 0;
+  justify-content: center;
+  gap: 3%;
+}
+
+.game-status-field {
+  /* max-width: 50%; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  /* margin: auto; */
+  -webkit-user-select: none;
+  user-select: none;
+  overflow: hidden;
+}
+
+.game-status-field-value {
+  margin: 0 5px;
+  padding: 0 10px;
+  border-radius: 10px;
+  border: 2px solid #d3c0a8;
+  background-color: #d0d0d0;
+  white-space: nowrap;
+}
+
+.game-status-field-size-list {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: -10px;
+  margin-top: 4px;
+  border-radius: 10px;
+  border: 10px solid #d3c0a8;
+  gap: 3px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.game-status-field-value:hover .game-status-field-size-list {
+  opacity: 1;
+}
+
+.game-status-field-size-list-item {
+  background-color: #d3c0a8;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.game-status-field-timer {
+  border-radius: 10px;
+  border: 2px solid #d3c0a8;
+  cursor: default;
+  text-align: center;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.game-status-button {
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  border-radius: 10px;
+  border: 2px solid #d3c0a8;
+  background-color: #d0d0d0;
+  cursor: pointer;
+}
+
+.main-side {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.game-options {
+  margin: 0 2%;
+  display: flex;
+  flex-direction: column;
+  gap: 1%;
+  justify-content: center;
+  width: 15%;
+}
+
+.game-options-button {
+  border-radius: 10px;
+  border: 2px solid #d3c0a8;
+  background-color: #d0d0d0;
+  cursor: pointer;
+  padding: 0 10%;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: background-color 0.2s ease-in-out,
+    border-radius 0.3s ease-in-out;
+}
+
+.game-options-button:hover {
+  border-radius: 20px;
+  background-color: #9195b3;
+}
+
+.game-options-hr {
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid #d3c0a8;
+  cursor: default;
+  margin: 10px auto;
+}
+
+.comb {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin-bottom: 1%;
+}
+
+.comb-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.top-left-corner,
+.clue-h,
+.clue-v {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.top-left-corner {
+  border-left: 1px solid #f8f8f8;
+  border-right: 1px solid #f8f8f8;
+}
+
+.clue-h,
+.clue-v {
+  background-color: #e8e8e8;
+}
+
+.clue-h {
+  border-left: 1px solid #606060;
+  border-top: 2px solid #606060;
+  border-right: 1px solid #606060;
+}
+
+.clue-v {
+  border-left: 2px solid #606060;
+  border-top: 1px solid #606060;
+  border-bottom: 1px solid #606060;
+}
+
+.game-table {
+  border: 1px solid #606060;
+}
+
+.road {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.jack {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  border: 1px solid #606060;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.ceil {
+  height: 2vw;
+  width: 2vw;
+  border: 1px solid #c0c0c0;
+  max-width: 25px;
+  max-height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.top-left-corner .jack {
+  border: none;
+}
+
+.top-left-corner .ceil {
+  height: 2.3vw;
+  width: 2.3vw;
+  border: none;
+  cursor: default;
+}
+
+.clue-h .jack{
+  border-top: none;
+  border-bottom: none;
+}
+
+.clue-h .ceil{
+  height: 2.3vw;
+  border-top: none;
+  border-bottom: none;
+  cursor: default;
+}
+
+.clue-v .jack{
+  border-left: none;
+  border-right: none;
+}
+
+.clue-v .ceil{
+  width: 2.3vw;
+  border-left: none;
+  border-right: none;
+  cursor: default;
+}
