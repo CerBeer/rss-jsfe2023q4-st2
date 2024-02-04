@@ -77,6 +77,7 @@ async function get_data() {
 }
 
 function data_read() {
+  // document.oncontextmenu = function (){return false};
   localStorage_init();
   localStorage_read();
   data.gameStates.figure = getRandomInt(data.gameStates.figuresInLevel);
@@ -105,6 +106,8 @@ function pool_create_named() {
   data.elements.named.gameSizeList5.imp.addEventListener('click', button_click_gameSizeList);
   data.elements.named.gameSizeList10.imp.addEventListener('click', button_click_gameSizeList);
   data.elements.named.gameSizeList15.imp.addEventListener('click', button_click_gameSizeList);
+  data.elements.named.table.imp.addEventListener('click', button_click_table);
+  data.elements.named.table.imp.addEventListener('contextmenu', button_rightclick_table);
 }
 
 function button_click_gameSizeList(e) {
@@ -150,7 +153,22 @@ function pool_recreate_comb() {
   } else if (data.figures[data.gameStates.figure].size === 10) {
     data.elements.named.comb.imp.classList.add('medium');
   }
+}
 
+function button_click_table(e) {
+  e.stopPropagation();
+  const cell_state = e.target.dataset.state || "0";
+  if (cell_state === "0") e.target.dataset.state = "1";
+  else e.target.dataset.state = "0";
+}
+
+function button_rightclick_table(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  const cell_state = e.target.dataset.state || "0";
+  if (cell_state !== "-1") e.target.dataset.state = "-1";
+  else e.target.dataset.state = "0";
+  return false;
 }
 
 function figure_calculation_parts() {
@@ -300,8 +318,8 @@ function figure_calculation_parts_create_structure(part, parent, isDataset = fal
           ceil_value = f[y][x];
           row.push(ceil_value);
           const element = {type: "div", value: "", text: "", classes: "ceil", parent: row_el};
-          if (isDataset) element.value = ceil_value;
-          else element.text = ceil_value !== 0 ? ceil_value : '';
+          if (isDataset) element.value = `${ceil_value}`;
+          else element.text = ceil_value !== 0 ? `${ceil_value}` : '';
           const ceil_el = pool_create_one_element(element, row_el);
           elements[y][x].imp = ceil_el;
         }

@@ -78,6 +78,7 @@
   opacity: 0;
   transform: scaleY(0);
   transition: opacity 0.3s ease-in-out, transform 0.1s ease-in-out;
+  z-index: 1;
 }
 
 .game-status-field-name-list {
@@ -155,6 +156,8 @@
   margin-bottom: 1%;
   font-size: 1.8vw;
   color: #606060;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .comb-row-top,
@@ -256,12 +259,48 @@
   cursor: pointer;
 }
 
+.ceil[data-state="-1"]:before, .ceil[data-state="-1"]:after {
+  content: "";
+  position: absolute;
+  width: 1.3vw;
+  height: 2px;
+  background: #606060;
+}
+
+.ceil[data-state="1"] {
+  background-color: #9f9e9e;
+}
+
+.ceil[data-state="-1"]:before {
+  transform: rotate(45deg);
+}
+
+.ceil[data-state="-1"]:after {
+  transform: rotate(-45deg);
+}
+
+.medium .ceil[data-state="-1"]:before, .medium .ceil[data-state="-1"]:after {
+  width: 1.8vw;
+}
+
+.big .ceil[data-state="-1"]:before, .big .ceil[data-state="-1"]:after {
+  width: 2.3vw;
+}
+
 .cross:before, .cross:after {
   content: "";
   position: absolute;
   width: 1.3vw;
   height: 2px;
   background: #606060;
+}
+
+.medium .cross:before, .medium .cross:after {
+  width: 2.3vw;
+}
+
+.big .cross:before, .big .cross:after {
+  width: 3.3vw;
 }
 
 .cross:before {
