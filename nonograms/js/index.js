@@ -77,12 +77,9 @@ async function get_data() {
 }
 
 function data_read() {
-  // document.oncontextmenu = function (){return false};
   localStorage_init();
   localStorage_read();
   data.gameStates.figure = getRandomInt(data.gameStates.figuresInLevel);
-  data.gameStates.figure = 11;
-  // data.gameStates.figure = 3;
   pool_create();
 }
 
@@ -108,6 +105,8 @@ function pool_create_named() {
   data.elements.named.gameSizeList15.imp.addEventListener('click', button_click_gameSizeList);
   data.elements.named.table.imp.addEventListener('click', button_click_table);
   data.elements.named.table.imp.addEventListener('contextmenu', button_rightclick_table);
+  data.elements.named.button_solution.imp.addEventListener('click', button_click_solution);
+  data.elements.named.button_reset.imp.addEventListener('click', button_click_reset);
 }
 
 function button_click_gameSizeList(e) {
@@ -171,6 +170,26 @@ function button_rightclick_table(e) {
   return false;
 }
 
+function button_click_solution(e) {
+  data.gameStates.inProgress = false;
+  e.stopPropagation();
+  data.figureParts.table.elements.forEach((row) => {
+    row.forEach((ceil) => {
+      ceil.imp.dataset.state = ceil.imp.dataset.value;
+    })
+  });
+}
+
+function button_click_reset(e) {
+  data.gameStates.inProgress = false;
+  e.stopPropagation();
+  data.figureParts.table.elements.forEach((row) => {
+    row.forEach((ceil) => {
+      ceil.imp.dataset.state = "0";
+    })
+  });
+}
+
 function figure_calculation_parts() {
   figure_calculation_parts_clue_h();
   figure_calculation_parts_clue_v();
@@ -217,7 +236,6 @@ function figure_calculation_parts_clue_h() {
     clue_h.push(clue_curr);
   }
   data.figureParts.clue_h.raw = clue_h;
-  // console.log(clue_h);
 }
 
 function figure_calculation_parts_clue_v() {
@@ -248,7 +266,6 @@ function figure_calculation_parts_clue_v() {
     clue_v[y] = clue_v[y].slice(-clue_max);
   }
   data.figureParts.clue_v.raw = clue_v;
-  // console.log(clue_v);
 }
 
 function figure_calculation_parts_corner() {
@@ -263,7 +280,6 @@ function figure_calculation_parts_corner() {
     corner.push(clue_curr);
   }
   data.figureParts.corner.raw = corner;
-  // console.log(corner);
 }
 
 function figure_calculation_parts_table() {
@@ -277,7 +293,6 @@ function figure_calculation_parts_table() {
     table.push(table_curr);
   }
   data.figureParts.table.raw = table;
-  // console.log(table);
 }
 
 function figure_calculation_parts_create_structure(part, parent, isDataset = false) {
@@ -292,7 +307,6 @@ function figure_calculation_parts_create_structure(part, parent, isDataset = fal
     elements.push(elements_curr);
   }
   const road_length = Math.floor((f.length - 1) / 5);
-  // console.log(road_length);
   for (let road_i = 0; road_i <= road_length; road_i += 1) {
     const road = [];
     const element = {type: "div", value: "", text: "", classes: "road", parent: parent};
@@ -331,8 +345,6 @@ function figure_calculation_parts_create_structure(part, parent, isDataset = fal
   }
   data.figureParts.table.struct = struct;
   data.figureParts.table.elements = elements;
-  // console.log(parent);
-  // console.log(elements);
 }
 
 get_data();
