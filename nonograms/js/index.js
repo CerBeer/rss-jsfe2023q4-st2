@@ -89,7 +89,7 @@ function pool_create() {
   console.log(data.figures[data.gameStates.figure].name);
   pool_create_base();
   pool_create_named();
-  pool_create_comb();
+  gameNameList_recreate(5);
 }
 
 function pool_create_base() {
@@ -110,17 +110,47 @@ function pool_create_named() {
 function button_click_gameSizeList(e) {
   e.stopPropagation();
   const figures_size = parseInt(e.target.dataset.value);
-  data.elements.named.gameSizeValue.imp.innerText = ` ${figures_size}x${figures_size} `;
+  data.elements.named.gameSizeValue.imp.innerText = `${figures_size}x${figures_size}`;
   gameNameList_recreate(figures_size);
-  
 }
 
-function gameNameList_recreate(figure_size) {
-  console.log(figure_size);
+function gameNameList_recreate(figures_size) {
+  data.elements.named.gameNameList.imp.innerText = '';
+  let index_firstElement = -1;
+  data.figures.forEach((v, i) => {
+    if (v.size === figures_size) {
+      const element = {type: "div", value: `${i}`, text: v.name, classes: "game-status-field-name-list-item", parent: "game-status-field-name-list"};
+      const new_element = pool_create_one_element(element, data.elements.named.gameNameList.imp);
+      new_element.addEventListener('click', button_click_gameNameList);
+      if (index_firstElement < 0) index_firstElement = i;
+    }
+  })
+  data.gameStates.figure = index_firstElement;
+  data.elements.named.gameNameValue.imp.innerText = data.figures[data.gameStates.figure].name;
+  pool_recreate_comb();
 }
 
-function pool_create_comb() {
+function button_click_gameNameList(e) {
+  e.stopPropagation();
+  data.gameStates.figure = parseInt(e.target.dataset.value);
+  data.elements.named.gameNameValue.imp.innerText = data.figures[data.gameStates.figure].name;
+  pool_recreate_comb();
+}
+
+function pool_recreate_comb() {
+  data.elements.named.corner.imp.innerText = "";
+  data.elements.named.clue_h.imp.innerText = "";
+  data.elements.named.clue_v.imp.innerText = "";
+  data.elements.named.table.imp.innerText = "";
   figure_calculation_parts();
+  data.elements.named.comb.imp.classList.remove('big');
+  data.elements.named.comb.imp.classList.remove('medium');
+  if (data.figures[data.gameStates.figure].size === 5) {
+    data.elements.named.comb.imp.classList.add('big');
+  } else if (data.figures[data.gameStates.figure].size === 10) {
+    data.elements.named.comb.imp.classList.add('medium');
+  }
+
 }
 
 function figure_calculation_parts() {

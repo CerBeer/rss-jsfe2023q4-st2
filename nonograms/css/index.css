@@ -58,6 +58,10 @@
   text-align: center;
 }
 
+.game-status-field-name-value {
+  min-width: 20vw;
+}
+
 .game-status-field-size-list,
 .game-status-field-name-list {
   position: absolute;
@@ -74,6 +78,10 @@
   opacity: 0;
   transform: scaleY(0);
   transition: opacity 0.3s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.game-status-field-name-list {
+  width: 19vw;
 }
 
 .game-status-field-size-value:hover .game-status-field-size-list {
@@ -277,6 +285,22 @@
   width: 2.3vw;
   border: none;
   cursor: default;
+}
+
+.medium .ceil {
+  height: 3vw;
+  width: 3vw;
+  max-width: 38px;
+  max-height: 38px;
+  font-size: 1.8vw;
+}
+
+.big .ceil {
+  height: 3.5vw;
+  width: 3.5vw;
+  max-width: unset;
+  max-height: unset;
+  font-size: 2vw;
 }
 
 .game-options {

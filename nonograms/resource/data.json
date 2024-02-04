@@ -291,6 +291,7 @@
       "gameSizeList15": {"index": "06", "type": "div", "text": "15x15", "classes": "game-status-field-size-list-item_15 game-status-field-size-list-item", "parent": "game-status-field-size-list", "value": "15", "section": "base"},
       "gameNameValue": {"index": "08", "type": "div", "text": "dinosaur", "classes": "game-status-field-name-value-value", "parent": "game-status-field-name-value", "value": "0", "section": "base"},
       "gameNameList": {"index": "09", "type": "div", "text": "", "classes": "game-status-field-name-list", "parent": "game-status-field-name-value", "value": "", "section": "base"},
+      "comb": {"index": "11", "type": "div", "text": "", "classes": "comb", "parent": "main-side", "value": "", "section": "base"},
       "corner": {"index": "13", "type": "div", "text": "", "classes": "top-left-corner", "parent": "comb-row-top", "value": "", "section": "base"},
       "clue_h": {"index": "14", "type": "div", "text": "", "classes": "clue-h", "parent": "comb-row-top", "value": "", "section": "base"},
       "clue_v": {"index": "16", "type": "div", "text": "", "classes": "clue-v", "parent": "comb-row-bottom", "value": "", "section": "base"},
