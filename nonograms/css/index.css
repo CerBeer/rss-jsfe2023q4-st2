@@ -12,7 +12,7 @@
   justify-content: center;
   margin: auto;
   border-radius: 10px;
-  border: 2px solid #d3c0a8;
+  border: 2px solid #a0a0a0;
   font-size: 2.5vw;
 }
 
@@ -34,29 +34,32 @@
   gap: 3%;
 }
 
-.game-status-field {
-  /* max-width: 50%; */
+.game-status-field-size,
+.game-status-field-name {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-start;
-  /* margin: auto; */
   -webkit-user-select: none;
   user-select: none;
   overflow: hidden;
 }
 
-.game-status-field-value {
+.game-status-field-size-value,
+.game-status-field-name-value {
   margin: 0 5px;
   padding: 0 10px;
   border-radius: 10px;
-  border: 2px solid #d3c0a8;
+  border: 2px solid #a0a0a0;
   background-color: #d0d0d0;
   white-space: nowrap;
+  min-width: 8.2vw;
+  text-align: center;
 }
 
-.game-status-field-size-list {
+.game-status-field-size-list,
+.game-status-field-name-list {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -64,27 +67,50 @@
   justify-content: center;
   margin-left: -10px;
   margin-top: 4px;
+  background-color: #c0c0c0;
   border-radius: 10px;
-  border: 10px solid #d3c0a8;
+  border: 10px solid #c0c0c0;
   gap: 3px;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transform: scaleY(0);
+  transition: opacity 0.3s ease-in-out, transform 0.1s ease-in-out;
 }
 
-.game-status-field-value:hover .game-status-field-size-list {
+.game-status-field-size-value:hover .game-status-field-size-list {
+  transform: translateY(-2px) scaleY(1);
+  opacity: 1;
+}
+
+.game-status-field-name-value:hover .game-status-field-name-list {
+  transform: translateY(-2px) scaleY(1);
   opacity: 1;
 }
 
 .game-status-field-size-list-item {
-  background-color: #d3c0a8;
+  background-color: #c0c0c0;
   width: 100%;
   text-align: center;
   cursor: pointer;
+  margin: 0 5px;
+}
+
+.game-status-field-name-list-item {
+  background-color: #c0c0c0;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.game-status-field-size-list-item:hover,
+.game-status-field-name-list-item:hover {
+  background-color: #e0e0e0;
+  border-radius: 10px;
 }
 
 .game-status-field-timer {
   border-radius: 10px;
-  border: 2px solid #d3c0a8;
+  border: 2px solid #a0a0a0;
   cursor: default;
   text-align: center;
   -webkit-user-select: none;
@@ -100,7 +126,7 @@
   justify-content: center;
   margin: auto;
   border-radius: 10px;
-  border: 2px solid #d3c0a8;
+  border: 2px solid #606060;
   background-color: #d0d0d0;
   cursor: pointer;
 }
@@ -111,40 +137,7 @@
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-}
-
-.game-options {
-  margin: 0 2%;
-  display: flex;
-  flex-direction: column;
-  gap: 1%;
-  justify-content: center;
-  width: 15%;
-}
-
-.game-options-button {
-  border-radius: 10px;
-  border: 2px solid #d3c0a8;
-  background-color: #d0d0d0;
-  cursor: pointer;
-  padding: 0 10%;
-  -webkit-user-select: none;
-  user-select: none;
-  transition: background-color 0.2s ease-in-out,
-    border-radius 0.3s ease-in-out;
-}
-
-.game-options-button:hover {
-  border-radius: 20px;
-  background-color: #9195b3;
-}
-
-.game-options-hr {
-  width: 100%;
-  border-radius: 10px;
-  border: 2px solid #d3c0a8;
-  cursor: default;
-  margin: 10px auto;
+  align-items: center;
 }
 
 .comb {
@@ -152,9 +145,12 @@
   flex-direction: column;
   flex-wrap: nowrap;
   margin-bottom: 1%;
+  font-size: 1.8vw;
+  color: #606060;
 }
 
-.comb-row {
+.comb-row-top,
+.comb-row-bottom {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -184,10 +180,36 @@
   border-right: 1px solid #606060;
 }
 
+.clue-h .jack{
+  border-top: none;
+  border-bottom: none;
+}
+
+.clue-h .ceil{
+  height: 2.3vw;
+  border-top: none;
+  border-bottom: none;
+  cursor: default;
+  background-color: #e8e8e8;
+}
+
 .clue-v {
   border-left: 2px solid #606060;
   border-top: 1px solid #606060;
   border-bottom: 1px solid #606060;
+}
+
+.clue-v .jack{
+  border-left: none;
+  border-right: none;
+}
+
+.clue-v .ceil{
+  width: 2.3vw;
+  border-left: none;
+  border-right: none;
+  cursor: default;
+  background-color: #e8e8e8;
 }
 
 .game-table {
@@ -216,13 +238,34 @@
 .ceil {
   height: 2vw;
   width: 2vw;
-  border: 1px solid #c0c0c0;
   max-width: 25px;
   max-height: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid #c0c0c0;
+  background-color: #f8f8f8;
   cursor: pointer;
+}
+
+.cross:before, .cross:after {
+  content: "";
+  position: absolute;
+  width: 1.3vw;
+  height: 2px;
+  background: #606060;
+}
+
+.cross:before {
+  transform: rotate(45deg);
+}
+
+.cross:after {
+  transform: rotate(-45deg);
+}
+
+.fill {
+  background-color: #9f9e9e;
 }
 
 .top-left-corner .jack {
@@ -236,26 +279,48 @@
   cursor: default;
 }
 
-.clue-h .jack{
-  border-top: none;
-  border-bottom: none;
+.game-options {
+  margin: 0 2%;
+  display: flex;
+  flex-direction: column;
+  gap: 1%;
+  justify-content: center;
+  width: 15%;
 }
 
-.clue-h .ceil{
-  height: 2.3vw;
-  border-top: none;
-  border-bottom: none;
+.game-options-button {
+  border-radius: 10px;
+  border: 2px solid #a0a0a0;
+  background-color: #d0d0d0;
+  cursor: pointer;
+  padding: 0 10%;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: background-color 0.2s ease-in-out,
+    border-radius 0.3s ease-in-out;
+}
+
+.game-options-button:hover {
+  border-radius: 20px;
+  background-color: #9195b3;
+}
+
+.game-options-hr {
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid #a0a0a0;
   cursor: default;
+  margin: 10px auto;
 }
 
-.clue-v .jack{
-  border-left: none;
-  border-right: none;
-}
+@media (min-width: 1440px) {
 
-.clue-v .ceil{
-  width: 2.3vw;
-  border-left: none;
-  border-right: none;
-  cursor: default;
+  .game-box {
+    font-size: 38px;
+  }
+
+  .comb {
+    font-size: 26px;
+  }
+
 }
