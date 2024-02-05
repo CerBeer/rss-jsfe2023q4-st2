@@ -88,6 +88,7 @@ function pool_create() {
   pool_create_base();
   pool_create_named();
   gameNameList_recreate(5);
+  data.gameStates.state = data.enum.game_state.stop;
 }
 
 function pool_create_base() {
@@ -171,7 +172,7 @@ function button_rightclick_table(e) {
 }
 
 function button_click_solution(e) {
-  data.gameStates.inProgress = false;
+  data.gameStates.state = data.enum.game_state.solution;
   e.stopPropagation();
   data.figureParts.table.elements.forEach((row) => {
     row.forEach((ceil) => {
@@ -181,7 +182,6 @@ function button_click_solution(e) {
 }
 
 function button_click_reset(e) {
-  data.gameStates.inProgress = false;
   e.stopPropagation();
   data.figureParts.table.elements.forEach((row) => {
     row.forEach((ceil) => {

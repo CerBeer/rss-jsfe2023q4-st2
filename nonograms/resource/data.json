@@ -244,6 +244,7 @@
   "elements": {
     "base": [
       {"index": "01", "type": "div", "text": "", "classes": "game-box", "parent": "", "value": "", "section": "base"},
+      {"index": "03", "type": "div", "text": "Nonograms", "classes": "game-title", "parent": "game-box", "value": "", "section": "base"},
       {"index": "02", "type": "div", "text": "", "classes": "game-status", "parent": "game-box", "value": "", "section": "base"},
       {"index": "03", "type": "div", "text": "", "classes": "game-status-row", "parent": "game-status", "value": "", "section": "base"},
       {"index": "04", "type": "div", "text": "Size:", "classes": "game-status-field-size", "parent": "game-status-row", "value": "", "section": "base"},
@@ -326,21 +327,21 @@
   },
   "gameStates": {
     "figuresInLevel": 5,
-    "inProgress": false,
+    "state": "stop",
     "figure": 0,
     "timer": 0,
     "fill": [],
     "cross": [],
     "top": [],
     "save": {
-      "inProgress": false,
+      "state": "stop",
       "figure": 0,
       "timer": 0,
       "fill": [],
       "cross": []
     },
     "autoSave": {
-      "inProgress": false,
+      "state": "stop",
       "figure": 0,
       "timer": 0,
       "fill": [],
@@ -352,5 +353,8 @@
     "clue_h": {"raw": [], "struct": [], "elements": []},
     "clue_v": {"raw": [], "struct": [], "elements": []},
     "table": {"raw": [], "struct": [], "elements": []}
+  },
+  "enum": {
+    "game_state": {"play": "play", "solution": "solution", "stop": "stop"}
   }
 }

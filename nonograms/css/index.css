@@ -9,11 +9,17 @@
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   margin: auto;
   border-radius: 10px;
   border: 2px solid #a0a0a0;
-  font-size: 2.5vw;
+  font-size: 2vw;
+}
+
+.game-title {
+  margin-bottom: 2vw;
+  font-size: 3vw;
+  font-weight: 600;
 }
 
 .game-status {
@@ -29,9 +35,10 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  margin: 1% 0;
+  /* margin: 1% 0; */
   justify-content: center;
   gap: 3%;
+  margin-bottom: 2vw;
 }
 
 .game-status-field-size,
@@ -147,6 +154,7 @@
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
+  /* height: 40vw; */
 }
 
 .comb {
@@ -158,6 +166,8 @@
   color: #606060;
   -webkit-user-select: none;
   user-select: none;
+  /* width: 40vw; */
+  /* height: 40vw; */
 }
 
 .comb-row-top,
@@ -373,17 +383,17 @@
   border-radius: 10px;
   border: 2px solid #a0a0a0;
   cursor: default;
-  margin: 10px auto;
+  margin: .5vw auto;
 }
 
 @media (min-width: 1440px) {
 
   .game-box {
-    font-size: 38px;
+    font-size: 30px;
   }
 
   .comb {
-    font-size: 26px;
+    font-size: 24px;
   }
 
 }
