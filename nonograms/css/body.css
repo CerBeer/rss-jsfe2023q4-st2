@@ -1,5 +1,33 @@
 /* General styles for the entire page. */
 
+/* Themes */
+
+:root {
+  --background-color: #f8f8f8;
+  --text-color: #2f2f2f;
+  --border-color: #a0a0a0;
+  --background-color-field: #d0d0d0;
+  --background-color-field-hover: #e0e0e0;
+  --border-button: #606060;
+  --background-color-clue: #e8e8e8;
+  --background-color-ceil: #f8f8f8;
+  --fill-color: #9f9f9f;
+  --button-hover: #9195b3;
+}
+
+body.dark-theme {
+  --background-color: #181818;
+  --text-color: #808080;
+  --border-color: #a0a0a0;
+  --background-color-field: #2f2f2f;
+  --background-color-field-hover: #e0e0e0;
+  --border-button: #606060;
+  --background-color-clue: #181818;
+  --background-color-ceil: #9f9f9f;
+  --fill-color: #606060;
+  --button-hover: #9195b3;
+}
+
 /* Basic */
 
 * {
@@ -39,8 +67,8 @@ body {
   /* padding: 0; */
   display: flex;
   flex-direction: column;
-  background-color: #f8f8f8;
-  color: #333;
+  background-color: var(--background-color);
+  color: var(--text-color);
   font-family: Lato, sans-serif;
   align-items: center;
   flex-wrap: wrap;

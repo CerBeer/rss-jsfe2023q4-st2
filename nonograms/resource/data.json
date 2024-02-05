@@ -241,5 +241,121 @@
       ]
     }
   ],
-  "figuresInLevel": 5
+  "elements": {
+    "base": [
+      {"index": "01", "type": "div", "text": "", "classes": "game-box", "parent": "", "value": "", "section": "base"},
+      {"index": "03", "type": "div", "text": "Nonograms", "classes": "game-title", "parent": "game-box", "value": "", "section": "base"},
+      {"index": "02", "type": "div", "text": "", "classes": "game-status", "parent": "game-box", "value": "", "section": "base"},
+      {"index": "03", "type": "div", "text": "", "classes": "game-status-row", "parent": "game-status", "value": "", "section": "base"},
+      {"index": "04", "type": "div", "text": "Size:", "classes": "game-status-field-size", "parent": "game-status-row", "value": "", "section": "base"},
+	    {"index": "05", "type": "div", "text": "", "classes": "game-status-field-size-value", "parent": "game-status-field-size", "value": "", "section": "base"},
+	    {"index": "05", "type": "div", "text": "5x5", "classes": "game-status-field-size-value-value", "parent": "game-status-field-size-value", "value": "", "section": "base"},
+      {"index": "06", "type": "div", "text": "", "classes": "game-status-field-size-list", "parent": "game-status-field-size-value", "value": "", "section": "base"},
+      {"index": "06", "type": "div", "text": "5x5", "classes": "game-status-field-size-list-item_5 game-status-field-size-list-item", "parent": "game-status-field-size-list", "value": "5", "section": "base"},
+      {"index": "06", "type": "div", "text": "10x10", "classes": "game-status-field-size-list-item_10 game-status-field-size-list-item", "parent": "game-status-field-size-list", "value": "10", "section": "base"},
+      {"index": "06", "type": "div", "text": "15x15", "classes": "game-status-field-size-list-item_15 game-status-field-size-list-item", "parent": "game-status-field-size-list", "value": "15", "section": "base"},
+      {"index": "07", "type": "div", "text": "Name:", "classes": "game-status-field-name", "parent": "game-status-row", "value": "", "section": "base"},
+      {"index": "08", "type": "div", "text": "", "classes": "game-status-field-name-value", "parent": "game-status-field-name", "value": "", "section": "base"},
+      {"index": "08", "type": "div", "text": "dinosaur", "classes": "game-status-field-name-value-value", "parent": "game-status-field-name-value", "value": "0", "section": "base"},
+      {"index": "09", "type": "div", "text": "", "classes": "game-status-field-name-list", "parent": "game-status-field-name-value", "value": "", "section": "base"},
+      {"index": "09", "type": "div", "value": "0", "text": "dinosaur", "classes": "game-status-field-name-list-item", "parent": "game-status-field-name-list", "section": "base"},
+      {"index": "09", "type": "div", "value": "1", "text": "cat", "classes": "game-status-field-name-list-item", "parent": "game-status-field-name-list", "section": "base"},
+      {"index": "09", "type": "div", "value": "2", "text": "rabbit", "classes": "game-status-field-name-list-item", "parent": "game-status-field-name-list", "section": "base"},
+      {"index": "09", "type": "div", "value": "3", "text": "hourglass", "classes": "game-status-field-name-list-item", "parent": "game-status-field-name-list", "section": "base"},
+      {"index": "09", "type": "div", "value": "4", "text": "heart", "classes": "game-status-field-name-list-item", "parent": "game-status-field-name-list", "section": "base"},
+      {"index": "10", "type": "div", "text": "", "classes": "main-side", "parent": "game-box", "value": "", "section": "base"},
+      {"index": "11", "type": "div", "text": "", "classes": "comb", "parent": "main-side", "value": "", "section": "base"},
+      {"index": "12", "type": "div", "text": "", "classes": "comb-row-top", "parent": "comb", "value": "", "section": "base"},
+      {"index": "13", "type": "div", "text": "", "classes": "top-left-corner", "parent": "comb-row-top", "value": "", "section": "base"},
+      {"index": "14", "type": "div", "text": "", "classes": "clue-h", "parent": "comb-row-top", "value": "", "section": "base"},
+      {"index": "15", "type": "div", "text": "", "classes": "comb-row-bottom", "parent": "comb", "value": "", "section": "base"},
+      {"index": "16", "type": "div", "text": "", "classes": "clue-v", "parent": "comb-row-bottom", "value": "", "section": "base"},
+      {"index": "17", "type": "div", "text": "", "classes": "game-table", "parent": "comb-row-bottom", "value": "", "section": "base"},
+      {"index": "18", "type": "div", "text": "", "classes": "game-options", "parent": "main-side", "value": "", "section": "base"},
+      {"index": "19", "type": "div", "text": "00:00", "classes": "game-status-field-timer", "parent": "game-options", "value": "", "section": "base"},
+      {"index": "20", "type": "div", "text": " ", "classes": "game-options-hr", "parent": "game-options", "value": "", "section": "base"},
+      {"index": "21", "type": "div", "text": "Random", "classes": "game-options-button-random game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      {"index": "23", "type": "div", "text": "Reset", "classes": "game-options-button-reset game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      {"index": "24", "type": "div", "text": "Save", "classes": "game-options-button-save game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      {"index": "25", "type": "div", "text": "Load", "classes": "game-options-button-load game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      {"index": "26", "type": "div", "text": "Solution", "classes": "game-options-button-solution game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      {"index": "26", "type": "div", "text": "Top list", "classes": "game-options-button-top game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      {"index": "27", "type": "div", "text": "Sound", "classes": "game-options-button-sound game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      {"index": "27", "type": "div", "text": "", "classes": "game-options-button-ind", "parent": "game-options-button-sound", "value": "", "section": "buttons"},
+      {"index": "28", "type": "div", "text": "Theme", "classes": "game-options-button-theme game-options-button", "parent": "game-options", "value": "", "section": "buttons"}
+    ],
+    "named": {
+	    "gameSizeValue": {"index": "05", "type": "div", "text": "5x5", "classes": "game-status-field-size-value-value", "parent": "game-status-field-size-value", "value": "", "section": "base"},
+      "gameSizeList": {"index": "06", "type": "div", "text": "", "classes": "game-status-field-size-list", "parent": "game-status-field-size-value", "value": "", "section": "base"},
+      "gameSizeList5": {"index": "06", "type": "div", "text": "5x5", "classes": "game-status-field-size-list-item_5 game-status-field-size-list-item", "parent": "game-status-field-size-list", "value": "5", "section": "base"},
+      "gameSizeList10": {"index": "06", "type": "div", "text": "10x10", "classes": "game-status-field-size-list-item_10 game-status-field-size-list-item", "parent": "game-status-field-size-list", "value": "10", "section": "base"},
+      "gameSizeList15": {"index": "06", "type": "div", "text": "15x15", "classes": "game-status-field-size-list-item_15 game-status-field-size-list-item", "parent": "game-status-field-size-list", "value": "15", "section": "base"},
+      "gameNameValue": {"index": "08", "type": "div", "text": "dinosaur", "classes": "game-status-field-name-value-value", "parent": "game-status-field-name-value", "value": "0", "section": "base"},
+      "gameNameList": {"index": "09", "type": "div", "text": "", "classes": "game-status-field-name-list", "parent": "game-status-field-name-value", "value": "", "section": "base"},
+      "comb": {"index": "11", "type": "div", "text": "", "classes": "comb", "parent": "main-side", "value": "", "section": "base"},
+      "corner": {"index": "13", "type": "div", "text": "", "classes": "top-left-corner", "parent": "comb-row-top", "value": "", "section": "base"},
+      "clue_h": {"index": "14", "type": "div", "text": "", "classes": "clue-h", "parent": "comb-row-top", "value": "", "section": "base"},
+      "clue_v": {"index": "16", "type": "div", "text": "", "classes": "clue-v", "parent": "comb-row-bottom", "value": "", "section": "base"},
+      "table": {"index": "17", "type": "div", "text": "", "classes": "game-table", "parent": "comb-row-bottom", "value": "", "section": "base"},
+      "timer": {"index": "19", "type": "div", "text": "00:00", "classes": "game-status-field-timer", "parent": "game-options", "value": "", "section": "base"},
+      "button_random": {"index": "21", "type": "div", "text": "Random", "classes": "game-options-button-random game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      "button_reset": {"index": "23", "type": "div", "text": "Reset", "classes": "game-options-button-reset game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      "button_save": {"index": "24", "type": "div", "text": "Save", "classes": "game-options-button-save game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      "button_load": {"index": "25", "type": "div", "text": "Load", "classes": "game-options-button-load game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      "button_solution": {"index": "26", "type": "div", "text": "Solution", "classes": "game-options-button-solution game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      "button_top": {"index": "26", "type": "div", "text": "Top list", "classes": "game-options-button-top game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      "button_sound": {"index": "27", "type": "div", "text": "Sound", "classes": "game-options-button-sound game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      "button_theme": {"index": "28", "type": "div", "text": "Theme", "classes": "game-options-button-theme game-options-button", "parent": "game-options", "value": "", "section": "buttons"}
+    },
+    "items": {
+      "gameNameListItem": {"index": "09", "type": "div", "value": "", "text": "", "classes": "game-status-field-name-list-item", "parent": "game-status-field-name-list", "section": "base"},
+	    "road": {"index": "00", "type": "div", "value": "", "text": "", "classes": "road", "parent": "top-left-corner", "section": ""},
+      "jack": {"index": "00", "type": "div", "value": "", "text": "", "classes": "jack", "parent": "road", "section": ""},
+      "row": {"index": "00", "type": "div", "value": "", "text": "", "classes": "row", "parent": "jack", "section": ""},
+      "ceil": {"index": "00", "type": "div", "value": "", "text": "", "classes": "ceil", "parent": "row", "section": ""}
+    },
+    "modal": {
+      "overlay": {"type": "div", "classes": "modal-window-overlay", "text": "", "parent": "", "value": "", "section": "modal"},
+      "window": {"type": "div", "classes": "modal-window", "text": "", "parent": "modal-window-overlay", "value": "", "section": "modal"},
+      "result": {"type": "div", "classes": "modal-window-result", "text": "You solved the nonogram!", "parent": "modal-window", "value": "", "section": "modal"},
+      "nonogram": {"type": "div", "classes": "modal-window-word-nonogram modal-window-word-word", "text": "helicopter", "parent": "modal-window", "value": "", "section": "modal"},
+      "title": {"type": "div", "classes": "modal-window-word-title", "text": "Time: ", "parent": "modal-window", "value": "", "section": "modal"},
+      "time": {"type": "div", "classes": "modal-window-word-time modal-window-word-word", "text": "00:00", "parent": "modal-window", "value": "", "section": "modal"},
+      "button": {"type": "button", "classes": "modal-window-button", "text": "play again", "parent": "modal-window", "value": "", "section": "modal"}
+    }
+  },
+  "gameStates": {
+    "figuresInLevel": 5,
+    "state": "stop",
+    "figure": 0,
+    "timer": 0,
+    "fill": [],
+    "cross": [],
+    "top": [],
+    "soundOn": true,
+    "themeLight": true,
+    "save": {
+      "state": "stop",
+      "figure": 0,
+      "timer": 0,
+      "fill": [],
+      "cross": []
+    }
+  },
+  "figureParts": {
+    "corner": {"raw": [], "struct": [], "elements": []},
+    "clue_h": {"raw": [], "struct": [], "elements": []},
+    "clue_v": {"raw": [], "struct": [], "elements": []},
+    "table": {"raw": [], "struct": [], "elements": []}
+  },
+  "sounds": {
+    "cross": {"path": "./sounds/cross.mp3"},
+    "empty": {"path": "./sounds/empty.mp3"},
+    "fill": {"path": "./sounds/fill.mp3"},
+    "solution": {"path": "./sounds/solution.mp3"},
+    "win": {"path": "./sounds/win.mp3"}
+  },
+  "enum": {
+    "game_state": {"play": "play", "solution": "solution", "stop": "stop", "win": "win"}
+  }
 }
