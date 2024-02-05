@@ -108,6 +108,7 @@ function pool_create_named() {
   data.elements.named.table.imp.addEventListener('contextmenu', button_rightclick_table);
   data.elements.named.button_solution.imp.addEventListener('click', button_click_solution);
   data.elements.named.button_reset.imp.addEventListener('click', button_click_reset);
+  data.elements.named.button_theme.imp.addEventListener('click', button_click_theme);
 }
 
 function button_click_gameSizeList(e) {
@@ -188,6 +189,10 @@ function button_click_reset(e) {
       ceil.imp.dataset.state = "0";
     })
   });
+}
+
+function button_click_theme(e) {
+  document.body.classList.toggle('dark-theme');
 }
 
 function figure_calculation_parts() {

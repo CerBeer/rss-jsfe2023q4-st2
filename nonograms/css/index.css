@@ -12,7 +12,7 @@
   justify-content: space-evenly;
   margin: auto;
   border-radius: 10px;
-  border: 2px solid #a0a0a0;
+  border: 2px solid var(--border-color);
   font-size: 2vw;
 }
 
@@ -58,8 +58,8 @@
   margin: 0 5px;
   padding: 0 10px;
   border-radius: 10px;
-  border: 2px solid #a0a0a0;
-  background-color: #d0d0d0;
+  border: 2px solid var(--border-color);
+  background-color: var(--background-color-field);
   white-space: nowrap;
   min-width: 8.2vw;
   text-align: center;
@@ -78,9 +78,9 @@
   justify-content: center;
   margin-left: -10px;
   margin-top: 4px;
-  background-color: #c0c0c0;
+  background-color: var(--background-color-field);
   border-radius: 10px;
-  border: 10px solid #c0c0c0;
+  border: 10px solid var(--background-color-field);
   gap: 3px;
   opacity: 0;
   transform: scaleY(0);
@@ -103,7 +103,7 @@
 }
 
 .game-status-field-size-list-item {
-  background-color: #c0c0c0;
+  background-color: var(--background-color-field);
   width: 100%;
   text-align: center;
   cursor: pointer;
@@ -111,7 +111,7 @@
 }
 
 .game-status-field-name-list-item {
-  background-color: #c0c0c0;
+  background-color: var(--background-color-field);
   width: 100%;
   text-align: center;
   cursor: pointer;
@@ -120,13 +120,13 @@
 
 .game-status-field-size-list-item:hover,
 .game-status-field-name-list-item:hover {
-  background-color: #e0e0e0;
+  background-color: var(--background-color-field-hover);
   border-radius: 10px;
 }
 
 .game-status-field-timer {
   border-radius: 10px;
-  border: 2px solid #a0a0a0;
+  border: 2px solid var(--border-color);
   cursor: default;
   text-align: center;
   -webkit-user-select: none;
@@ -142,8 +142,8 @@
   justify-content: center;
   margin: auto;
   border-radius: 10px;
-  border: 2px solid #606060;
-  background-color: #d0d0d0;
+  border: 2px solid var(--border-button);
+  background-color: var(--background-color-field);
   cursor: pointer;
 }
 
@@ -154,7 +154,6 @@
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
-  /* height: 40vw; */
 }
 
 .comb {
@@ -163,11 +162,9 @@
   flex-wrap: nowrap;
   margin-bottom: 1%;
   font-size: 1.8vw;
-  color: #606060;
+  color: var(--border-button);
   -webkit-user-select: none;
   user-select: none;
-  /* width: 40vw; */
-  /* height: 40vw; */
 }
 
 .comb-row-top,
@@ -186,19 +183,19 @@
 }
 
 .top-left-corner {
-  border-left: 1px solid #f8f8f8;
-  border-right: 1px solid #f8f8f8;
+  border-left: 1px solid var(--background-color);
+  border-right: 1px solid var(--background-color);
 }
 
 .clue-h,
 .clue-v {
-  background-color: #e8e8e8;
+  background-color: var(--background-color-clue);
 }
 
 .clue-h {
-  border-left: 1px solid #606060;
-  border-top: 2px solid #606060;
-  border-right: 1px solid #606060;
+  border-left: 1px solid var(--border-button);
+  border-top: 2px solid var(--border-button);
+  border-right: 1px solid var(--border-button);
 }
 
 .clue-h .jack{
@@ -211,13 +208,13 @@
   border-top: none;
   border-bottom: none;
   cursor: default;
-  background-color: #e8e8e8;
+  background-color: var(--background-color-clue);
 }
 
 .clue-v {
-  border-left: 2px solid #606060;
-  border-top: 1px solid #606060;
-  border-bottom: 1px solid #606060;
+  border-left: 2px solid var(--border-button);
+  border-top: 1px solid var(--border-button);
+  border-bottom: 1px solid var(--border-button);
 }
 
 .clue-v .jack{
@@ -230,11 +227,11 @@
   border-left: none;
   border-right: none;
   cursor: default;
-  background-color: #e8e8e8;
+  background-color: var(--background-color-clue);
 }
 
 .game-table {
-  border: 1px solid #606060;
+  border: 1px solid var(--border-button);
 }
 
 .road {
@@ -247,7 +244,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  border: 1px solid #606060;
+  border: 1px solid var(--border-button);
 }
 
 .row {
@@ -264,8 +261,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #c0c0c0;
-  background-color: #f8f8f8;
+  border: 1px solid var(--background-color-field);
+  background-color: var(--background-color-ceil);
   cursor: pointer;
 }
 
@@ -274,11 +271,11 @@
   position: absolute;
   width: 1.3vw;
   height: 2px;
-  background: #606060;
+  background: var(--border-button);
 }
 
 .ceil[data-state="1"] {
-  background-color: #9f9e9e;
+  background-color: var(--fill-color);
 }
 
 .ceil[data-state="-1"]:before {
@@ -302,7 +299,7 @@
   position: absolute;
   width: 1.3vw;
   height: 2px;
-  background: #606060;
+  background: var(--border-button);
 }
 
 .medium .cross:before, .medium .cross:after {
@@ -322,7 +319,7 @@
 }
 
 .fill {
-  background-color: #9f9e9e;
+  background-color: var(--fill-color);
 }
 
 .top-left-corner .jack {
@@ -334,6 +331,7 @@
   width: 2.3vw;
   border: none;
   cursor: default;
+  background-color: var(--background-color);
 }
 
 .medium .ceil {
@@ -363,8 +361,8 @@
 
 .game-options-button {
   border-radius: 10px;
-  border: 2px solid #a0a0a0;
-  background-color: #d0d0d0;
+  border: 2px solid var(--border-color);
+  background-color: var(--background-color-field);
   cursor: pointer;
   padding: 0 10%;
   -webkit-user-select: none;
@@ -375,13 +373,13 @@
 
 .game-options-button:hover {
   border-radius: 20px;
-  background-color: #9195b3;
+  background-color: var(--button-hover);
 }
 
 .game-options-hr {
   width: 100%;
   border-radius: 10px;
-  border: 2px solid #a0a0a0;
+  border: 2px solid var(--border-color);
   cursor: default;
   margin: .5vw auto;
 }
