@@ -272,10 +272,9 @@
       {"index": "16", "type": "div", "text": "", "classes": "clue-v", "parent": "comb-row-bottom", "value": "", "section": "base"},
       {"index": "17", "type": "div", "text": "", "classes": "game-table", "parent": "comb-row-bottom", "value": "", "section": "base"},
       {"index": "18", "type": "div", "text": "", "classes": "game-options", "parent": "main-side", "value": "", "section": "base"},
-      {"index": "19", "type": "div", "text": "00:00:00", "classes": "game-status-field-timer", "parent": "game-options", "value": "", "section": "base"},
+      {"index": "19", "type": "div", "text": "00:00", "classes": "game-status-field-timer", "parent": "game-options", "value": "", "section": "base"},
       {"index": "20", "type": "div", "text": " ", "classes": "game-options-hr", "parent": "game-options", "value": "", "section": "base"},
       {"index": "21", "type": "div", "text": "Random", "classes": "game-options-button-random game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
-      {"index": "22", "type": "div", "text": "Play", "classes": "game-options-button-play game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
       {"index": "23", "type": "div", "text": "Reset", "classes": "game-options-button-reset game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
       {"index": "24", "type": "div", "text": "Save", "classes": "game-options-button-save game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
       {"index": "25", "type": "div", "text": "Load", "classes": "game-options-button-load game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
@@ -298,9 +297,8 @@
       "clue_h": {"index": "14", "type": "div", "text": "", "classes": "clue-h", "parent": "comb-row-top", "value": "", "section": "base"},
       "clue_v": {"index": "16", "type": "div", "text": "", "classes": "clue-v", "parent": "comb-row-bottom", "value": "", "section": "base"},
       "table": {"index": "17", "type": "div", "text": "", "classes": "game-table", "parent": "comb-row-bottom", "value": "", "section": "base"},
-      "timer": {"index": "19", "type": "div", "text": "00:00:00", "classes": "game-status-field-timer", "parent": "game-options", "value": "", "section": "base"},
+      "timer": {"index": "19", "type": "div", "text": "00:00", "classes": "game-status-field-timer", "parent": "game-options", "value": "", "section": "base"},
       "button_random": {"index": "21", "type": "div", "text": "Random", "classes": "game-options-button-random game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
-      "button_play": {"index": "22", "type": "div", "text": "Play", "classes": "game-options-button-play game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
       "button_reset": {"index": "23", "type": "div", "text": "Reset", "classes": "game-options-button-reset game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
       "button_save": {"index": "24", "type": "div", "text": "Save", "classes": "game-options-button-save game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
       "button_load": {"index": "25", "type": "div", "text": "Load", "classes": "game-options-button-load game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
@@ -319,10 +317,10 @@
     "modal": {
       "overlay": {"type": "div", "classes": "modal-window-overlay", "text": "", "parent": "", "value": "", "section": "modal"},
       "window": {"type": "div", "classes": "modal-window", "text": "", "parent": "modal-window-overlay", "value": "", "section": "modal"},
-      "name": {"type": "div", "classes": "modal-window-name", "text": "HANGMAN GAME", "parent": "modal-window", "value": "", "section": "modal"},
-      "result": {"type": "div", "classes": "modal-window-result", "text": "YOU WIN!", "parent": "modal-window", "value": "", "section": "modal"},
-      "title": {"type": "div", "classes": "modal-window-word-title", "text": "The hidden word was: ", "parent": "modal-window", "value": "", "section": "modal"},
-      "word": {"type": "div", "classes": "modal-window-word-word", "text": "helicopter", "parent": "modal-window", "value": "", "section": "modal"},
+      "result": {"type": "div", "classes": "modal-window-result", "text": "You solved the nonogram!", "parent": "modal-window", "value": "", "section": "modal"},
+      "nonogram": {"type": "div", "classes": "modal-window-word-nonogram modal-window-word-word", "text": "helicopter", "parent": "modal-window", "value": "", "section": "modal"},
+      "title": {"type": "div", "classes": "modal-window-word-title", "text": "Time: ", "parent": "modal-window", "value": "", "section": "modal"},
+      "time": {"type": "div", "classes": "modal-window-word-time modal-window-word-word", "text": "00:00", "parent": "modal-window", "value": "", "section": "modal"},
       "button": {"type": "button", "classes": "modal-window-button", "text": "play again", "parent": "modal-window", "value": "", "section": "modal"}
     }
   },
@@ -335,6 +333,7 @@
     "cross": [],
     "top": [],
     "soundOn": true,
+    "themeLight": true,
     "save": {
       "state": "stop",
       "figure": 0,
@@ -357,6 +356,6 @@
     "win": {"path": "./sounds/win.mp3"}
   },
   "enum": {
-    "game_state": {"play": "play", "solution": "solution", "stop": "stop"}
+    "game_state": {"play": "play", "solution": "solution", "stop": "stop", "win": "win"}
   }
 }

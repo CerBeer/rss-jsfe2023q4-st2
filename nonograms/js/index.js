@@ -1,4 +1,5 @@
 let data;
+let timer;
 
 function getRandomInt(max, exclude = -1) {
   let result = Math.floor(Math.random() * max);
@@ -8,6 +9,24 @@ function getRandomInt(max, exclude = -1) {
     count -= 1;
   }
   return result;
+}
+
+function tick() {
+  if (data.gameStates.state === data.enum.game_state.play) {
+    data.gameStates.timer += 1;
+    setView_timer();
+  }
+}
+
+function setView_timer() {
+  data.elements.named.timer.imp.innerText = getView_timer();
+}
+
+function getView_timer() {
+  const minutes = Math.floor(data.gameStates.timer / 60);
+  const seconds = data.gameStates.timer - (minutes * 60);
+  format = `00${minutes}`.slice(-2) + ':' + `00${seconds}`.slice(-2);
+  return format;
 }
 
 function localStorage_init() {
@@ -21,6 +40,18 @@ function localStorage_save() {
 
 function localStorage_read() {
   data.gameStates = JSON.parse(localStorage.nonograms);
+}
+
+function setView_game() {
+  if (data.gameStates.themeLight)
+    document.body.classList.remove('dark-theme');
+  else
+    document.body.classList.add('dark-theme');
+
+  if (data.gameStates.soundOn)
+    data.elements.named.button_sound.imp.dataset.state = "on";
+  else
+    data.elements.named.button_sound.imp.dataset.state = "off";
 }
 
 function pool_create_or_find_one_element(element) {
@@ -85,8 +116,8 @@ async function get_data() {
 function data_read() {
   localStorage_init();
   localStorage_read();
-  data.gameStates.figure = getRandomInt(data.gameStates.figuresInLevel);
   pool_create();
+  setView_game();
 }
 
 function pool_create() {
@@ -96,6 +127,8 @@ function pool_create() {
   pool_create_named();
   gameNameList_recreate(5);
   data.gameStates.state = data.enum.game_state.stop;
+  data.gameStates.timer = 0;
+  timer = setInterval(tick, 1000);
 }
 
 function pool_create_sounds() {
@@ -119,16 +152,14 @@ function pool_create_named() {
   data.elements.named.gameSizeList15.imp.addEventListener('click', button_click_gameSizeList);
   data.elements.named.table.imp.addEventListener('click', button_click_table);
   data.elements.named.table.imp.addEventListener('contextmenu', button_rightclick_table);
-  data.elements.named.button_solution.imp.addEventListener('click', button_click_solution);
+  data.elements.named.button_random.imp.addEventListener('click', button_click_random);
   data.elements.named.button_reset.imp.addEventListener('click', button_click_reset);
+  data.elements.named.button_solution.imp.addEventListener('click', button_click_solution);
   data.elements.named.button_theme.imp.addEventListener('click', button_click_theme);
   data.elements.named.button_sound.imp.addEventListener('click', button_click_sound);
-
-  data.elements.named.button_sound.imp.dataset.state = "on";
 }
 
 function button_click_gameSizeList(e) {
-  e.stopPropagation();
   const figures_size = parseInt(e.target.dataset.value);
   data.elements.named.gameSizeValue.imp.innerText = `${figures_size}x${figures_size}`;
   gameNameList_recreate(figures_size);
@@ -136,28 +167,29 @@ function button_click_gameSizeList(e) {
 
 function gameNameList_recreate(figures_size) {
   data.elements.named.gameNameList.imp.innerText = '';
-  let index_firstElement = -1;
   data.figures.forEach((v, i) => {
     if (v.size === figures_size) {
       const element = {type: "div", value: `${i}`, text: v.name, classes: "game-status-field-name-list-item", parent: "game-status-field-name-list"};
       const new_element = pool_create_one_element(element, data.elements.named.gameNameList.imp);
       new_element.addEventListener('click', button_click_gameNameList);
-      if (index_firstElement < 0) index_firstElement = i;
     }
   })
-  data.gameStates.figure = index_firstElement;
+  data.gameStates.figure = figures_size - 5 + getRandomInt(data.gameStates.figuresInLevel);
   data.elements.named.gameNameValue.imp.innerText = data.figures[data.gameStates.figure].name;
   pool_recreate_comb();
 }
 
 function button_click_gameNameList(e) {
-  e.stopPropagation();
   data.gameStates.figure = parseInt(e.target.dataset.value);
   data.elements.named.gameNameValue.imp.innerText = data.figures[data.gameStates.figure].name;
   pool_recreate_comb();
 }
 
 function pool_recreate_comb() {
+  data.gameStates.state = data.enum.game_state.stop;
+  data.gameStates.timer = 0;
+  setView_timer();
+
   data.elements.named.corner.imp.innerText = "";
   data.elements.named.clue_h.imp.innerText = "";
   data.elements.named.clue_v.imp.innerText = "";
@@ -173,7 +205,12 @@ function pool_recreate_comb() {
 }
 
 function button_click_table(e) {
-  e.stopPropagation();
+  if (data.gameStates.state === data.enum.game_state.stop) {
+    data.gameStates.state = data.enum.game_state.play;
+  }
+  if (data.gameStates.state !== data.enum.game_state.play) {
+    return;
+  }
   const cell_state = e.target.dataset.state || "0";
   if (cell_state === "0") {
     e.target.dataset.state = "1";
@@ -182,11 +219,18 @@ function button_click_table(e) {
     e.target.dataset.state = "0";
     game_playSound(data.sounds.empty.imp);
   }
+  game_checkWin();
 }
 
 function button_rightclick_table(e) {
   e.preventDefault();
   e.stopPropagation();
+  if (data.gameStates.state === data.enum.game_state.stop) {
+    data.gameStates.state = data.enum.game_state.play;
+  }
+  if (data.gameStates.state !== data.enum.game_state.play) {
+    return;
+  }
   const cell_state = e.target.dataset.state || "0";
   if (cell_state !== "-1") {
     e.target.dataset.state = "-1";
@@ -195,13 +239,59 @@ function button_rightclick_table(e) {
     e.target.dataset.state = "0";
     game_playSound(data.sounds.empty.imp);
   }
-  return false;
+  game_checkWin();
+}
+
+function game_checkWin() {
+  if (data.gameStates.state !== data.enum.game_state.play) {
+    return;
+  }
+  let result = true;
+  data.figureParts.table.elements.forEach((row) => {
+    row.forEach((ceil) => {
+      const value = ceil.imp.dataset.value || "0";
+      const state = ceil.imp.dataset.state === "-1" ? "0" : (ceil.imp.dataset.state || "0");
+      result = result && state === value;
+    })
+  });
+  if (result) {
+    data.gameStates.state = data.enum.game_state.win;
+    showModal();
+  }
+}
+
+function showModal() {
+  if (document.querySelector(".modal-window-overlay") !== null) return;
+  for (let key in data.elements.modal) {
+    pool_create_or_find_one_element(data.elements.modal[key]);
+  }
+  data.elements.modal.nonogram.imp.innerText = data.figures[data.gameStates.figure].name;
+  data.elements.modal.time.imp.innerText = getView_timer();
+  data.elements.modal.button.imp.addEventListener('click', start_new_game);
+  setTimeout(pool_create_modal_continue, 100);
+}
+
+function start_new_game() {
+  if (document.querySelector(".modal-window-overlay") !== null) {
+    data.elements.modal.overlay.imp.classList.remove('element-visible');
+    setTimeout(pool_hide_modal, 1000);
+  }
+}
+
+function pool_create_modal_continue() {
+  data.elements.modal.overlay.imp.classList.add('element-visible');
+  data.elements.modal.button.imp.focus();
+}
+
+function pool_hide_modal() {
+  data.elements.modal.overlay.imp.remove();
 }
 
 function button_click_solution(e) {
   data.gameStates.state = data.enum.game_state.solution;
+  data.gameStates.timer = 0;
+  setView_timer();
   game_playSound(data.sounds.solution.imp);
-  e.stopPropagation();
   data.figureParts.table.elements.forEach((row) => {
     row.forEach((ceil) => {
       ceil.imp.dataset.state = ceil.imp.dataset.value;
@@ -209,8 +299,15 @@ function button_click_solution(e) {
   });
 }
 
+function button_click_random(e) {
+  data.gameStates.figure = getRandomInt(data.gameStates.figuresInLevel * 3, data.gameStates.figure);
+  data.elements.named.gameNameValue.imp.innerText = data.figures[data.gameStates.figure].name;
+  const figures_size = data.figures[data.gameStates.figure].size;
+  data.elements.named.gameSizeValue.imp.innerText = `${figures_size}x${figures_size}`;
+  pool_recreate_comb();
+}
+
 function button_click_reset(e) {
-  e.stopPropagation();
   data.figureParts.table.elements.forEach((row) => {
     row.forEach((ceil) => {
       ceil.imp.dataset.state = "0";
@@ -219,7 +316,12 @@ function button_click_reset(e) {
 }
 
 function button_click_theme() {
-  document.body.classList.toggle('dark-theme');
+  data.gameStates.themeLight = !data.gameStates.themeLight;
+  if (data.gameStates.themeLight)
+    document.body.classList.remove('dark-theme');
+  else
+    document.body.classList.add('dark-theme');
+    localStorage_save();
 }
 
 function button_click_sound() {
@@ -228,6 +330,7 @@ function button_click_sound() {
     data.elements.named.button_sound.imp.dataset.state = "on";
   else
     data.elements.named.button_sound.imp.dataset.state = "off";
+  localStorage_save();
 }
 
 function figure_calculation_parts() {
