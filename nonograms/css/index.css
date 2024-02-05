@@ -369,11 +369,27 @@
   user-select: none;
   transition: background-color 0.2s ease-in-out,
     border-radius 0.3s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .game-options-button:hover {
   border-radius: 20px;
   background-color: var(--button-hover);
+}
+
+.game-options-button-ind {
+  width: 1.5vw;
+  height: 1.5vw;
+  border-radius: 10px;
+  border: .2vw solid var(--border-color);
+}
+
+.game-options-button[data-state="on"] .game-options-button-ind {
+  background-color: #fd8787;
 }
 
 .game-options-hr {

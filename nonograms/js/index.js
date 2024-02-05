@@ -64,6 +64,12 @@ function pool_create_one_simple_element(element) {
   return new_element;
 }
 
+function game_playSound(sound) {
+  if (!data.gameStates.soundOn) return;
+  sound.volume = 0.5;
+  sound.play();
+}
+
 async function get_data() {
   const requestURL = "./resource/data.json";
   const request = new Request(requestURL);
@@ -85,10 +91,17 @@ function data_read() {
 
 function pool_create() {
   console.log(data.figures[data.gameStates.figure].name);
+  pool_create_sounds();
   pool_create_base();
   pool_create_named();
   gameNameList_recreate(5);
   data.gameStates.state = data.enum.game_state.stop;
+}
+
+function pool_create_sounds() {
+  for (const [key, value] of Object.entries(data.sounds)) {
+    value.imp = new Audio(value.path);
+  }
 }
 
 function pool_create_base() {
@@ -109,6 +122,9 @@ function pool_create_named() {
   data.elements.named.button_solution.imp.addEventListener('click', button_click_solution);
   data.elements.named.button_reset.imp.addEventListener('click', button_click_reset);
   data.elements.named.button_theme.imp.addEventListener('click', button_click_theme);
+  data.elements.named.button_sound.imp.addEventListener('click', button_click_sound);
+
+  data.elements.named.button_sound.imp.dataset.state = "on";
 }
 
 function button_click_gameSizeList(e) {
@@ -159,21 +175,32 @@ function pool_recreate_comb() {
 function button_click_table(e) {
   e.stopPropagation();
   const cell_state = e.target.dataset.state || "0";
-  if (cell_state === "0") e.target.dataset.state = "1";
-  else e.target.dataset.state = "0";
+  if (cell_state === "0") {
+    e.target.dataset.state = "1";
+    game_playSound(data.sounds.fill.imp);
+  } else {
+    e.target.dataset.state = "0";
+    game_playSound(data.sounds.empty.imp);
+  }
 }
 
 function button_rightclick_table(e) {
   e.preventDefault();
   e.stopPropagation();
   const cell_state = e.target.dataset.state || "0";
-  if (cell_state !== "-1") e.target.dataset.state = "-1";
-  else e.target.dataset.state = "0";
+  if (cell_state !== "-1") {
+    e.target.dataset.state = "-1";
+    game_playSound(data.sounds.cross.imp);
+  } else {
+    e.target.dataset.state = "0";
+    game_playSound(data.sounds.empty.imp);
+  }
   return false;
 }
 
 function button_click_solution(e) {
   data.gameStates.state = data.enum.game_state.solution;
+  game_playSound(data.sounds.solution.imp);
   e.stopPropagation();
   data.figureParts.table.elements.forEach((row) => {
     row.forEach((ceil) => {
@@ -191,8 +218,16 @@ function button_click_reset(e) {
   });
 }
 
-function button_click_theme(e) {
+function button_click_theme() {
   document.body.classList.toggle('dark-theme');
+}
+
+function button_click_sound() {
+  data.gameStates.soundOn = !data.gameStates.soundOn;
+  if (data.gameStates.soundOn)
+    data.elements.named.button_sound.imp.dataset.state = "on";
+  else
+    data.elements.named.button_sound.imp.dataset.state = "off";
 }
 
 function figure_calculation_parts() {

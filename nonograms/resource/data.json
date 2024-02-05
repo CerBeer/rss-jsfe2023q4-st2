@@ -282,6 +282,7 @@
       {"index": "26", "type": "div", "text": "Solution", "classes": "game-options-button-solution game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
       {"index": "26", "type": "div", "text": "Top list", "classes": "game-options-button-top game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
       {"index": "27", "type": "div", "text": "Sound", "classes": "game-options-button-sound game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      {"index": "27", "type": "div", "text": "", "classes": "game-options-button-ind", "parent": "game-options-button-sound", "value": "", "section": "buttons"},
       {"index": "28", "type": "div", "text": "Theme", "classes": "game-options-button-theme game-options-button", "parent": "game-options", "value": "", "section": "buttons"}
     ],
     "named": {
@@ -333,14 +334,8 @@
     "fill": [],
     "cross": [],
     "top": [],
+    "soundOn": true,
     "save": {
-      "state": "stop",
-      "figure": 0,
-      "timer": 0,
-      "fill": [],
-      "cross": []
-    },
-    "autoSave": {
       "state": "stop",
       "figure": 0,
       "timer": 0,
@@ -353,6 +348,13 @@
     "clue_h": {"raw": [], "struct": [], "elements": []},
     "clue_v": {"raw": [], "struct": [], "elements": []},
     "table": {"raw": [], "struct": [], "elements": []}
+  },
+  "sounds": {
+    "cross": {"path": "./sounds/cross.mp3"},
+    "empty": {"path": "./sounds/empty.mp3"},
+    "fill": {"path": "./sounds/fill.mp3"},
+    "solution": {"path": "./sounds/solution.mp3"},
+    "win": {"path": "./sounds/win.mp3"}
   },
   "enum": {
     "game_state": {"play": "play", "solution": "solution", "stop": "stop"}
