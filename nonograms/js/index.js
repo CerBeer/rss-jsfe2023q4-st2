@@ -157,6 +157,59 @@ function pool_create_named() {
   data.elements.named.button_solution.imp.addEventListener('click', button_click_solution);
   data.elements.named.button_theme.imp.addEventListener('click', button_click_theme);
   data.elements.named.button_sound.imp.addEventListener('click', button_click_sound);
+  data.elements.named.button_save.imp.addEventListener('click', button_click_save);
+  data.elements.named.button_load.imp.addEventListener('click', button_click_load);
+  data.elements.named.button_top.imp.addEventListener('click', button_click_top);
+
+  data.elements.named.button_save.imp.dataset.state = "hide";
+  data.elements.named.button_load.imp.dataset.state = "hide";
+}
+
+function button_click_top(e) {
+  showModal_Top();
+}
+
+function button_click_save(e) {
+  if (data.gameStates.state !== data.enum.game_state.play) {
+    return;
+  }
+  data.elements.named.button_save.imp.dataset.state = "show";
+  data.gameStates.save.state = data.gameStates.state;
+  data.gameStates.save.figure = data.gameStates.figure;
+  data.gameStates.save.timer = data.gameStates.timer;
+  const ceil_state = [];
+  data.figureParts.table.elements.forEach((row) => {
+    const state_row = [];
+    row.forEach((ceil) => {
+      state_row.push(ceil.imp.dataset.state || "0");
+    })
+    ceil_state.push(state_row);
+  });
+  data.gameStates.save.ceil_state = ceil_state;
+  localStorage_save();
+  setTimeout(() => {data.elements.named.button_save.imp.dataset.state = "hide"}, 500);
+}
+
+function button_click_load(e) {
+  if (data.gameStates.save.ceil_state.length === 0) {
+    return;
+  }
+  data.elements.named.button_load.imp.dataset.state = "show";
+  data.gameStates.figure = data.gameStates.save.figure;
+  data.elements.named.gameNameValue.imp.innerText = data.figures[data.gameStates.figure].name;
+  const figures_size = data.figures[data.gameStates.figure].size;
+  data.elements.named.gameSizeValue.imp.innerText = `${figures_size}x${figures_size}`;
+  pool_recreate_comb();
+
+  data.figureParts.table.elements.forEach((row, ir) => {
+    row.forEach((ceil, ic) => {
+      ceil.imp.dataset.state = data.gameStates.save.ceil_state[ir][ic];
+    })
+  });
+
+  data.gameStates.state = data.gameStates.save.state;
+  data.gameStates.timer = data.gameStates.save.timer;
+  setTimeout(() => {data.elements.named.button_load.imp.dataset.state = "hide"}, 500);
 }
 
 function button_click_gameSizeList(e) {
@@ -256,25 +309,70 @@ function game_checkWin() {
   });
   if (result) {
     data.gameStates.state = data.enum.game_state.win;
-    showModal();
+    const topName = data.figures[data.gameStates.figure].name;
+    const topSize = data.figures[data.gameStates.figure].size;
+    const topTime = data.gameStates.timer;
+    data.gameStates.top.push({name: topName, size: `${topSize}x${topSize}`, time: topTime, timeS: getView_timer()});
+    data.gameStates.top = data.gameStates.top.sort((a, b) => a.time - b.time).slice(0, 5);
+    localStorage_save();
+    showModal_Win();
   }
 }
 
-function showModal() {
+function showModal_Win() {
   if (document.querySelector(".modal-window-overlay") !== null) return;
+  game_playSound(data.sounds.win.imp);
   for (let key in data.elements.modal) {
     pool_create_or_find_one_element(data.elements.modal[key]);
   }
   data.elements.modal.nonogram.imp.innerText = data.figures[data.gameStates.figure].name;
   data.elements.modal.time.imp.innerText = getView_timer();
-  data.elements.modal.button.imp.addEventListener('click', start_new_game);
+  data.elements.modal.button.imp.addEventListener('click', hideModal);
   setTimeout(pool_create_modal_continue, 100);
 }
 
-function start_new_game() {
+function showModal_Top() {
+  if (document.querySelector(".modal-window-overlay") !== null) return;
+  game_playSound(data.sounds.win.imp);
+  for (let key in data.elements.modal_top) {
+    pool_create_or_find_one_element(data.elements.modal_top[key]);
+  }
+  
+  let element = {type: "div", value: "", text: "", classes: "modal-window-list-row modal-window-list-row-title"};
+  const row_el = pool_create_one_element(element, data.elements.modal_top.list.imp);
+  element = {type: "div", value: "", text: "Name", classes: "modal-window-list-name"};
+  pool_create_one_element(element, row_el);
+  element = {type: "div", value: "", text: "Size", classes: "modal-window-list-size"};
+  pool_create_one_element(element, row_el);
+  element = {type: "div", value: "", text: "Time", classes: "modal-window-list-time"};
+  pool_create_one_element(element, row_el);
+
+  data.gameStates.top.forEach((el) => {
+    let element = {type: "div", value: "", text: "", classes: "modal-window-list-row"};
+    const row_el = pool_create_one_element(element, data.elements.modal_top.list.imp);
+    element = {type: "div", value: "", text: el.name, classes: "modal-window-list-name"};
+    pool_create_one_element(element, row_el);
+    element = {type: "div", value: "", text: el.size, classes: "modal-window-list-size"};
+    pool_create_one_element(element, row_el);
+    element = {type: "div", value: "", text: el.timeS, classes: "modal-window-list-time"};
+    pool_create_one_element(element, row_el);
+  })
+  
+  data.elements.modal_top.button.imp.addEventListener('click', hideModal_top);
+  setTimeout(pool_create_modal_top_continue, 100);
+}
+
+function hideModal() {
   if (document.querySelector(".modal-window-overlay") !== null) {
     data.elements.modal.overlay.imp.classList.remove('element-visible');
     setTimeout(pool_hide_modal, 1000);
+  }
+}
+
+function hideModal_top() {
+  if (document.querySelector(".modal-window-overlay") !== null) {
+    data.elements.modal_top.overlay.imp.classList.remove('element-visible');
+    setTimeout(pool_hide_modal_top, 1000);
   }
 }
 
@@ -283,8 +381,17 @@ function pool_create_modal_continue() {
   data.elements.modal.button.imp.focus();
 }
 
+function pool_create_modal_top_continue() {
+  data.elements.modal_top.overlay.imp.classList.add('element-visible');
+  data.elements.modal_top.button.imp.focus();
+}
+
 function pool_hide_modal() {
   data.elements.modal.overlay.imp.remove();
+}
+
+function pool_hide_modal_top() {
+  data.elements.modal_top.overlay.imp.remove();
 }
 
 function button_click_solution(e) {
