@@ -415,11 +415,19 @@ function button_click_random(e) {
 }
 
 function button_click_reset(e) {
+  if (data.gameStates.state === data.enum.game_state.solution) {
+    return;
+  }
   data.figureParts.table.elements.forEach((row) => {
     row.forEach((ceil) => {
       ceil.imp.dataset.state = "0";
     })
   });
+  if (data.gameStates.state === data.enum.game_state.win) {
+    data.gameStates.state = data.enum.game_state.play;
+    data.gameStates.timer = 0;
+    setView_timer();
+  }
 }
 
 function button_click_theme() {
