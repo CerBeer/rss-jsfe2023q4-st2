@@ -392,6 +392,16 @@
   background-color: #fd8787;
 }
 
+.game-options-button[data-state="hide"] .game-options-button-ind {
+  visibility: hidden;
+  background-color: #fd8787;
+}
+
+.game-options-button[data-state="show"] .game-options-button-ind {
+  visibility: visible;
+  background-color: #fd8787;
+}
+
 .game-options-hr {
   width: 100%;
   border-radius: 10px;
@@ -425,9 +435,9 @@
   flex-direction: column;
   align-items: center;
   background: #b79f8a8c;
-  border-radius: 40px;
+  border-radius: 20px;
   border: 2px solid #2e1b0b44;
-  justify-content: space-evenly;
+  justify-content: space-around;
   flex-wrap: nowrap;
 }
 
@@ -458,8 +468,8 @@
 }
 
 .modal-window-button {
-  /* width: 30%; */
-  padding: 2%;
+  width: 30%;
+  padding: 0 2%;
   aspect-ratio: 4/1;
   color: #000;
   font-size: 3vw;
@@ -473,6 +483,49 @@
 
 .modal-window-button:hover {
   background-color: #926a3882;
+}
+
+.modal-window-list {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  font-size: 2vw;
+  color: var(--background-color-field);
+  gap: 1vw;
+}
+
+.modal-window-list-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  background-color: #83776b;
+  border-radius: 10px;
+  border: 2px solid #83776b;
+}
+
+.modal-window-list-row-title {
+  font-weight: 600;
+}
+
+.modal-window-list-name {
+  width: 60%;
+  margin-left: .5vw;
+}
+
+.modal-window-list-size {
+  width: 20%;
+  text-align: center;
+}
+
+.modal-window-list-time {
+  width: 20%;
+  margin-right: .5vw;
+  text-align: right;
 }
 
 @media (min-width: 1440px) {
@@ -490,7 +543,7 @@
 @media (max-width: 840px) {
 
   .modal-window {
-    width: 80%;
+    width: 50%;
   }
   
 }

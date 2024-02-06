@@ -277,7 +277,9 @@
       {"index": "21", "type": "div", "text": "Random", "classes": "game-options-button-random game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
       {"index": "23", "type": "div", "text": "Reset", "classes": "game-options-button-reset game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
       {"index": "24", "type": "div", "text": "Save", "classes": "game-options-button-save game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      {"index": "27", "type": "div", "text": "", "classes": "game-options-button-ind", "parent": "game-options-button-save", "value": "", "section": "buttons"},
       {"index": "25", "type": "div", "text": "Load", "classes": "game-options-button-load game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
+      {"index": "27", "type": "div", "text": "", "classes": "game-options-button-ind", "parent": "game-options-button-load", "value": "", "section": "buttons"},
       {"index": "26", "type": "div", "text": "Solution", "classes": "game-options-button-solution game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
       {"index": "26", "type": "div", "text": "Top list", "classes": "game-options-button-top game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
       {"index": "27", "type": "div", "text": "Sound", "classes": "game-options-button-sound game-options-button", "parent": "game-options", "value": "", "section": "buttons"},
@@ -322,6 +324,13 @@
       "title": {"type": "div", "classes": "modal-window-word-title", "text": "Time: ", "parent": "modal-window", "value": "", "section": "modal"},
       "time": {"type": "div", "classes": "modal-window-word-time modal-window-word-word", "text": "00:00", "parent": "modal-window", "value": "", "section": "modal"},
       "button": {"type": "button", "classes": "modal-window-button", "text": "play again", "parent": "modal-window", "value": "", "section": "modal"}
+    },
+    "modal_top": {
+      "overlay": {"type": "div", "classes": "modal-window-overlay", "text": "", "parent": "", "value": "", "section": "modal"},
+      "window": {"type": "div", "classes": "modal-window", "text": "", "parent": "modal-window-overlay", "value": "", "section": "modal"},
+      "result": {"type": "div", "classes": "modal-window-result", "text": "Best games", "parent": "modal-window", "value": "", "section": "modal"},
+      "list": {"type": "div", "classes": "modal-window-list", "text": "", "parent": "modal-window", "value": "", "section": "modal"},
+      "button": {"type": "button", "classes": "modal-window-button", "text": "close", "parent": "modal-window", "value": "", "section": "modal"}
     }
   },
   "gameStates": {
@@ -338,8 +347,7 @@
       "state": "stop",
       "figure": 0,
       "timer": 0,
-      "fill": [],
-      "cross": []
+      "ceil_state": []
     }
   },
   "figureParts": {
