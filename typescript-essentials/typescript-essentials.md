@@ -1,7 +1,7 @@
 # My TypeScript Journey: Earned Badges 🏆
 
 ## Badges Overview
-🗂️[All badges with pictures](typescript-essentials)
+🗂️[Here's all badges with pictures](all-badges)
 
 📋 Here's a collection of badges I received for completing TypeScript Microsoft Learn modules:
 
