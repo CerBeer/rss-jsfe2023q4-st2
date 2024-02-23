@@ -1,5 +1,5 @@
 // Sources
-export interface Source {
+export type source = {
     id: string;
     name: string;
     description: string;
@@ -7,15 +7,15 @@ export interface Source {
     category: string;
     language: string;
     country: string;
-}
+};
 
-export interface Sources {
+export type sources = {
     status: string;
-    articles: Array<Source>;
-}
+    sources: Array<source>;
+};
 
-// Articles
-export interface Article {
+// articles
+export type article = {
     source: {
         id: string | null;
         name: string;
@@ -27,9 +27,9 @@ export interface Article {
     urlToImage: string;
     publishedAt: string;
     content: string;
-}
+};
 
-export interface Articles {
+export type articles = {
     status: string;
-    articles: Array<Article>;
-}
+    articles: Array<article>;
+};
