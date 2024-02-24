@@ -35,6 +35,23 @@ class AppController extends AppLoader {
             target = target.parentNode as HTMLElement;
         }
     }
+
+    filterSources(e: Event) {
+        const target = e.target as HTMLElement;
+        const letterActiveNew = target.innerText;
+        const letterActiveElement = document.querySelector('.letter-active') as HTMLElement;
+        if (letterActiveNew === letterActiveElement.innerText) return;
+
+        letterActiveElement.classList.remove('letter-active');
+        target.classList.add('letter-active');
+
+        const sourcesElements = document.querySelectorAll('.source__item');
+        sourcesElements.forEach((el) => {
+            const sourceFilter = el.getAttribute('data-source-filter');
+            if (sourceFilter === letterActiveNew) el.classList.remove('source__item-hide');
+            else el.classList.add('source__item-hide');
+        });
+    }
 }
 
 export default AppController;

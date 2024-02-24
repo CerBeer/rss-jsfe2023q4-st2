@@ -13,6 +13,37 @@ header h1 {
     font-weight: 800;
 }
 
+.letters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 1em;
+    row-gap: 0.2em;
+    box-shadow: 0 0.5em 0.5em -0.8em #3fcc59;
+}
+
+.letter {
+    margin: 0.2em;
+    padding: 0.3em 0.8em;
+    color: #b5eaff;
+    transition: 0.25s;
+    cursor: pointer;
+    border: unset;
+    background-color: #232323;
+    border-radius: 20%;
+    font-size: .8em;
+}
+
+.letter-active,
+.letter:hover,
+.letter:focus {
+    border-color: #3fcc59;
+    color: #69db7e;
+    box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
+    transform: translateY(-0.25em);
+}
+
 footer {
     height: 100px;
     display: flex;
@@ -48,5 +79,8 @@ footer .rsschool__image {
     }
     footer .rsschool__image {
       height: 15px;
+    }
+    .letters {
+        font-size: 0.7em;
     }
 }
