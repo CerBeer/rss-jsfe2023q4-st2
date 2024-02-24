@@ -1,6 +1,6 @@
 // enveronment
 export const ENV: { API_URL: string; API_KEY: string } = {
-    API_URL: 'https://newsapi.org/v2/',
+    API_URL: 'https://rss-news-api.onrender.com/',
     API_KEY: 'e8d77c13a4784aa18542ffefa54050c5',
 };
 
