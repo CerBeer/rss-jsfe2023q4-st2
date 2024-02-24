@@ -1,4 +1,5 @@
-// Sources
+// view
+// sources
 export type source = {
     id: string;
     name: string;
@@ -29,7 +30,24 @@ export type article = {
     content: string;
 };
 
+// controller
+// loader
 export type articles = {
     status: string;
     articles: Array<article>;
 };
+
+export type optionAPI = {
+    apiKey: string;
+};
+
+export type options = Record<string, string>;
+
+export type query = {
+    endpoint: string;
+    options: options;
+};
+
+export interface callback {
+    (data: string): void;
+}
