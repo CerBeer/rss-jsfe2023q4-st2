@@ -59,3 +59,8 @@ export interface LoaderInterface {
     options: options;
     getResp<T>({ endpoint, options }: query, callback: callback<T>): void;
 }
+
+export enum ResponseError {
+    Err_401 = 401,
+    Err_404 = 404,
+}

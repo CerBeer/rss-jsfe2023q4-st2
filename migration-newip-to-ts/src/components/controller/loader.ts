@@ -1,4 +1,4 @@
-import { LoaderInterface, options, query, callback } from '../../types/index';
+import { LoaderInterface, options, query, callback, ResponseError } from '../../types/index';
 
 class Loader implements LoaderInterface {
     baseLink: string;
@@ -20,7 +20,7 @@ class Loader implements LoaderInterface {
 
     errorHandler(res: Response): Response {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === ResponseError.Err_401 || res.status === ResponseError.Err_404)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }
