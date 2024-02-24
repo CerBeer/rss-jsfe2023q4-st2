@@ -1,12 +1,12 @@
 import { LoaderInterface, options, query, callback, ResponseError } from '../../types/index';
 
 class Loader implements LoaderInterface {
-    baseLink: string;
-    options: options;
+    private _baseLink: string;
+    private _options: options;
 
     constructor(baseLink: string, options: options) {
-        this.baseLink = baseLink;
-        this.options = options;
+        this._baseLink = baseLink;
+        this._options = options;
     }
 
     getResp<T>(
@@ -18,7 +18,7 @@ class Loader implements LoaderInterface {
         this.load('GET', endpoint, callback, options);
     }
 
-    errorHandler(res: Response): Response {
+    private errorHandler(res: Response): Response {
         if (!res.ok) {
             if (res.status === ResponseError.Err_401 || res.status === ResponseError.Err_404)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -28,9 +28,9 @@ class Loader implements LoaderInterface {
         return res;
     }
 
-    makeUrl(options: options, endpoint: string) {
-        const urlOptions = { ...this.options, ...options };
-        let url = `${this.baseLink}${endpoint}?`;
+    private makeUrl(options: options, endpoint: string) {
+        const urlOptions = { ...this._options, ...options };
+        let url = `${this._baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
             url += `${key}=${urlOptions[key as string]}&`;
@@ -39,7 +39,7 @@ class Loader implements LoaderInterface {
         return url.slice(0, -1);
     }
 
-    load<T>(method: string, endpoint: string, callback: callback<T>, options = {}) {
+    private load<T>(method: string, endpoint: string, callback: callback<T>, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
