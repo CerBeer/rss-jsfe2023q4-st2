@@ -1,10 +1,10 @@
-import { options, optionAPI, query, callback } from '../../types/index';
+import { LoaderInterface, options, query, callback } from '../../types/index';
 
-class Loader {
+class Loader implements LoaderInterface {
     baseLink: string;
     options: options;
 
-    constructor(baseLink: string, options: optionAPI) {
+    constructor(baseLink: string, options: options) {
         this.baseLink = baseLink;
         this.options = options;
     }
@@ -33,7 +33,7 @@ class Loader {
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
-            url += `${key}=${urlOptions[key]}&`;
+            url += `${key}=${urlOptions[key as string]}&`;
         });
 
         return url.slice(0, -1);

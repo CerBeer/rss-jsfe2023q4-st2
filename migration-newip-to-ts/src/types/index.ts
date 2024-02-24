@@ -1,3 +1,9 @@
+// enveronment
+export const ENV: { API_URL: string; API_KEY: string } = {
+    API_URL: 'https://rss-news-api.onrender.com/mocks/',
+    API_KEY: '',
+};
+
 // view
 // sources
 export type source = {
@@ -30,17 +36,13 @@ export type article = {
     content: string;
 };
 
-// controller
-// loader
 export type articles = {
     status: string;
     articles: Array<article>;
 };
 
-export type optionAPI = {
-    apiKey: string;
-};
-
+// controller
+// loader
 export type options = Record<string, string>;
 
 export type query = {
@@ -49,5 +51,11 @@ export type query = {
 };
 
 export interface callback {
-    (data: string): void;
+    (data?: string): void;
+}
+
+export interface LoaderInterface {
+    baseLink: string;
+    options: options;
+    getResp({ endpoint, options }: query, callback: callback): void;
 }
