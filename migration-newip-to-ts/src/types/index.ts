@@ -50,9 +50,7 @@ export type query = {
     options?: options;
 };
 
-export interface callback<T> {
-    (data: T): void;
-}
+export type callback<T> = (data: T) => void;
 
 export interface LoaderInterface {
     baseLink: string;
