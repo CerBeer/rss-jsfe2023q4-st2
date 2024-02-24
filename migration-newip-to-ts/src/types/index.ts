@@ -47,7 +47,7 @@ export type options = Record<string, string>;
 
 export type query = {
     endpoint: string;
-    options: options;
+    options?: options;
 };
 
 export interface callback {
