@@ -50,12 +50,12 @@ export type query = {
     options?: options;
 };
 
-export interface callback {
-    (data?: string): void;
+export interface callback<T> {
+    (data: T): void;
 }
 
 export interface LoaderInterface {
     baseLink: string;
     options: options;
-    getResp({ endpoint, options }: query, callback: callback): void;
+    getResp<T>({ endpoint, options }: query, callback: callback<T>): void;
 }
