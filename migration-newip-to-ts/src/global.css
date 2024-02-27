@@ -59,16 +59,29 @@ footer .copyright a {
     color: #444;
 }
 footer .copyright a:hover {
-    color: #555;
+    color: #888;
 }
 footer .copyright:before {
     content: '©';
 }
+footer .year__app {
+  text-shadow: 0px 0px 3px black;
+}
 footer .github__image {
     height: 60px;
+    cursor: pointer;
+    filter: drop-shadow(1px 1px 2px #fff);
 }
 footer .rsschool__image {
     height: 35px;
+    cursor: pointer;
+    filter: drop-shadow(1px 1px 2px #fff);
+}
+footer .github__image:hover {
+    filter: drop-shadow(-1px -1px 2px #fff);
+}
+footer .rsschool__image:hover {
+  filter: drop-shadow(-1px -1px 2px #fff);
 }
 @media (max-width: 430px) {
     footer .year__app {
