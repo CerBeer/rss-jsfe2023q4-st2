@@ -1,0 +1,5 @@
+# frontend/.husky/pre-commit
+cd rss-puzzle
+npx lint-staged --concurrent false --config .lintstaged/pre-commit
+npx validate-branch-name -r "^(chore|feat|fix|refactor|docs)\/RSS-PZ-\\d{2}_[a-zA-Z0-9-]+$"
+# exit 1

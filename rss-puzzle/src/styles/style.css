@@ -1,0 +1,89 @@
+/* @import url(normalize.css); */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+:root {
+  font-family: Lato, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --background-color: #f8f8f8;
+  --text-color: #2f2f2f;
+  --border-color: #a0a0a0;
+  --border-button: #606060;
+  --fill-color: #9f9f9f;
+  --button-hover: #9195b3;
+}
+
+body.dark-theme {
+  --background-color: #181818;
+  --text-color: #808080;
+  --border-color: #a0a0a0;
+  --border-button: #606060;
+  --fill-color: #606060;
+  --button-hover: #9195b3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  padding: 0;
+  margin: 0;
+}
+
+h2 {
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul {
+  padding-inline-start: 0px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 360px) {
+  body {
+    min-width: 360px;
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    min-width: 768px;
+  }
+}
+
+@media (min-width: 1440px) {
+  body {
+    min-width: 1440px;
+  }
+}
