@@ -19,6 +19,17 @@ const baseConfig = {
         test: /\.ts$/i,
         use: 'ts-loader',
       },
+      {
+        test: /\.svg/,
+        type: 'asset/inline',
+      },
+      {
+        test: /\.(woff|woff2|ttf|otf|eot)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/fonts/[name][ext]',
+        },
+      },
     ],
   },
   resolve: {
