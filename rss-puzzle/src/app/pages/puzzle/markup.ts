@@ -1,0 +1,160 @@
+export const mainPage = {
+  tag: 'DIV',
+  text: '',
+  attributes: { uname: 'app' },
+  classes: 'app',
+  child: [
+    {
+      tag: 'DIV',
+      text: '',
+      attributes: {},
+      classes: 'app-state',
+      child: [
+        {
+          tag: 'DIV',
+          text: '',
+          attributes: {},
+          classes: 'app-state-leftside',
+          child: [
+            { tag: 'LABEL', text: 'Level', attributes: { for: 'app-state-level' }, classes: '', child: [] },
+            {
+              tag: 'SELECT',
+              text: '',
+              attributes: { uname: 'currentLevel', id: 'app-state-level', name: 'Level' },
+              classes: '',
+              child: [
+                { tag: 'OPTION', text: '1', attributes: { value: '1' }, classes: '', child: [] },
+                { tag: 'OPTION', text: '2', attributes: { value: '2' }, classes: '', child: [] },
+                { tag: 'OPTION', text: '3', attributes: { value: '3' }, classes: '', child: [] },
+                { tag: 'OPTION', text: '4', attributes: { value: '4' }, classes: '', child: [] },
+                { tag: 'OPTION', text: '5', attributes: { value: '5' }, classes: '', child: [] },
+                { tag: 'OPTION', text: '6', attributes: { value: '6' }, classes: '', child: [] },
+              ],
+            },
+            { tag: 'LABEL', text: 'Page', attributes: { for: 'app-state-page' }, classes: '', child: [] },
+            {
+              tag: 'SELECT',
+              text: '',
+              attributes: { uname: 'currentPage', id: 'app-state-page', name: 'round' },
+              classes: '',
+              child: [],
+            },
+          ],
+        },
+        {
+          tag: 'DIV',
+          text: '',
+          attributes: {},
+          classes: 'app-state-rightside',
+          child: [
+            {
+              tag: 'DIV',
+              text: '',
+              attributes: { uname: 'buttonSound' },
+              classes: 'app-state-button-sound app-state-button active',
+              child: [],
+            },
+            {
+              tag: 'DIV',
+              text: '',
+              attributes: { uname: 'buttonTranslation' },
+              classes: 'app-state-button-translation app-state-button',
+              child: [],
+            },
+            {
+              tag: 'DIV',
+              text: '',
+              attributes: { uname: 'buttonVoice' },
+              classes: 'app-state-button-voice app-state-button',
+              child: [],
+            },
+            {
+              tag: 'DIV',
+              text: '',
+              attributes: { uname: 'buttonImage' },
+              classes: 'app-state-button-image app-state-button',
+              child: [],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      tag: 'DIV',
+      text: '',
+      attributes: {},
+      classes: 'app-pool',
+      child: [
+        {
+          tag: 'DIV',
+          text: '',
+          attributes: {},
+          classes: 'app-pool-head',
+          child: [
+            {
+              tag: 'DIV',
+              text: '',
+              attributes: { uname: 'buttonSoundPlay' },
+              classes: 'app-pool-head-sound',
+              child: [],
+            },
+            {
+              tag: 'DIV',
+              text: 'Женщина любит кататься на велосипеде',
+              attributes: { uname: 'translation' },
+              classes: 'app-pool-head-translation',
+              child: [],
+            },
+          ],
+        },
+        {
+          tag: 'DIV',
+          text: '',
+          attributes: {},
+          classes: 'app-pool-place',
+          child: [
+            {
+              tag: 'DIV',
+              text: '',
+              attributes: { uname: 'poolPlaceNumber' },
+              classes: 'app-pool-place-numbers',
+              child: [],
+            },
+            {
+              tag: 'DIV',
+              text: '',
+              attributes: { uname: 'poolPlaceLine' },
+              classes: 'app-pool-place-lines',
+              child: [],
+            },
+          ],
+        },
+        {
+          tag: 'DIV',
+          text: '',
+          attributes: {},
+          classes: 'app-pool-shop',
+          child: [
+            { tag: 'DIV', text: '1', attributes: {}, classes: 'app-pool-shop-number', child: [] },
+            { tag: 'DIV', text: '1', attributes: { uname: 'shopPuzzle' }, classes: 'app-pool-shop-puzzle', child: [] },
+          ],
+        },
+        {
+          tag: 'DIV',
+          text: '',
+          attributes: {},
+          classes: 'app-controls',
+          child: [
+            {
+              tag: 'DIV',
+              text: "I don't know",
+              attributes: { uname: 'buttonIDontKnow' },
+              classes: 'app-controls-button app-controls-button-idontknow',
+              child: [],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};

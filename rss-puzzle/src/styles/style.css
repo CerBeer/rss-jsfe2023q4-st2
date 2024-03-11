@@ -30,6 +30,7 @@ body.dark-theme {
 
 * {
   box-sizing: border-box;
+  /*   border: 2px solid #65c57f; */
 }
 
 a {
@@ -64,26 +65,10 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: #f8f8f8;
+  color: #333;
+  font-family: Lato, sans-serif;
   align-items: center;
   flex-wrap: wrap;
-}
-
-@media (min-width: 360px) {
-  body {
-    min-width: 360px;
-  }
-}
-
-@media (min-width: 768px) {
-  body {
-    min-width: 768px;
-  }
-}
-
-@media (min-width: 1440px) {
-  body {
-    min-width: 1440px;
-  }
+  border: none;
 }
