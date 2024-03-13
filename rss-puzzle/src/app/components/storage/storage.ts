@@ -1,4 +1,4 @@
-export type StorageData = number | string | boolean | object;
+export type StorageData = number | string | boolean | { [key: string]: string };
 export type StorageObject = { [key: string]: StorageData };
 
 export class Storage {
@@ -25,6 +25,21 @@ export class Storage {
 
   getVal(key: string) {
     return this.values[key];
+  }
+
+  isEmptyVal(key: string) {
+    const val = this.getVal(key);
+    let result = true;
+    if (typeof val === 'object') {
+      const keys = Object.keys(val);
+      keys.forEach((k) => {
+        result = result && !val[k];
+      });
+    } else {
+      result = !val;
+    }
+
+    return result;
   }
 
   constructor(data: StorageObject) {

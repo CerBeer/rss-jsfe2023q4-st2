@@ -99,6 +99,11 @@
   background-image: url('./svg/picture.svg');
 }
 
+.app-state-button-logout {
+  background-image: url('./svg/logout.svg');
+  margin-left: 10px;
+}
+
 .app-pool {
   width: 1440px;
   height: 768px;

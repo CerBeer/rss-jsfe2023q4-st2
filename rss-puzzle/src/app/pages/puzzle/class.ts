@@ -1,3 +1,4 @@
+import { app } from '../../../index';
 import { Definition, createElement } from '../../utils/elements';
 import * as markup from './markup';
 import { templates } from './template';
@@ -32,6 +33,10 @@ class PuzzlePage {
     const docBody = document.querySelector('body');
     if (docBody === null) return;
     docBody.appendChild(this.page);
+
+    this.unamed.buttonLogOut.addEventListener('click', () => {
+      app.route.logout();
+    });
   }
 
   none() {

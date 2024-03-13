@@ -1,25 +1,45 @@
 import { defaultState } from './data/default';
 import { Storage } from './components/storage/storage';
+import { Router } from './components/router/router';
 import LoginPage from './pages/login/class';
 import PuzzlePage from './pages/puzzle/class';
 
 class App {
-  private loginPage;
+  private pageLogin;
 
-  private puzzlePage;
+  private pagePuzzle;
 
-  private states;
+  private appStates;
+
+  private router;
 
   constructor() {
-    this.states = new Storage(defaultState);
-    this.loginPage = new LoginPage(this.states);
-    this.puzzlePage = new PuzzlePage();
+    this.appStates = new Storage(defaultState);
+    this.pageLogin = new LoginPage(this.appStates);
+    this.pagePuzzle = new PuzzlePage();
+    this.router = new Router();
   }
 
   start() {
     const docBody = document.querySelector('body');
     if (docBody === null) return;
     docBody.addEventListener('click', () => console.log(this.loginPage));
+  }
+
+  get loginPage() {
+    return this.pageLogin;
+  }
+
+  get puzzlePage() {
+    return this.pagePuzzle;
+  }
+
+  get route() {
+    return this.router;
+  }
+
+  get state() {
+    return this.appStates;
   }
 }
 

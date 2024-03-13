@@ -75,6 +75,13 @@ export const mainPage = {
               classes: 'app-state-button-image app-state-button',
               child: [],
             },
+            {
+              tag: 'DIV',
+              text: '',
+              attributes: { uname: 'buttonLogOut' },
+              classes: 'app-state-button-logout app-state-button',
+              child: [],
+            },
           ],
         },
       ],

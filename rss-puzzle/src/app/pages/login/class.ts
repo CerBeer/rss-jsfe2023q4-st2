@@ -29,6 +29,7 @@ class LoginPage {
         this.hide();
       }
     });
+    if (!states.isEmptyVal('user')) this.hide();
   }
 
   hide() {
