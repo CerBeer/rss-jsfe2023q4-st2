@@ -1,3 +1,4 @@
+import { Storage } from '../../components/storage/storage';
 import { Definition, createElement } from '../../utils/elements';
 import * as markup from './markup';
 import './style.css';
@@ -7,7 +8,7 @@ class LoginPage {
 
   private unamed: { [key: string]: HTMLElement } = {};
 
-  constructor() {
+  constructor(states: Storage) {
     this.page = createElement(markup.mainPage as Definition, this.unamed);
 
     const docBody = document.querySelector('body');
@@ -16,16 +17,28 @@ class LoginPage {
 
     this.unamed.loginButton.addEventListener('click', () => {
       const userFirstNameElement = this.unamed.loginFirstName as HTMLInputElement;
+      const userFirstName = userFirstNameElement.value;
+      userFirstNameElement.value = userFirstName.charAt(0).toUpperCase() + userFirstName.slice(1);
       const userSurnameElement = this.unamed.loginSurname as HTMLInputElement;
+      const userSurname = userSurnameElement.value;
+      userSurnameElement.value = userSurname.charAt(0).toUpperCase() + userSurname.slice(1);
       if (userFirstNameElement.validity.valid && userSurnameElement.validity.valid) {
-        this.unamed.loginPage.classList.add('page-hide');
-        setTimeout(() => this.unamed.loginPage.classList.add('page-none'), 700);
+        const user = { firstName: userFirstNameElement.value, surname: userSurnameElement.value };
+        states.setVal('user', user);
+        states.save('user');
+        this.hide();
       }
     });
   }
 
-  none() {
-    this.page.classList.add('page-none');
+  hide() {
+    this.unamed.loginPage.classList.add('page-hide');
+    setTimeout(() => this.unamed.loginPage.classList.add('page-none'), 700);
+  }
+
+  show() {
+    this.unamed.loginPage.classList.remove('page-none');
+    this.unamed.loginPage.classList.remove('page-hide');
   }
 }
 
