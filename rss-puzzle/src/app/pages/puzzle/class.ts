@@ -1,6 +1,7 @@
 import { Definition, createElement } from '../../utils/elements';
 import * as markup from './markup';
 import { templates } from './template';
+import './style.css';
 
 class PuzzlePage {
   private page;
@@ -31,7 +32,10 @@ class PuzzlePage {
     const docBody = document.querySelector('body');
     if (docBody === null) return;
     docBody.appendChild(this.page);
-    docBody.addEventListener('click', () => console.log(this.unamed));
+  }
+
+  none() {
+    this.page.classList.add('page-none');
   }
 }
 

@@ -84,19 +84,19 @@
 }
 
 .app-state-button-sound {
-  background-image: url('../resources/svg/speaker.svg');
+  background-image: url('./svg/speaker.svg');
 }
 
 .app-state-button-translation {
-  background-image: url('../resources/svg/list.svg');
+  background-image: url('./svg/list.svg');
 }
 
 .app-state-button-voice {
-  background-image: url('../resources/svg/music.svg');
+  background-image: url('./svg/music.svg');
 }
 
 .app-state-button-image {
-  background-image: url('../resources/svg/picture.svg');
+  background-image: url('./svg/picture.svg');
 }
 
 .app-pool {
@@ -125,8 +125,8 @@
   background-position: center;
   background-size: cover;
   border: 6px solid transparent;
-  -webkit-mask: url('../resources/svg/speaker.svg') no-repeat 50% 50%;
-  mask: url('../resources/svg/speaker.svg') no-repeat 50% 50%;
+  -webkit-mask: url('./svg/speaker.svg') no-repeat 50% 50%;
+  mask: url('./svg/speaker.svg') no-repeat 50% 50%;
   -webkit-mask-size: cover;
   background-color: #afafaf;
   mask-size: cover;
