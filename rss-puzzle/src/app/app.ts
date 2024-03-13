@@ -16,7 +16,7 @@ class App {
   constructor() {
     this.appStates = new Storage(defaultState);
     this.pageLogin = new LoginPage(this.appStates);
-    this.pageStart = new StartPage();
+    this.pageStart = new StartPage(this.appStates);
     this.pagePuzzle = new PuzzlePage();
   }
 

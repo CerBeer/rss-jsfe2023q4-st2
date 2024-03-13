@@ -21,6 +21,13 @@ export const mainPage = {
     },
     {
       tag: 'DIV',
+      text: 'Welcome John Dow',
+      attributes: { uname: 'welcomeMessage' },
+      classes: 'start-welcome',
+      child: [],
+    },
+    {
+      tag: 'DIV',
       text: '',
       attributes: {},
       classes: 'start-controls-buttons',

@@ -7,6 +7,10 @@ export class Router {
     this.app = app;
   }
 
+  login() {
+    this.app.startPage.setUserName(this.app.state.getVal('user') as { [key: string]: string });
+  }
+
   logout() {
     this.app.state.setVal('user', { firstName: '', surname: '' });
     this.app.state.save('user');

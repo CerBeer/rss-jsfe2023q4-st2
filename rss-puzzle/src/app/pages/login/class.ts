@@ -1,3 +1,4 @@
+import { router } from '../../../index';
 import { Storage } from '../../components/storage/storage';
 import { Definition, createElement } from '../../utils/elements';
 import * as markup from './markup';
@@ -27,6 +28,7 @@ class LoginPage {
         states.setVal('user', user);
         states.save('user');
         this.hide();
+        router.login();
       }
     });
     if (!states.isEmptyVal('user')) this.hide();
