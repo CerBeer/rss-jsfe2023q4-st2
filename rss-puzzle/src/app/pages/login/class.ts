@@ -16,8 +16,8 @@ class LoginPage {
 
     this.unamed.loginButton.addEventListener('click', () => {
       const userFirstNameElement = this.unamed.loginFirstName as HTMLInputElement;
-      const userSureNameElement = this.unamed.loginSureName as HTMLInputElement;
-      if (userFirstNameElement.validity.valid && userSureNameElement.validity.valid) {
+      const userSurnameElement = this.unamed.loginSurname as HTMLInputElement;
+      if (userFirstNameElement.validity.valid && userSurnameElement.validity.valid) {
         this.unamed.loginPage.classList.add('page-hide');
         setTimeout(() => this.unamed.loginPage.classList.add('page-none'), 700);
       }
