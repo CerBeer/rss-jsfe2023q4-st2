@@ -20,6 +20,10 @@ class StartPage {
       router.logout();
     });
 
+    this.unamed.buttonStart.addEventListener('click', () => {
+      router.startPuzzle();
+    });
+
     if (!states.isEmptyVal('user')) {
       const loginUser = states.getVal('user') as { [key: string]: string };
       this.unamed.welcomeMessage.innerText = `Welcome ${loginUser.firstName} ${loginUser.surname}!`;
