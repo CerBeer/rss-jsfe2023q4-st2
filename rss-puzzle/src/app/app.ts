@@ -1,29 +1,23 @@
 import { defaultState } from './data/default';
 import { Storage } from './components/storage/storage';
-import { Router } from './components/router/router';
 import LoginPage from './pages/login/class';
+import StartPage from './pages/start/class';
 import PuzzlePage from './pages/puzzle/class';
 
 class App {
   private pageLogin;
 
+  private pageStart;
+
   private pagePuzzle;
 
   private appStates;
 
-  private router;
-
   constructor() {
     this.appStates = new Storage(defaultState);
     this.pageLogin = new LoginPage(this.appStates);
+    this.pageStart = new StartPage();
     this.pagePuzzle = new PuzzlePage();
-    this.router = new Router();
-  }
-
-  start() {
-    const docBody = document.querySelector('body');
-    if (docBody === null) return;
-    docBody.addEventListener('click', () => console.log(this.loginPage));
   }
 
   get loginPage() {
@@ -34,8 +28,8 @@ class App {
     return this.pagePuzzle;
   }
 
-  get route() {
-    return this.router;
+  get startPage() {
+    return this.pageStart;
   }
 
   get state() {

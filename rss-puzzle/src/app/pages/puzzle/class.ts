@@ -1,4 +1,4 @@
-import { app } from '../../../index';
+import { router } from '../../../index';
 import { Definition, createElement } from '../../utils/elements';
 import * as markup from './markup';
 import { templates } from './template';
@@ -35,12 +35,16 @@ class PuzzlePage {
     docBody.appendChild(this.page);
 
     this.unamed.buttonLogOut.addEventListener('click', () => {
-      app.route.logout();
+      router.logout();
     });
   }
 
-  none() {
+  hide() {
     this.page.classList.add('page-none');
+  }
+
+  show() {
+    this.page.classList.remove('page-none');
   }
 }
 

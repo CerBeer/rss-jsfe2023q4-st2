@@ -38,6 +38,10 @@ class LoginPage {
   }
 
   show() {
+    const userFirstNameElement = this.unamed.loginFirstName as HTMLInputElement;
+    userFirstNameElement.value = '';
+    const userSurnameElement = this.unamed.loginSurname as HTMLInputElement;
+    userSurnameElement.value = '';
     this.unamed.loginPage.classList.remove('page-none');
     this.unamed.loginPage.classList.remove('page-hide');
   }

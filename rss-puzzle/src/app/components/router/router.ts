@@ -1,16 +1,29 @@
-import { app } from '../../../index';
+import App from '../../app';
 
 export class Router {
+  private app: App;
+
+  constructor(app: App) {
+    this.app = app;
+  }
+
   logout() {
-    app.state.setVal('user', { firstName: '', surname: '' });
-    app.state.save('user');
-    app.loginPage.show();
+    this.app.state.setVal('user', { firstName: '', surname: '' });
+    this.app.state.save('user');
+    this.app.loginPage.show();
   }
 
   start() {
-    if (app.state.isEmptyVal('user')) {
-      app.loginPage.show();
+    this.app.puzzlePage.hide();
+    this.app.startPage.show();
+    if (this.app.state.isEmptyVal('user')) {
+      this.app.loginPage.show();
     }
+  }
+
+  startPuzzle() {
+    this.app.puzzlePage.show();
+    this.app.startPage.hide();
   }
 }
 
