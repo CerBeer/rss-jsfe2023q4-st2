@@ -2,6 +2,8 @@ export type StorageData = number | string | boolean | { [key: string]: string };
 export type StorageObject = { [key: string]: StorageData };
 
 export class Storage {
+  private initValues: StorageObject;
+
   private values: StorageObject;
 
   save(key: string) {
@@ -27,6 +29,14 @@ export class Storage {
     return this.values[key];
   }
 
+  resetValues() {
+    this.values = {};
+    const keysInit = Object.keys(this.initValues);
+    keysInit.forEach((key) => {
+      this.values[key] = this.initValues[key];
+    });
+  }
+
   isEmptyVal(key: string) {
     const val = this.getVal(key);
     let result = true;
@@ -42,12 +52,13 @@ export class Storage {
     return result;
   }
 
-  constructor(data: StorageObject) {
+  constructor(initValues: StorageObject) {
+    this.initValues = initValues;
     this.values = {};
-    const keysInit = Object.keys(data);
+    const keysInit = Object.keys(initValues);
     const keysStorage = Object.keys(localStorage);
     keysInit.forEach((key) => {
-      this.values[key] = data[key];
+      this.values[key] = initValues[key];
       if (keysStorage.indexOf(key) < 0) {
         this.save(key);
       } else {

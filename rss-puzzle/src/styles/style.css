@@ -90,6 +90,10 @@ body {
   display: none;
 }
 
+.element-hide {
+  opacity: 0;
+}
+
 input:invalid:required {
   border: 2px solid rgb(230, 115, 115);
   background-image: linear-gradient(to right, #f5f5f5, #fff7f8);

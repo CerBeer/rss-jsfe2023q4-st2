@@ -143,7 +143,7 @@ export const mainPage = {
           classes: 'app-pool-shop',
           child: [
             { tag: 'DIV', text: '1', attributes: {}, classes: 'app-pool-shop-number', child: [] },
-            { tag: 'DIV', text: '1', attributes: { uname: 'shopPuzzle' }, classes: 'app-pool-shop-puzzle', child: [] },
+            { tag: 'DIV', text: '', attributes: { uname: 'shopPuzzle' }, classes: 'app-pool-shop-puzzle', child: [] },
           ],
         },
         {

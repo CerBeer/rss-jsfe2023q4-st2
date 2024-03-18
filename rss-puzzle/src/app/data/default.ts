@@ -3,4 +3,9 @@ export const defaultState = {
     firstName: '',
     surname: '',
   },
+  puzzleStates: {
+    lastLevel: '0',
+    lastRound: '0',
+    lastWord: '4',
+  },
 };

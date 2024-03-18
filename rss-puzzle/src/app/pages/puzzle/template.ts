@@ -20,4 +20,11 @@ export const templates = {
     classes: 'app-pool-place-lines-line',
     child: [],
   },
+  templatePiece: {
+    tag: 'DIV',
+    text: '',
+    attributes: {},
+    classes: 'app-pool-shop-puzzle-piece',
+    child: [],
+  },
 };

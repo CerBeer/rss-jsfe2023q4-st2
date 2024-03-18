@@ -147,6 +147,7 @@
 
 .app-pool-head-translation {
   display: flex;
+  font-size: 20px;
 }
 
 .app-pool-place {
@@ -162,14 +163,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
   margin-right: 10px;
 }
 
 .app-pool-place-numbers-number {
   display: flex;
   border-radius: 50%;
-  border: 2px solid #424242;
+  border: 1px solid #7c7c7c;
   width: 45px;
   aspect-ratio: 1/1;
   align-content: center;
@@ -180,22 +181,25 @@
 
 .app-pool-place-lines {
   width: 1220px;
-  height: 600px;
+  height: 550px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+  border-radius: 4px;
+  border: 2px solid #d8d8d8;
+  box-shadow: 3px 3px 10px 0px #a3a3a3;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-image: url('https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/images/level1/9th_wave.jpg');
+  /* background-image: url('https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/images/level1/9th_wave.jpg'); */
 }
 
 .app-pool-place-lines-line {
   display: flex;
   width: 100%;
-  height: 60px;
+  height: 55px;
 }
 
 .app-pool-place-line-line-puzzle {
@@ -203,19 +207,60 @@
 }
 
 .app-pool-shop {
-  width: 480px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
+  align-items: center;
 }
 
 .app-pool-shop-number {
   display: flex;
+  border-radius: 50%;
+  border: 2px solid #8f8f8f;
+  width: 45px;
+  aspect-ratio: 1/1;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 4px 2px 7px 0px #706f6f;
+  margin-right: 10px;
+  opacity: 0;
 }
 
 .app-pool-shop-puzzle {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 1220px;
+  height: 59px;
+  border-radius: 4px;
+  border: 2px solid #d8d8d8;
+  box-shadow: 3px 3px 10px 0px #a3a3a3;
+  margin: 20px 0;
+}
+
+.app-pool-shop-puzzle-piece {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid #d8d8d8;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 20px;
+  text-shadow:
+    2px 0px 1px #eeeeee,
+    -2px 0px 1px #eeeeee,
+    0px 2px 1px #eeeeee,
+    0px -2px 1px #eeeeee,
+    2px 2px 1px #eeeeee,
+    -2px -2px 1px #eeeeee,
+    2px -2px 0px #eeeeee,
+    -2px 2px 1px #eeeeee;
 }
 
 .app-controls {
@@ -247,4 +292,87 @@
 
 .app-controls-button:hover {
   transform: scale(1.2);
+}
+
+@media (max-width: 1400px) {
+  body {
+    min-width: 768px;
+    max-width: 1200px;
+  }
+
+  .app {
+    font-size: 20px;
+    height: 100vh;
+    justify-content: space-evenly;
+  }
+
+  .app-pool {
+    width: 768px;
+    height: 640px;
+  }
+
+  .app-pool-place {
+    font-size: 16px;
+  }
+
+  .app-pool-head-sound {
+    width: 25px;
+    height: 25px;
+  }
+
+  .app-pool-head-translation {
+    font-size: 18px;
+  }
+
+  .app-pool-place-numbers {
+    gap: 10px;
+    margin-right: 6px;
+  }
+
+  .app-pool-place-numbers-number {
+    width: 30px;
+    height: 30px;
+  }
+
+  .app-pool-place-lines {
+    width: 700px;
+    height: 400px;
+  }
+
+  .app-pool-place-lines-line {
+    display: flex;
+    width: 100%;
+    height: 40px;
+  }
+
+  .app-pool-shop {
+    font-size: 20px;
+  }
+
+  .app-pool-shop-number {
+    margin-right: 6px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .app-pool-shop-puzzle {
+    width: 700px;
+    height: 44px;
+    margin: auto;
+  }
+
+  .app-pool-shop-puzzle-piece {
+    font-weight: 600;
+    font-size: 18px;
+  }
+}
+
+.marked-element {
+  color: #e90074;
+}
+
+.marked-line {
+  border-radius: 4px;
+  border: 1px solid #d8d8d8;
+  box-shadow: 3px 3px 10px 0px #a3a3a3;
 }
