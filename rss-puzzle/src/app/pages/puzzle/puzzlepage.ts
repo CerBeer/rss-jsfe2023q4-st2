@@ -35,6 +35,7 @@ class PuzzlePage {
     currentLevel: 1,
     currentRound: 1,
     currentWord: 1,
+    currentSolvedStatus: ENUMS.wordStatistics.solved,
   };
 
   private wordStatistics!: string[];
@@ -71,7 +72,7 @@ class PuzzlePage {
     });
 
     this.unamed.buttonIDontKnow.addEventListener('click', () => {
-      router.logout();
+      this.buttonIDontKnow();
     });
 
     this.unamed.buttonCheck.addEventListener('click', () => {
@@ -186,6 +187,12 @@ class PuzzlePage {
     this.puzzlePieces.setCurrentWord(this.currentStates.currentWord);
   }
 
+  buttonIDontKnow() {
+    this.puzzlePieces.setViewLineOrdered(this.currentStates.currentWord);
+    this.puzzlePieces.updateButtonCheck();
+    this.currentStates.currentSolvedStatus = ENUMS.wordStatistics.solvedWithHint;
+  }
+
   checkResult() {
     if (this.unamed.buttonCheck.classList.contains('app-controls-button-disabled')) return;
     const nowOnlyCheck = this.unamed.buttonCheck.innerText === 'Check';
@@ -193,7 +200,8 @@ class PuzzlePage {
     if (nowOnlyCheck) return;
     if (lineCorrect) {
       this.unamed.buttonCheck.innerText = 'Check';
-      this.wordStatistics[this.currentStates.currentWord - 1] = ENUMS.wordStatistics.solved;
+      this.wordStatistics[this.currentStates.currentWord - 1] = this.currentStates.currentSolvedStatus;
+      this.currentStates.currentSolvedStatus = ENUMS.wordStatistics.solved;
       this.puzzlePieces.setViewLineOrdered(this.currentStates.currentWord);
       if (this.currentStates.currentWord < 10) {
         this.currentStates.currentWord += 1;

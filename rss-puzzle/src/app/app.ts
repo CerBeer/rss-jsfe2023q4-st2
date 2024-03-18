@@ -42,9 +42,8 @@ class App {
 
   currentStateNextRound() {
     this.currentStates.round += 1;
-    // if (this.currentStates.word === 0 || this.currentStates.word === 10) {
-    this.currentStates.word = 9;
-    // }
+    this.currentStates.word = 1;
+
     if (this.currentStates.level === 0) {
       this.currentStates.level = 1;
     }

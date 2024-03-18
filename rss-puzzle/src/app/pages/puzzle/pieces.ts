@@ -191,7 +191,9 @@ class PuzzlePieces {
     for (let i = 0; i < 10; i += 1) {
       this.puzzleParameters.poolNumbers[i].classList.remove('element-hide');
       this.puzzleParameters.poolNumbers[i].classList.remove('marked-element');
+      this.puzzleParameters.poolNumbers[i].classList.remove('solved-with-hint');
       this.puzzleParameters.poolLines[i].classList.remove('element-hide');
+      this.puzzleParameters.poolLines[i].classList.remove('marked-line');
       if (i === this.currentWord - 1) {
         this.puzzleParameters.poolNumbers[i].classList.add('marked-element');
         this.puzzleParameters.poolLines[i].classList.add('marked-line');
@@ -202,6 +204,8 @@ class PuzzlePieces {
       } else if (this.wordStatistics[i] === ENUMS.wordStatistics.unsolved) {
         this.puzzleParameters.poolNumbers[i].classList.add('element-hide');
         this.puzzleParameters.poolLines[i].classList.add('element-hide');
+      } else if (this.wordStatistics[i] === ENUMS.wordStatistics.solvedWithHint) {
+        this.puzzleParameters.poolNumbers[i].classList.add('solved-with-hint');
       }
     }
     this.updateButtonCheck();

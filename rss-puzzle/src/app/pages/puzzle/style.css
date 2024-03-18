@@ -367,6 +367,10 @@
   }
 }
 
+.solved-with-hint {
+  background-color: #af8383;
+}
+
 .marked-element {
   color: #e90074;
 }
