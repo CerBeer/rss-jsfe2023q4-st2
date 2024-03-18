@@ -30,6 +30,13 @@ const baseConfig = {
           filename: 'assets/fonts/[name][ext]',
         },
       },
+      {
+        test: /\.(jpg|ico)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/img/[name][ext]',
+        },
+      },
     ],
   },
   resolve: {

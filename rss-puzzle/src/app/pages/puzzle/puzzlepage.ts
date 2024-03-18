@@ -95,6 +95,10 @@ class PuzzlePage {
       this.clickButtonClues(this.unamed.buttonImage);
     });
 
+    this.unamed.buttonSoundPlay.addEventListener('click', () => {
+      this.playVoiceActing();
+    });
+
     this.resetStatistics();
     this.initViewClues();
   }
@@ -248,12 +252,22 @@ class PuzzlePage {
     this.setViewClues();
   }
 
+  playVoiceActing() {
+    if (this.unamed.buttonSoundPlay.classList.contains('element-hide')) return;
+    this.unamed.buttonSoundPlay.classList.add('active');
+    const sound = new Audio(this.wordData.audioExample);
+    sound.volume = 0.5;
+    sound.play();
+    sound.addEventListener('ended', () => this.unamed.buttonSoundPlay.classList.remove('active'));
+  }
+
   checkResult() {
     if (this.unamed.buttonCheck.classList.contains('app-controls-button-disabled')) return;
     const nowOnlyCheck = this.unamed.buttonCheck.innerText === 'Check';
     const lineCorrect = this.puzzlePieces.checkResult();
     if (nowOnlyCheck) {
       this.unamed.translation.classList.remove('element-hide');
+      this.unamed.buttonSoundPlay.classList.remove('element-hide');
       return;
     }
     if (lineCorrect) {

@@ -83,6 +83,10 @@
   border-color: #993366;
 }
 
+.app-pool-head-sound.active {
+  background-color: #993366;
+}
+
 .app-state-button-sound {
   background-image: url('./svg/speaker.svg');
 }
