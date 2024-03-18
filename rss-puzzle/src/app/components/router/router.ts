@@ -35,7 +35,6 @@ export class Router {
     this.app.startPage.hide();
     this.app.puzzlePage.show();
     this.app.puzzlePage.setView();
-    this.app.puzzlePage.startWord();
   }
 }
 

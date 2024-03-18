@@ -159,6 +159,13 @@ export const mainPage = {
               classes: 'app-controls-button app-controls-button-idontknow',
               child: [],
             },
+            {
+              tag: 'DIV',
+              text: 'Check',
+              attributes: { uname: 'buttonCheck' },
+              classes: 'app-controls-button app-controls-button-check',
+              child: [],
+            },
           ],
         },
       ],

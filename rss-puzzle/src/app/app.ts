@@ -34,15 +34,19 @@ class App {
     this.currentStates.level = parseInt(puzzleStates.lastLevel);
     this.currentStates.round = parseInt(puzzleStates.lastRound);
     this.currentStates.word = parseInt(puzzleStates.lastWord);
+
+    // this.currentStates.level = 2;
+    // this.currentStates.round = 40;
+    // this.currentStates.word = 9;
   }
 
   currentStateNextRound() {
     this.currentStates.round += 1;
+    // if (this.currentStates.word === 0 || this.currentStates.word === 10) {
+    this.currentStates.word = 1;
+    // }
     if (this.currentStates.level === 0) {
       this.currentStates.level = 1;
-    }
-    if (this.currentStates.word === 0) {
-      this.currentStates.word = 1;
     }
     if (this.currentStates.round > this.appDataset.levelLength(this.currentStates.level)) {
       this.currentStates.level += 1;

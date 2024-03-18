@@ -71,7 +71,6 @@ export class Dataset {
     let result = true;
     for (let i = 1; i <= this.settings.allLevels; i += 1) {
       result = result && this.isLoaded(i);
-      // if (this.isLoaded(i)) console.log(i, this.dataset[i].data.rounds[0].levelData.id);
     }
     return result;
   }

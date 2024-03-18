@@ -11,6 +11,7 @@ export type PuzzleParameters = {
   poolNumbers: HTMLElement[];
   poolLines: HTMLElement[];
   puzzleShop: HTMLElement;
+  buttonCheck: HTMLElement;
 };
 
 export type PieceParameters = {
@@ -61,6 +62,15 @@ class Piece {
 
   get number() {
     return this.pieceParameters.wordNumber;
+  }
+
+  set indent(indent: number) {
+    this.pieceParameters.indent = indent;
+  }
+
+  set width(width: number) {
+    this.pieceParameters.width = width;
+    this.implementation.style.width = `${this.pieceParameters.width}px`;
   }
 }
 
@@ -129,11 +139,29 @@ class PuzzlePieces {
     image.onload = () => {
       this.imgSize.width = image.width;
       this.imgSize.height = image.height;
-      this.imgSize.marginTop =
-        (this.puzzleParameters.poolSize.height - image.height * (this.puzzleParameters.poolSize.width / image.width)) /
-        2;
-      this.pieces.forEach((line) => line.forEach((piece) => piece.calculateBackgroundPosition()));
+      this.calculateImageMarginTop();
     };
+  }
+
+  calculateImageMarginTop() {
+    this.imgSize.marginTop =
+      (this.puzzleParameters.poolSize.height -
+        this.imgSize.height * (this.puzzleParameters.poolSize.width / this.imgSize.width)) /
+      2;
+    for (let line = 0; line < 10; line += 1) {
+      const wordsPull = this.puzzleParameters.phraseBank[line].map((word) => ` ${word} `);
+      const widthOneChar = this.puzzleParameters.poolSize.width / wordsPull.join('').length;
+      let indent = 0;
+      for (let wordIndex = 0; wordIndex < wordsPull.length; wordIndex += 1) {
+        const currWord = wordsPull[wordIndex];
+        const currPieceLength = currWord.length * widthOneChar;
+        const newElement = this.pieces[line][wordIndex];
+        newElement.indent = indent;
+        newElement.width = currPieceLength;
+        indent += currPieceLength;
+      }
+    }
+    this.pieces.forEach((line) => line.forEach((piece) => piece.calculateBackgroundPosition()));
   }
 
   setViewLines() {
@@ -142,6 +170,12 @@ class PuzzlePieces {
       const parentElement = this.puzzleParameters.poolLines[i];
       parentElement.replaceChildren(...newElements);
     }
+  }
+
+  setViewLineOrdered(line: number) {
+    const newElements = this.pieces[line - 1].map((piece) => piece.imp);
+    const parentElement = this.puzzleParameters.poolLines[line - 1];
+    parentElement.replaceChildren(...newElements);
   }
 
   setWordStatistics(wordStatistics: string[]) {
@@ -170,6 +204,11 @@ class PuzzlePieces {
         this.puzzleParameters.poolLines[i].classList.add('element-hide');
       }
     }
+    this.updateButtonCheck();
+  }
+
+  updatePoolSize(poolSize: { width: number; height: number }) {
+    this.puzzleParameters.poolSize = poolSize;
   }
 
   pieceClick(e: Event) {
@@ -179,6 +218,23 @@ class PuzzlePieces {
     } else if (this.puzzleParameters.poolLines[this.currentWord - 1].contains(clickedElement)) {
       this.puzzleParameters.puzzleShop.appendChild(clickedElement);
     }
+    this.updateButtonCheck();
+  }
+
+  updateButtonCheck() {
+    if (this.puzzleParameters.puzzleShop.childNodes.length > 0) {
+      this.puzzleParameters.buttonCheck.classList.add('app-controls-button-disabled');
+    } else {
+      this.puzzleParameters.buttonCheck.classList.remove('app-controls-button-disabled');
+    }
+  }
+
+  checkResult() {
+    let result = true;
+    this.puzzleParameters.poolLines[this.currentWord - 1].childNodes.forEach((piece, index) => {
+      result = result && this.pieces[this.currentWord - 1][index].text.trim() === piece.textContent?.trim();
+    });
+    return result;
   }
 }
 

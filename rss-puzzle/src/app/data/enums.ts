@@ -5,8 +5,8 @@ export const ENUMS = {
     game: 'game',
   },
   wordStatistics: {
-    unsolved: 'unresolved',
-    solved: 'resolved',
+    unsolved: 'unsolved',
+    solved: 'solved',
     solvedWithHint: 'solvedWithHint',
   },
 };

@@ -3,7 +3,6 @@ import { router } from '../../../index';
 import { Definition, createElement } from '../../utils/elements';
 import * as markup from './markup';
 import { templates } from './template';
-import { shuffleArray } from '../../utils/shuffle';
 import { WorldCollectionLevelWord, WorldCollectionLevelLevelData } from '../../components/dataset/dataset';
 import PuzzlePieces, { PuzzleParameters } from './pieces';
 import { ENUMS } from '../../data/enums';
@@ -38,18 +37,7 @@ class PuzzlePage {
     currentWord: 1,
   };
 
-  private wordStatistics = [
-    ENUMS.wordStatistics.solved,
-    ENUMS.wordStatistics.solved,
-    ENUMS.wordStatistics.unsolved,
-    ENUMS.wordStatistics.unsolved,
-    ENUMS.wordStatistics.unsolved,
-    ENUMS.wordStatistics.unsolved,
-    ENUMS.wordStatistics.unsolved,
-    ENUMS.wordStatistics.unsolved,
-    ENUMS.wordStatistics.unsolved,
-    ENUMS.wordStatistics.unsolved,
-  ];
+  private wordStatistics!: string[];
 
   constructor(app: App) {
     this.app = app;
@@ -81,6 +69,39 @@ class PuzzlePage {
     this.unamed.buttonLogOut.addEventListener('click', () => {
       router.logout();
     });
+
+    this.unamed.buttonIDontKnow.addEventListener('click', () => {
+      router.logout();
+    });
+
+    this.unamed.buttonCheck.addEventListener('click', () => {
+      this.checkResult();
+    });
+
+    this.resetStatistics();
+  }
+
+  resetStatistics() {
+    this.wordStatistics = [
+      ENUMS.wordStatistics.unsolved,
+      ENUMS.wordStatistics.unsolved,
+      ENUMS.wordStatistics.unsolved,
+      ENUMS.wordStatistics.unsolved,
+      ENUMS.wordStatistics.unsolved,
+      ENUMS.wordStatistics.unsolved,
+      ENUMS.wordStatistics.unsolved,
+      ENUMS.wordStatistics.unsolved,
+      ENUMS.wordStatistics.unsolved,
+      ENUMS.wordStatistics.unsolved,
+    ];
+  }
+
+  hide() {
+    this.page.classList.add('page-none');
+  }
+
+  show() {
+    this.page.classList.remove('page-none');
   }
 
   setView() {
@@ -88,18 +109,30 @@ class PuzzlePage {
     this.currentStates.currentRound = this.app.currStates.round;
     this.currentStates.currentWord = this.app.currStates.word;
     this.roundData = this.app.dataset.getRoundData(this.currentStates.currentLevel, this.currentStates.currentRound);
+    this.setWordData();
+    this.setViewSelects();
+    this.setViewClues();
+    this.createPuzzlePieces();
+    this.setViewPieces();
+    this.setPiecesCurrentState();
+    this.puzzlePieces.updateView();
+
+    const ro = new ResizeObserver(() => {
+      this.puzzlePieces.updatePoolSize({
+        width: this.unamed.poolPlaceLine.offsetWidth,
+        height: this.unamed.poolPlaceLine.offsetHeight,
+      });
+      this.puzzlePieces.calculateImageMarginTop();
+    });
+    ro.observe(this.unamed.poolPlaceLine);
+  }
+
+  setWordData() {
     this.wordData = this.app.dataset.getWordData(
       this.currentStates.currentLevel,
       this.currentStates.currentRound,
       this.currentStates.currentWord - 1
     );
-    this.setViewSelects();
-    this.setViewClues();
-    this.setViewPool();
-    this.createPuzzlePieces();
-    this.setViewPieces();
-    this.setPiecesCurrentState();
-    this.puzzlePieces.updateView();
   }
 
   setViewSelects() {
@@ -127,38 +160,8 @@ class PuzzlePage {
     }
   }
 
-  setViewPool() {
-    // this.unamed.poolPlaceLine.style.backgroundImage = `url('${this.roundData.imageSrc}')`;
-    // TODO implement this: set view of line with completed word
-  }
-
   setViewClues() {
     this.unamed.translation.innerText = this.wordData.textExampleTranslate;
-  }
-
-  setViewWordBank() {
-    // this.unamed.shopPuzzle.innerHTML = '';
-    // this.phraseBank.forEach((word) => {
-    //   const newElement = templates.templatePiece as Definition;
-    //   newElement.text = `${word}`;
-    //   this.unamed.shopPuzzle.appendChild(createElement(newElement));
-    // });
-  }
-
-  startWord() {
-    this.phraseReference = this.wordData.textExample.split(' ');
-    this.phraseResult = [];
-    this.phraseBank = shuffleArray(this.phraseReference!);
-    this.setViewWordBank();
-    return;
-  }
-
-  hide() {
-    this.page.classList.add('page-none');
-  }
-
-  show() {
-    this.page.classList.remove('page-none');
   }
 
   createPuzzlePieces() {
@@ -169,6 +172,7 @@ class PuzzlePage {
       poolNumbers: this.poolNumbers,
       poolLines: this.poolLines,
       puzzleShop: this.unamed.shopPuzzle,
+      buttonCheck: this.unamed.buttonCheck,
     };
     this.puzzlePieces = new PuzzlePieces(puzzleParameters);
   }
@@ -180,6 +184,25 @@ class PuzzlePage {
   setPiecesCurrentState() {
     this.puzzlePieces.setWordStatistics(this.wordStatistics);
     this.puzzlePieces.setCurrentWord(this.currentStates.currentWord);
+  }
+
+  checkResult() {
+    if (this.unamed.buttonCheck.classList.contains('app-controls-button-disabled')) return;
+    if (this.puzzlePieces.checkResult()) {
+      this.wordStatistics[this.currentStates.currentWord - 1] = ENUMS.wordStatistics.solved;
+      this.puzzlePieces.setViewLineOrdered(this.currentStates.currentWord);
+      if (this.currentStates.currentWord < 10) {
+        this.currentStates.currentWord += 1;
+        this.setWordData();
+        this.setViewClues();
+        this.setPiecesCurrentState();
+        this.puzzlePieces.updateView();
+      } else {
+        this.resetStatistics();
+        this.app.currentStateNextRound();
+        this.setView();
+      }
+    }
   }
 }
 

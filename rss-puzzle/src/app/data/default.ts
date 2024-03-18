@@ -6,6 +6,6 @@ export const defaultState = {
   puzzleStates: {
     lastLevel: '0',
     lastRound: '0',
-    lastWord: '4',
+    lastWord: '10',
   },
 };
