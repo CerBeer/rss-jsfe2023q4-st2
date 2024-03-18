@@ -371,6 +371,11 @@
   color: #e90074;
 }
 
+.marked-piece {
+  border-color: #e90074;
+  color: #e90074;
+}
+
 .marked-line {
   border-radius: 4px;
   border: 1px solid #d8d8d8;

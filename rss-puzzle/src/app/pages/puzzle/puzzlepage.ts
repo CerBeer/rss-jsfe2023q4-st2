@@ -188,7 +188,11 @@ class PuzzlePage {
 
   checkResult() {
     if (this.unamed.buttonCheck.classList.contains('app-controls-button-disabled')) return;
-    if (this.puzzlePieces.checkResult()) {
+    const nowOnlyCheck = this.unamed.buttonCheck.innerText === 'Check';
+    const lineCorrect = this.puzzlePieces.checkResult();
+    if (nowOnlyCheck) return;
+    if (lineCorrect) {
+      this.unamed.buttonCheck.innerText = 'Check';
       this.wordStatistics[this.currentStates.currentWord - 1] = ENUMS.wordStatistics.solved;
       this.puzzlePieces.setViewLineOrdered(this.currentStates.currentWord);
       if (this.currentStates.currentWord < 10) {

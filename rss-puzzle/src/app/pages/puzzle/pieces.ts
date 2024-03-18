@@ -217,7 +217,9 @@ class PuzzlePieces {
       this.puzzleParameters.poolLines[this.currentWord - 1].appendChild(clickedElement);
     } else if (this.puzzleParameters.poolLines[this.currentWord - 1].contains(clickedElement)) {
       this.puzzleParameters.puzzleShop.appendChild(clickedElement);
+      (clickedElement as HTMLElement).classList.remove('marked-piece');
     }
+    this.puzzleParameters.buttonCheck.innerText = 'Check';
     this.updateButtonCheck();
   }
 
@@ -232,8 +234,13 @@ class PuzzlePieces {
   checkResult() {
     let result = true;
     this.puzzleParameters.poolLines[this.currentWord - 1].childNodes.forEach((piece, index) => {
-      result = result && this.pieces[this.currentWord - 1][index].text.trim() === piece.textContent?.trim();
+      const correct = this.pieces[this.currentWord - 1][index].text.trim() === piece.textContent?.trim();
+      if (correct) this.pieces[this.currentWord - 1][index].imp.classList.remove('marked-piece');
+      else this.pieces[this.currentWord - 1][index].imp.classList.add('marked-piece');
+      result = result && correct;
     });
+    if (result) this.puzzleParameters.buttonCheck.innerText = 'Continue';
+    else this.puzzleParameters.buttonCheck.innerText = 'Check';
     return result;
   }
 }
