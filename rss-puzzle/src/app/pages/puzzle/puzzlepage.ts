@@ -79,7 +79,24 @@ class PuzzlePage {
       this.checkResult();
     });
 
+    this.unamed.buttonSound.addEventListener('click', () => {
+      this.clickButtonClues(this.unamed.buttonSound);
+    });
+
+    this.unamed.buttonTranslation.addEventListener('click', () => {
+      this.clickButtonClues(this.unamed.buttonTranslation);
+    });
+
+    this.unamed.buttonMusic.addEventListener('click', () => {
+      this.clickButtonClues(this.unamed.buttonMusic);
+    });
+
+    this.unamed.buttonImage.addEventListener('click', () => {
+      this.clickButtonClues(this.unamed.buttonImage);
+    });
+
     this.resetStatistics();
+    this.initViewClues();
   }
 
   resetStatistics() {
@@ -97,6 +114,22 @@ class PuzzlePage {
     ];
   }
 
+  initViewClues() {
+    const currClues = this.app.currStates.clueStates;
+
+    if (currClues.voiceActing) this.unamed.buttonSound.classList.add('active');
+    else this.unamed.buttonSound.classList.remove('active');
+
+    if (currClues.translate) this.unamed.buttonTranslation.classList.add('active');
+    else this.unamed.buttonTranslation.classList.remove('active');
+
+    if (currClues.image) this.unamed.buttonImage.classList.add('active');
+    else this.unamed.buttonImage.classList.remove('active');
+
+    if (currClues.music) this.unamed.buttonMusic.classList.add('active');
+    else this.unamed.buttonMusic.classList.remove('active');
+  }
+
   hide() {
     this.page.classList.add('page-none');
   }
@@ -109,6 +142,7 @@ class PuzzlePage {
     this.currentStates.currentLevel = this.app.currStates.level;
     this.currentStates.currentRound = this.app.currStates.round;
     this.currentStates.currentWord = this.app.currStates.word;
+
     this.roundData = this.app.dataset.getRoundData(this.currentStates.currentLevel, this.currentStates.currentRound);
     this.setWordData();
     this.setViewSelects();
@@ -162,7 +196,22 @@ class PuzzlePage {
   }
 
   setViewClues() {
+    const currClues = this.app.currStates.clueStates;
+
+    currClues.voiceActing = this.unamed.buttonSound.classList.contains('active');
+    if (currClues.voiceActing) this.unamed.buttonSoundPlay.classList.remove('element-hide');
+    else this.unamed.buttonSoundPlay.classList.add('element-hide');
+
+    currClues.translate = this.unamed.buttonTranslation.classList.contains('active');
     this.unamed.translation.innerText = this.wordData.textExampleTranslate;
+    if (currClues.translate) this.unamed.translation.classList.remove('element-hide');
+    else this.unamed.translation.classList.add('element-hide');
+
+    currClues.image = this.unamed.buttonImage.classList.contains('active');
+
+    currClues.music = this.unamed.buttonMusic.classList.contains('active');
+
+    this.app.saveCluesStates();
   }
 
   createPuzzlePieces() {
@@ -193,11 +242,20 @@ class PuzzlePage {
     this.currentStates.currentSolvedStatus = ENUMS.wordStatistics.solvedWithHint;
   }
 
+  clickButtonClues(clue: HTMLElement) {
+    clue.classList.toggle('active');
+    // this.unamed.buttonTranslation.classList.toggle('active');
+    this.setViewClues();
+  }
+
   checkResult() {
     if (this.unamed.buttonCheck.classList.contains('app-controls-button-disabled')) return;
     const nowOnlyCheck = this.unamed.buttonCheck.innerText === 'Check';
     const lineCorrect = this.puzzlePieces.checkResult();
-    if (nowOnlyCheck) return;
+    if (nowOnlyCheck) {
+      this.unamed.translation.classList.remove('element-hide');
+      return;
+    }
     if (lineCorrect) {
       this.unamed.buttonCheck.innerText = 'Check';
       this.wordStatistics[this.currentStates.currentWord - 1] = this.currentStates.currentSolvedStatus;

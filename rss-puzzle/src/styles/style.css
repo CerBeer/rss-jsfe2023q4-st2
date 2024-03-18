@@ -88,6 +88,11 @@ body {
   display: none;
 }
 
+.element-hide {
+  opacity: 0;
+  cursor: default;
+}
+
 .element-hide * {
   opacity: 0;
   cursor: default;

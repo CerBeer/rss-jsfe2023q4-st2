@@ -21,12 +21,12 @@ class App {
 
   constructor() {
     this.appStates = new Storage(defaultState);
+    this.currentStates = currentState;
+    this.initCurrentStates();
     this.pageLogin = new LoginPage(this.appStates);
     this.pageStart = new StartPage(this.appStates);
     this.pagePuzzle = new PuzzlePage(this);
     this.appDataset = new Dataset();
-    this.currentStates = currentState;
-    this.initCurrentStates();
   }
 
   initCurrentStates() {
@@ -35,12 +35,35 @@ class App {
     this.currentStates.round = parseInt(puzzleStates.lastRound);
     this.currentStates.word = parseInt(puzzleStates.lastWord);
 
-    // this.currentStates.level = 2;
-    // this.currentStates.round = 40;
-    // this.currentStates.word = 9;
+    const clueStates = this.appStates.getVal('clueStates') as { [key: string]: string };
+    this.currentStates.clueStates.voiceActing = clueStates.voiceActing === 'true';
+    this.currentStates.clueStates.translate = clueStates.translate === 'true';
+    this.currentStates.clueStates.music = clueStates.music === 'true';
+    this.currentStates.clueStates.image = clueStates.image === 'true';
+  }
+
+  saveCurrentStates() {
+    const puzzleStates = this.appStates.getVal('puzzleStates') as { [key: string]: string };
+    puzzleStates.lastLevel = `${this.currentStates.level}`;
+    puzzleStates.lastRound = `${this.currentStates.round}`;
+    puzzleStates.lastWord = `${this.currentStates.word}`;
+    this.appStates.setVal('puzzleStates', puzzleStates);
+    this.appStates.save('puzzleStates');
+  }
+
+  saveCluesStates() {
+    const clueStates = this.appStates.getVal('clueStates') as { [key: string]: string };
+    clueStates.voiceActing = `${this.currentStates.clueStates.voiceActing}`;
+    clueStates.translate = `${this.currentStates.clueStates.translate}`;
+    clueStates.music = `${this.currentStates.clueStates.music}`;
+    clueStates.image = `${this.currentStates.clueStates.image}`;
+    this.appStates.setVal('clueStates', clueStates);
+    this.appStates.save('clueStates');
   }
 
   currentStateNextRound() {
+    this.saveCurrentStates();
+
     this.currentStates.round += 1;
     this.currentStates.word = 1;
 
