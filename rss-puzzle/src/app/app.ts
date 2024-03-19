@@ -61,6 +61,12 @@ class App {
     this.appStates.save('clueStates');
   }
 
+  currentStateSet(currentStates: { level: number; round: number; word: number }) {
+    this.currentStates.level = currentStates.level;
+    this.currentStates.round = currentStates.round;
+    this.currentStates.word = currentStates.word;
+  }
+
   currentStateNextRound() {
     this.saveCurrentStates();
 

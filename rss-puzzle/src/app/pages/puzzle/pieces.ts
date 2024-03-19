@@ -98,6 +98,8 @@ class PuzzlePieces {
 
   private currentResultLine!: HTMLElement;
 
+  private visibleBackground!: boolean;
+
   constructor(puzzleParameters: PuzzleParameters) {
     this.puzzleParameters = puzzleParameters;
     this.background = this.puzzleParameters.roundData.imageSrc;
@@ -178,6 +180,18 @@ class PuzzlePieces {
     parentElement.replaceChildren(...newElements);
   }
 
+  setBackgroundLineVisible(visible: boolean) {
+    this.visibleBackground = visible;
+  }
+
+  updateBackgroundLineVisible(on?: boolean) {
+    const visible = this.visibleBackground || on;
+    this.pieces[this.currentWord - 1].forEach((piece) => {
+      if (visible) piece.imp.classList.remove('piece-without-background');
+      else piece.imp.classList.add('piece-without-background');
+    });
+  }
+
   setWordStatistics(wordStatistics: string[]) {
     this.wordStatistics = wordStatistics;
   }
@@ -194,6 +208,7 @@ class PuzzlePieces {
       this.puzzleParameters.poolNumbers[i].classList.remove('solved-with-hint');
       this.puzzleParameters.poolLines[i].classList.remove('element-hide');
       this.puzzleParameters.poolLines[i].classList.remove('marked-line');
+      this.pieces[i].forEach((piece) => piece.imp.classList.remove('piece-without-background'));
       if (i === this.currentWord - 1) {
         this.puzzleParameters.poolNumbers[i].classList.add('marked-element');
         this.puzzleParameters.poolLines[i].classList.add('marked-line');
@@ -208,6 +223,7 @@ class PuzzlePieces {
         this.puzzleParameters.poolNumbers[i].classList.add('solved-with-hint');
       }
     }
+    this.updateBackgroundLineVisible();
     this.updateButtonCheck();
   }
 
@@ -221,10 +237,12 @@ class PuzzlePieces {
       this.puzzleParameters.poolLines[this.currentWord - 1].appendChild(clickedElement);
     } else if (this.puzzleParameters.poolLines[this.currentWord - 1].contains(clickedElement)) {
       this.puzzleParameters.puzzleShop.appendChild(clickedElement);
+      this.puzzleParameters.buttonCheck.innerText = 'Check';
+      this.puzzleParameters.buttonCheck.classList.remove('app-controls-button-open');
       (clickedElement as HTMLElement).classList.remove('marked-piece');
     }
-    this.puzzleParameters.buttonCheck.innerText = 'Check';
     this.updateButtonCheck();
+    this.updateBackgroundLineVisible();
   }
 
   updateButtonCheck() {
@@ -243,8 +261,15 @@ class PuzzlePieces {
       else this.pieces[this.currentWord - 1][index].imp.classList.add('marked-piece');
       result = result && correct;
     });
-    if (result) this.puzzleParameters.buttonCheck.innerText = 'Continue';
-    else this.puzzleParameters.buttonCheck.innerText = 'Check';
+    if (result) {
+      this.puzzleParameters.buttonCheck.innerText = 'Continue';
+      this.puzzleParameters.buttonCheck.classList.add('app-controls-button-open');
+      this.updateBackgroundLineVisible(true);
+      this.setViewLineOrdered(this.currentWord);
+    } else {
+      this.puzzleParameters.buttonCheck.innerText = 'Check';
+      this.puzzleParameters.buttonCheck.classList.remove('app-controls-button-open');
+    }
     return result;
   }
 }

@@ -39,6 +39,13 @@ export const mainPage = {
               classes: '',
               child: [],
             },
+            {
+              tag: 'DIV',
+              text: '',
+              attributes: { uname: 'buttonGo' },
+              classes: 'app-state-button-go app-state-button active',
+              child: [],
+            },
           ],
         },
         {

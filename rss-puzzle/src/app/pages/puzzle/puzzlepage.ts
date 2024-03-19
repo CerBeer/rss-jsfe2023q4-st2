@@ -99,6 +99,14 @@ class PuzzlePage {
       this.playVoiceActing();
     });
 
+    this.unamed.currentLevel.addEventListener('change', () => {
+      this.changeSelectsLevel();
+    });
+
+    this.unamed.buttonGo.addEventListener('click', () => {
+      this.clickbuttonGo();
+    });
+
     this.resetStatistics();
     this.initViewClues();
   }
@@ -143,18 +151,26 @@ class PuzzlePage {
   }
 
   setView() {
+    this.setcurrentStates();
+    this.setCurrentView();
+  }
+
+  setcurrentStates() {
     this.currentStates.currentLevel = this.app.currStates.level;
     this.currentStates.currentRound = this.app.currStates.round;
     this.currentStates.currentWord = this.app.currStates.word;
+  }
 
+  setCurrentView() {
     this.roundData = this.app.dataset.getRoundData(this.currentStates.currentLevel, this.currentStates.currentRound);
     this.setWordData();
-    this.setViewSelects();
-    this.setViewClues();
+    this.setViewSelectsLevel();
+    this.setViewSelectsRound();
     this.createPuzzlePieces();
     this.setViewPieces();
     this.setPiecesCurrentState();
     this.puzzlePieces.updateView();
+    this.setViewClues();
 
     const ro = new ResizeObserver(() => {
       this.puzzlePieces.updatePoolSize({
@@ -174,10 +190,25 @@ class PuzzlePage {
     );
   }
 
-  setViewSelects() {
+  changeSelectsLevel() {
+    const selected = this.unamed.currentLevel as HTMLSelectElement;
+    this.setViewSelectsRound(parseInt(selected.value));
+  }
+
+  clickbuttonGo() {
+    const selectedLevel = this.unamed.currentLevel as HTMLSelectElement;
+    this.currentStates.currentLevel = parseInt(selectedLevel.value);
+    const selectedRound = this.unamed.currentPage as HTMLSelectElement;
+    this.currentStates.currentRound = parseInt(selectedRound.value);
+    this.currentStates.currentWord = 1;
+    this.resetStatistics();
+    this.setCurrentView();
+  }
+
+  setViewSelectsLevel() {
     this.unamed.currentLevel.innerHTML = '';
     const countLevel = this.app.dataset.allLevels;
-    const currentLevel = this.app.currStates.level;
+    const currentLevel = this.currentStates.currentLevel;
     for (let i = 1; i <= countLevel; i += 1) {
       const newElement = templates.templateOptionPage as Definition;
       newElement.text = `${i}`;
@@ -186,16 +217,24 @@ class PuzzlePage {
       if (i === currentLevel) nevElementImp.selected = true;
       this.unamed.currentLevel.appendChild(nevElementImp);
     }
+  }
+
+  setViewSelectsRound(level?: number) {
+    let setLevel = this.currentStates.currentLevel;
+    let currentRound = this.currentStates.currentRound;
+    if (level) {
+      setLevel = level;
+      currentRound = 1;
+    }
     this.unamed.currentPage.innerHTML = '';
-    const countRound = this.app.dataset.levelLength(this.app.currStates.level);
-    const currentRound = this.app.currStates.round;
+    const countRound = this.app.dataset.levelLength(setLevel);
     for (let i = 1; i <= countRound; i += 1) {
       const newElement = templates.templateOptionPage as Definition;
       newElement.text = `${i}`;
       newElement.attributes = { value: `${i}` };
-      const nevElementImp = createElement(newElement) as HTMLOptionElement;
-      if (i === currentRound) nevElementImp.selected = true;
-      this.unamed.currentPage.appendChild(nevElementImp);
+      const newElementImp = createElement(newElement) as HTMLOptionElement;
+      if (i === currentRound) newElementImp.selected = true;
+      this.unamed.currentPage.appendChild(newElementImp);
     }
   }
 
@@ -212,6 +251,8 @@ class PuzzlePage {
     else this.unamed.translation.classList.add('element-hide');
 
     currClues.image = this.unamed.buttonImage.classList.contains('active');
+    this.puzzlePieces.setBackgroundLineVisible(currClues.image);
+    this.puzzlePieces.updateBackgroundLineVisible();
 
     currClues.music = this.unamed.buttonMusic.classList.contains('active');
 
@@ -221,7 +262,7 @@ class PuzzlePage {
   createPuzzlePieces() {
     const puzzleParameters: PuzzleParameters = {
       roundData: this.roundData,
-      phraseBank: this.app.dataset.getWordsData(this.app.currStates.level, this.app.currStates.round),
+      phraseBank: this.app.dataset.getWordsData(this.currentStates.currentLevel, this.currentStates.currentRound),
       poolSize: { width: this.unamed.poolPlaceLine.offsetWidth, height: this.unamed.poolPlaceLine.offsetHeight },
       poolNumbers: this.poolNumbers,
       poolLines: this.poolLines,
@@ -271,6 +312,7 @@ class PuzzlePage {
       return;
     }
     if (lineCorrect) {
+      this.unamed.buttonCheck.classList.remove('app-controls-button-open');
       this.unamed.buttonCheck.innerText = 'Check';
       this.wordStatistics[this.currentStates.currentWord - 1] = this.currentStates.currentSolvedStatus;
       this.currentStates.currentSolvedStatus = ENUMS.wordStatistics.solved;
@@ -283,6 +325,11 @@ class PuzzlePage {
         this.puzzlePieces.updateView();
       } else {
         this.resetStatistics();
+        this.app.currentStateSet({
+          level: this.currentStates.currentLevel,
+          round: this.currentStates.currentRound,
+          word: this.currentStates.currentWord,
+        });
         this.app.currentStateNextRound();
         this.setView();
       }
