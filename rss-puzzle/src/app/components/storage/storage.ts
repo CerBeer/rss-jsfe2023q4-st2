@@ -21,6 +21,18 @@ export class Storage {
     });
   }
 
+  loadAll() {
+    const keysInit = Object.keys(this.initValues);
+    this.values = {};
+    const keysStorage = Object.keys(localStorage);
+    keysInit.forEach((key) => {
+      this.values[key] = this.initValues[key];
+      if (keysStorage.indexOf(key) >= 0) {
+        this.load(key);
+      }
+    });
+  }
+
   setVal(key: string, value: StorageData) {
     this.values[key] = value;
   }
@@ -54,8 +66,11 @@ export class Storage {
 
   constructor(initValues: StorageObject) {
     this.initValues = initValues;
-    this.values = {};
     const keysInit = Object.keys(initValues);
+    keysInit.forEach((key) => {
+      this.initValues[key] = initValues[key];
+    });
+    this.values = {};
     const keysStorage = Object.keys(localStorage);
     keysInit.forEach((key) => {
       this.values[key] = initValues[key];

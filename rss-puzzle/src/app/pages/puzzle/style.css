@@ -113,7 +113,7 @@
 }
 
 .app-pool {
-  width: 1440px;
+  max-width: 1440px;
   height: 768px;
   display: flex;
   flex-direction: column;

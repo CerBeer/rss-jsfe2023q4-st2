@@ -14,7 +14,9 @@ export class Router {
   logout() {
     this.app.states.resetValues();
     this.app.states.saveAll();
+    this.app.states.loadAll();
     this.app.initCurrentStates();
+    this.app.puzzlePage.initViewClues();
     this.start();
   }
 

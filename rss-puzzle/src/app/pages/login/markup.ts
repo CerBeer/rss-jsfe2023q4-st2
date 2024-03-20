@@ -23,7 +23,7 @@ export const mainPage = {
               text: '',
               attributes: {
                 type: 'text',
-                pattern: '[A-Za-z]{3,}',
+                pattern: '[A-Za-z-]{3,}',
                 title: 'at least 3 characters without space',
                 id: 'login-firstName',
                 name: 'login-firstName',
@@ -39,7 +39,7 @@ export const mainPage = {
               text: '',
               attributes: {
                 type: 'text',
-                pattern: '[A-Za-z]{4,}',
+                pattern: '[A-Za-z-]{4,}',
                 title: 'at least 4 characters without space',
                 id: 'login-surname',
                 name: 'login-surname',

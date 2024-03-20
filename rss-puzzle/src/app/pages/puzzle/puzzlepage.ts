@@ -295,6 +295,7 @@ class PuzzlePage {
 
   playVoiceActing() {
     if (this.unamed.buttonSoundPlay.classList.contains('element-hide')) return;
+    if (this.unamed.buttonSoundPlay.classList.contains('active')) return;
     this.unamed.buttonSoundPlay.classList.add('active');
     const sound = new Audio(this.wordData.audioExample);
     sound.volume = 0.5;

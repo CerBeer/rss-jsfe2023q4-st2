@@ -19,10 +19,10 @@ class LoginPage {
     this.unamed.loginButton.addEventListener('click', () => {
       const userFirstNameElement = this.unamed.loginFirstName as HTMLInputElement;
       const userFirstName = userFirstNameElement.value;
-      userFirstNameElement.value = userFirstName.charAt(0).toUpperCase() + userFirstName.slice(1);
+      userFirstNameElement.value = this.capitalize(userFirstName);
       const userSurnameElement = this.unamed.loginSurname as HTMLInputElement;
       const userSurname = userSurnameElement.value;
-      userSurnameElement.value = userSurname.charAt(0).toUpperCase() + userSurname.slice(1);
+      userSurnameElement.value = this.capitalize(userSurname);
       if (userFirstNameElement.validity.valid && userSurnameElement.validity.valid) {
         const user = { firstName: userFirstNameElement.value, surname: userSurnameElement.value };
         states.setVal('user', user);
@@ -32,6 +32,13 @@ class LoginPage {
       }
     });
     if (!states.isEmptyVal('user')) this.hide();
+  }
+
+  capitalize(str: string) {
+    return str
+      .split('-')
+      .map((val) => val.charAt(0).toUpperCase() + val.slice(1))
+      .join('-');
   }
 
   hide() {
