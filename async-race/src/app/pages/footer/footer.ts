@@ -1,14 +1,14 @@
-import { Definition, createElement } from '../../utils/elements';
+import { ElementsDefinitions, createElement } from '../../utils/elements';
 import * as markup from './markup';
 import './footer.css';
 
 class Footer {
   private page;
 
-  private unamed: { [key: string]: HTMLElement } = {};
+  private SpecialElements: { [key: string]: HTMLElement } = {};
 
   constructor() {
-    this.page = createElement(markup.footer as Definition, this.unamed);
+    this.page = createElement(markup.footer as ElementsDefinitions, this.SpecialElements);
 
     document.body.appendChild(this.page);
   }
@@ -25,7 +25,7 @@ class Footer {
     this.page.classList.add('element-none');
   }
 
-  ne() {
+  neno() {
     this.page.classList.remove('element-none');
   }
 }

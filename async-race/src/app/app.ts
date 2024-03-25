@@ -21,7 +21,7 @@ class App {
   }
 
   initCurrentStates() {
-    this.pageWinners.ne();
+    this.pageGarage.neno();
   }
 
   get garagePage() {

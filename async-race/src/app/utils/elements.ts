@@ -1,13 +1,13 @@
-export type Definition = {
+export type ElementsDefinitions = {
   tag: keyof HTMLElementTagNameMap;
   text: string;
   attributes: { [key: string]: string };
   classes: string;
-  child: Definition[];
+  child: ElementsDefinitions[];
   styles?: { [key: string]: string };
 };
 
-export function createElement(definition: Definition, unamed?: { [key: string]: HTMLElement }) {
+export function createElement(definition: ElementsDefinitions, SpecialElements?: { [key: string]: HTMLElement }) {
   const element = document.createElement(definition.tag);
   element.textContent = definition.text;
   if (definition.classes.length > 0) {
@@ -15,8 +15,8 @@ export function createElement(definition: Definition, unamed?: { [key: string]: 
   }
   const keysAttributes = Object.keys(definition.attributes);
   keysAttributes.forEach((key) => {
-    if (unamed && key === 'uname') {
-      unamed[definition.attributes![key]] = element;
+    if (SpecialElements && key === 'uname') {
+      SpecialElements[definition.attributes![key]] = element;
     }
     element.setAttribute(key, definition.attributes[key]);
   });
@@ -26,7 +26,7 @@ export function createElement(definition: Definition, unamed?: { [key: string]: 
       element.style.setProperty(key, definition.styles![key]);
     });
   }
-  definition.child.forEach((el) => element.appendChild(createElement(el, unamed)));
+  definition.child.forEach((el) => element.appendChild(createElement(el, SpecialElements)));
   return element;
 }
 

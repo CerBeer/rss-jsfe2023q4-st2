@@ -1,14 +1,14 @@
-import { Definition, createElement } from '../../utils/elements';
+import { ElementsDefinitions, createElement } from '../../utils/elements';
 import * as markup from './markup';
 import './header.css';
 
 class Header {
   private page;
 
-  private unamed: { [key: string]: HTMLElement } = {};
+  private SpecialElements: { [key: string]: HTMLElement } = {};
 
   constructor() {
-    this.page = createElement(markup.header as Definition, this.unamed);
+    this.page = createElement(markup.header as ElementsDefinitions, this.SpecialElements);
 
     document.body.appendChild(this.page);
   }
@@ -19,6 +19,14 @@ class Header {
 
   show() {
     this.page.classList.remove('element-hide');
+  }
+
+  none() {
+    this.page.classList.add('element-none');
+  }
+
+  neno() {
+    this.page.classList.remove('element-none');
   }
 }
 
