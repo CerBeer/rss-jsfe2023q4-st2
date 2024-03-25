@@ -1,14 +1,14 @@
 import { Definition, createElement } from '../../utils/elements';
 import * as markup from './markup';
-import './style.css';
+import './header.css';
 
-class StartPage {
+class Header {
   private page;
 
   private unamed: { [key: string]: HTMLElement } = {};
 
   constructor() {
-    this.page = createElement(markup.mainPage as Definition, this.unamed);
+    this.page = createElement(markup.header as Definition, this.unamed);
 
     document.body.appendChild(this.page);
   }
@@ -22,4 +22,4 @@ class StartPage {
   }
 }
 
-export default StartPage;
+export default Header;

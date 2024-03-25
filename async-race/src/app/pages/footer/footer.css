@@ -1,0 +1,30 @@
+.element-none {
+  display: none;
+}
+
+.element-hide {
+  opacity: 0;
+}
+
+.disabled-button {
+  cursor: default;
+  background-color: unset;
+  color: #7c7c7c85;
+}
+
+.disabled-button:hover {
+  background-color: unset;
+}
+
+.pagination-buttons {
+  display: flex;
+  gap: 5px;
+  margin-top: 25px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-self: flex-end;
+}

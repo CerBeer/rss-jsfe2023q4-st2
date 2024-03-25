@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
+/* * {
+  border: 2px solid #9c2626;
+} */
+
 :root {
   font-family: Lato, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -46,22 +50,14 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  background-color: #f8f8f8;
-  color: #333;
+  background-color: #1d1d1d;
+  color: #cbcbcb;
   font-family: Lato, sans-serif;
-  align-items: center;
+  /* align-items: center; */
   flex-wrap: wrap;
   border: none;
-}
-
-.element-hide {
-  opacity: 0;
-  cursor: default;
-}
-
-.element-hide * {
-  opacity: 0;
-  cursor: default;
+  font-size: 15px;
+  font-weight: 800;
 }
 
 .element-user-not-select {

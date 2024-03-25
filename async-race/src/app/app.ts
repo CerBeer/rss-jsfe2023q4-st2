@@ -1,16 +1,35 @@
-import GaragePage from './pages/garage/garagepage';
+import Header from './pages/header/header';
+import Garage from './pages/garage/garage';
+import Winners from './pages/winners/winners';
+import Footer from './pages/footer/footer';
 
 class App {
+  private pageHeader;
+
   private pageGarage;
 
+  private pageWinners;
+
+  private pageFooter;
+
   constructor() {
-    this.pageGarage = new GaragePage();
+    this.pageHeader = new Header();
+    this.pageGarage = new Garage();
+    this.pageWinners = new Winners();
+    this.pageFooter = new Footer();
+    this.initCurrentStates();
   }
 
-  initCurrentStates() {}
+  initCurrentStates() {
+    this.pageWinners.ne();
+  }
 
   get garagePage() {
     return this.pageGarage;
+  }
+
+  get headerPage() {
+    return this.pageHeader;
   }
 }
 

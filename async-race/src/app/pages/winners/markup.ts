@@ -1,0 +1,150 @@
+export const winners = {
+  tag: 'DIV',
+  text: '',
+  attributes: {},
+  classes: 'main element-user-not-select element-none',
+  child: [
+    {
+      tag: 'SECTION',
+      text: '',
+      attributes: {},
+      classes: 'winners',
+      child: [
+        { tag: 'DIV', text: 'Winners', attributes: {}, classes: 'winners-title', child: [] },
+        { tag: 'DIV', text: 'Page #1', attributes: {}, classes: 'winners-page-number', child: [] },
+        {
+          tag: 'TABLE',
+          text: '',
+          attributes: {},
+          classes: 'winners-table',
+          child: [
+            {
+              tag: 'THEAD',
+              text: '',
+              attributes: {},
+              classes: 'winners-table-header',
+              child: [
+                {
+                  tag: 'TR',
+                  text: '',
+                  attributes: {},
+                  classes: 'winners-table-header-row',
+                  child: [
+                    {
+                      tag: 'TD',
+                      text: 'Number',
+                      attributes: { identifier: 'winners-header-id' },
+                      classes: 'winners-table-header-cell',
+                      child: [],
+                    },
+                    {
+                      tag: 'TD',
+                      text: 'Car',
+                      attributes: { identifier: 'winners-header-car' },
+                      classes: 'winners-table-header-cell',
+                      child: [],
+                    },
+                    {
+                      tag: 'TD',
+                      text: 'Name',
+                      attributes: { identifier: 'winners-header-name' },
+                      classes: 'winners-table-header-cell',
+                      child: [],
+                    },
+                    {
+                      tag: 'TD',
+                      text: 'Wins',
+                      attributes: { identifier: 'winners-header-wins' },
+                      classes: 'winners-table-header-cell winners-header-wins',
+                      child: [],
+                    },
+                    {
+                      tag: 'TD',
+                      text: 'Best time (seconds)',
+                      attributes: { identifier: 'winners-header-time' },
+                      classes: 'winners-table-header-cell winners-header-time',
+                      child: [],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              tag: 'TBODY',
+              text: '',
+              attributes: { identifier: 'winners-table-body' },
+              classes: 'winners-table-body',
+              child: [
+                {
+                  tag: 'TR',
+                  text: '',
+                  attributes: {},
+                  classes: 'winners-table-row',
+                  child: [
+                    {
+                      tag: 'TD',
+                      text: '1',
+                      attributes: { identifier: 'winners-cell-id' },
+                      classes: 'winners-table-cell',
+                      child: [],
+                    },
+                    {
+                      tag: 'TD',
+                      text: '',
+                      attributes: { identifier: 'winners-cell-car' },
+                      classes: 'winners-table-cell',
+                      child: [],
+                    },
+                    {
+                      tag: 'TD',
+                      text: 'Mersedes',
+                      attributes: { identifier: 'winners-cell-name' },
+                      classes: 'winners-table-cell',
+                      child: [],
+                    },
+                    {
+                      tag: 'TD',
+                      text: '1',
+                      attributes: { identifier: 'winners-cell-wins' },
+                      classes: 'winners-table-cell',
+                      child: [],
+                    },
+                    {
+                      tag: 'TD',
+                      text: '1',
+                      attributes: { identifier: 'winners-cell-time' },
+                      classes: 'winners-table-cell',
+                      child: [],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      tag: 'DIV',
+      text: '',
+      attributes: {},
+      classes: 'pagination-buttons',
+      child: [
+        {
+          tag: 'DIV',
+          text: 'Prev',
+          attributes: { identifier: 'pagination-garage-prev' },
+          classes: 'app-button',
+          child: [],
+        },
+        {
+          tag: 'DIV',
+          text: 'Next',
+          attributes: { identifier: 'pagination-garage-next' },
+          classes: 'app-button',
+          child: [],
+        },
+      ],
+    },
+  ],
+};
