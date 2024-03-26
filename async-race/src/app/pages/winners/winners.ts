@@ -8,11 +8,11 @@ class Winners {
 
   private sellingHTML;
 
-  private SpecialElements: { [key: string]: HTMLElement } = {};
+  private specialElements: { [key: string]: HTMLElement } = {};
 
   constructor(states: garageTypes.Winners) {
     this.states = states;
-    this.sellingHTML = createElement(markup.winners as ElementsDefinitions, this.SpecialElements);
+    this.sellingHTML = createElement(markup.winners as ElementsDefinitions, this.specialElements);
 
     document.body.appendChild(this.sellingHTML);
   }

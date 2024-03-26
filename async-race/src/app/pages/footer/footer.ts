@@ -5,10 +5,10 @@ import './footer.css';
 class Footer {
   private sellingHTML;
 
-  private SpecialElements: { [key: string]: HTMLElement } = {};
+  private specialElements: { [key: string]: HTMLElement } = {};
 
   constructor() {
-    this.sellingHTML = createElement(markup.footer as ElementsDefinitions, this.SpecialElements);
+    this.sellingHTML = createElement(markup.footer as ElementsDefinitions, this.specialElements);
 
     document.body.appendChild(this.sellingHTML);
   }
