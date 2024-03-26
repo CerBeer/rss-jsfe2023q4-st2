@@ -1,32 +1,36 @@
 import { ElementsDefinitions, createElement } from '../../utils/elements';
 import * as markup from './markup';
 import './winners.css';
+import * as garageTypes from '../../services/stateManager/types';
 
 class Winners {
-  private page;
+  private states: garageTypes.Winners;
+
+  private sellingHTML;
 
   private SpecialElements: { [key: string]: HTMLElement } = {};
 
-  constructor() {
-    this.page = createElement(markup.winners as ElementsDefinitions, this.SpecialElements);
+  constructor(states: garageTypes.Winners) {
+    this.states = states;
+    this.sellingHTML = createElement(markup.winners as ElementsDefinitions, this.SpecialElements);
 
-    document.body.appendChild(this.page);
+    document.body.appendChild(this.sellingHTML);
   }
 
   hide() {
-    this.page.classList.add('element-hide');
+    this.sellingHTML.classList.add('element-hide');
   }
 
   show() {
-    this.page.classList.remove('element-hide');
+    this.sellingHTML.classList.remove('element-hide');
   }
 
   none() {
-    this.page.classList.add('element-none');
+    this.sellingHTML.classList.add('element-none');
   }
 
   neno() {
-    this.page.classList.remove('element-none');
+    this.sellingHTML.classList.remove('element-none');
   }
 }
 

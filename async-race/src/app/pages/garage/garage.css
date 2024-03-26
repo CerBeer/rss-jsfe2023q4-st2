@@ -60,9 +60,11 @@
 .race {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   margin: 20px 0;
   gap: 30px;
+  overflow-y: auto;
+  height: calc(100vh - 400px);
 }
 
 .race-line {
@@ -110,6 +112,7 @@
   color: #ffffff;
   min-width: auto;
   font-weight: 200;
+  box-shadow: none;
 }
 
 .race-car-button-action:hover {

@@ -3,30 +3,30 @@ import * as markup from './markup';
 import './header.css';
 
 class Header {
-  private page;
+  private sellingHTML;
 
   private SpecialElements: { [key: string]: HTMLElement } = {};
 
   constructor() {
-    this.page = createElement(markup.header as ElementsDefinitions, this.SpecialElements);
+    this.sellingHTML = createElement(markup.header as ElementsDefinitions, this.SpecialElements);
 
-    document.body.appendChild(this.page);
+    document.body.appendChild(this.sellingHTML);
   }
 
   hide() {
-    this.page.classList.add('element-hide');
+    this.sellingHTML.classList.add('element-hide');
   }
 
   show() {
-    this.page.classList.remove('element-hide');
+    this.sellingHTML.classList.remove('element-hide');
   }
 
   none() {
-    this.page.classList.add('element-none');
+    this.sellingHTML.classList.add('element-none');
   }
 
   neno() {
-    this.page.classList.remove('element-none');
+    this.sellingHTML.classList.remove('element-none');
   }
 }
 

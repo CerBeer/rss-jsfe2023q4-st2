@@ -27,4 +27,5 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-self: flex-end;
+  padding: 10px;
 }

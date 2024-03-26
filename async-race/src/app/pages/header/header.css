@@ -26,11 +26,15 @@
   transition: all 0.3s ease-in-out;
   color: #2b2b2b;
   padding: 0 10px;
-  box-shadow: inset -1px -1px 6px 3px #222;
+  box-shadow: inset -1px -1px 6px 3px #7a5e5e;
 }
 
 .app-button-white {
   background-color: #e3ebc3;
+}
+
+.app-button:hover {
+  background-color: #ebcccc;
 }
 
 .main {

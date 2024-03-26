@@ -15,7 +15,7 @@ export function createElement(definition: ElementsDefinitions, SpecialElements?:
   }
   const keysAttributes = Object.keys(definition.attributes);
   keysAttributes.forEach((key) => {
-    if (SpecialElements && key === 'uname') {
+    if (SpecialElements && key === 'identifier') {
       SpecialElements[definition.attributes![key]] = element;
     }
     element.setAttribute(key, definition.attributes[key]);

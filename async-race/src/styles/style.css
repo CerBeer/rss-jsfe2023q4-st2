@@ -58,6 +58,7 @@ body {
   border: none;
   font-size: 15px;
   font-weight: 800;
+  overflow: hidden;
 }
 
 .element-user-not-select {
@@ -76,4 +77,16 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.alert-window {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  color: #ca468f;
+  font-weight: 600;
+  text-shadow: 0 0 10px #ff0000;
+  z-index: 1;
 }
