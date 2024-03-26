@@ -1,3 +1,4 @@
+import { SpecialElements } from '../types';
 import { ElementsDefinitions, createElement } from '../../utils/elements';
 import * as markup from './markup';
 import './winners.css';
@@ -8,28 +9,21 @@ class Winners {
 
   private sellingHTML;
 
-  private specialElements: { [key: string]: HTMLElement } = {};
+  private specialElements: SpecialElements = {};
 
   constructor(states: garageTypes.Winners) {
     this.states = states;
     this.sellingHTML = createElement(markup.winners as ElementsDefinitions, this.specialElements);
+    this.states.specialElements = this.specialElements;
 
     document.body.appendChild(this.sellingHTML);
   }
 
   hide() {
-    this.sellingHTML.classList.add('element-hide');
-  }
-
-  show() {
-    this.sellingHTML.classList.remove('element-hide');
-  }
-
-  none() {
     this.sellingHTML.classList.add('element-none');
   }
 
-  neno() {
+  show() {
     this.sellingHTML.classList.remove('element-none');
   }
 }

@@ -1,21 +1,23 @@
+import { SpecialElements } from '../types';
 import { ElementsDefinitions, createElement } from '../../utils/elements';
 import * as markup from './markup';
 import './garage.css';
 import RacePool from './racePool';
-import * as garageTypes from '../../services/stateManager/types';
+import { Garage as GarageType } from '../../services/stateManager/types';
 
 class Garage {
-  private states: garageTypes.Garage;
+  private states: GarageType;
 
   private sellingHTML;
 
   private racePool;
 
-  private specialElements: { [key: string]: HTMLElement } = {};
+  private specialElements: SpecialElements = {};
 
-  constructor(states: garageTypes.Garage) {
+  constructor(states: GarageType) {
     this.states = states;
     this.sellingHTML = createElement(markup.garage as ElementsDefinitions, this.specialElements);
+    this.states.specialElements = this.specialElements;
 
     document.body.appendChild(this.sellingHTML);
 
@@ -37,18 +39,10 @@ class Garage {
   }
 
   hide() {
-    this.sellingHTML.classList.add('element-hide');
-  }
-
-  show() {
-    this.sellingHTML.classList.remove('element-hide');
-  }
-
-  none() {
     this.sellingHTML.classList.add('element-none');
   }
 
-  neno() {
+  show() {
     this.sellingHTML.classList.remove('element-none');
   }
 }

@@ -1,7 +1,7 @@
 export const garage = {
   tag: 'MAIN',
   text: '',
-  attributes: {},
+  attributes: { identifier: 'page-garage' },
   classes: 'main element-user-not-select element-none',
   child: [
     {

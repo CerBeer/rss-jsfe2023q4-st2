@@ -1,7 +1,7 @@
 export const winners = {
   tag: 'DIV',
   text: '',
-  attributes: {},
+  attributes: { identifier: 'page-winners' },
   classes: 'main element-user-not-select element-none',
   child: [
     {

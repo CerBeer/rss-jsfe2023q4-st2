@@ -17,15 +17,27 @@ class App {
 
   constructor() {
     this.stateManager = new StateManager();
-    this.pageHeader = new Header();
+    this.pageHeader = new Header(this.stateManager.states.header);
     this.pageGarage = new Garage(this.stateManager.states.garage);
     this.pageWinners = new Winners(this.stateManager.states.winners);
     this.pageFooter = new Footer();
     this.initCurrentStates();
+    this.creatingEventHandlers();
   }
 
   initCurrentStates() {
-    this.pageGarage.neno();
+    this.pageGarage.show();
+  }
+
+  creatingEventHandlers() {
+    this.stateManager.states.header.specialElements['tab-button-garage'].addEventListener('click', () => {
+      this.pageWinners.hide();
+      this.pageGarage.show();
+    });
+    this.stateManager.states.header.specialElements['tab-button-winners'].addEventListener('click', () => {
+      this.pageGarage.hide();
+      this.pageWinners.show();
+    });
   }
 
   get garagePage() {
