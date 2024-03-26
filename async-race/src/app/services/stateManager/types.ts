@@ -1,4 +1,5 @@
 import * as pageTypes from '../../pages/types';
+import { Sort, Order } from '../api/types';
 
 export type Garage = {
   limitCars: number;
@@ -13,6 +14,8 @@ export type Winners = {
   currentPage: number;
   totalCars: number;
   specialElements: pageTypes.SpecialElements;
+  sort: Sort;
+  order: Order;
 };
 
 export type Header = {

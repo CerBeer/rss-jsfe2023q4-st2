@@ -31,18 +31,10 @@ export class RaceLine {
   }
 
   hide() {
-    this.sellingHTML.classList.add('element-hide');
-  }
-
-  show() {
-    this.sellingHTML.classList.remove('element-hide');
-  }
-
-  none() {
     this.sellingHTML.classList.add('element-none');
   }
 
-  neno() {
+  show() {
     this.sellingHTML.classList.remove('element-none');
   }
 }

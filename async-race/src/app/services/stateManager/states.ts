@@ -16,5 +16,7 @@ export const states: States = {
     totalCars: 0,
     currentPage: 1,
     specialElements: {},
+    sort: 'time',
+    order: 'ASC',
   },
 };
