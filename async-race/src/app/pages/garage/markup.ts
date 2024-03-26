@@ -112,7 +112,13 @@ export const garage = {
           classes: 'garage-title',
           child: [],
         },
-        { tag: 'DIV', text: 'Page #1', attributes: {}, classes: 'garage-page-number', child: [] },
+        {
+          tag: 'DIV',
+          text: 'Page #1',
+          attributes: { identifier: 'garage-page-number' },
+          classes: 'garage-page-number',
+          child: [],
+        },
         {
           tag: 'SECTION',
           text: '',

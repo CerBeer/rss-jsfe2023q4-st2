@@ -11,15 +11,29 @@ class Garage {
 
   private racePool;
 
-  private SpecialElements: { [key: string]: HTMLElement } = {};
+  private specialElements: { [key: string]: HTMLElement } = {};
 
   constructor(states: garageTypes.Garage) {
     this.states = states;
-    this.sellingHTML = createElement(markup.garage as ElementsDefinitions, this.SpecialElements);
+    this.sellingHTML = createElement(markup.garage as ElementsDefinitions, this.specialElements);
 
     document.body.appendChild(this.sellingHTML);
 
-    this.racePool = new RacePool(this.SpecialElements['race-pool'], this.states);
+    this.racePool = new RacePool(this.specialElements, this.states);
+
+    this.creatingEventHandlers();
+  }
+
+  creatingEventHandlers() {
+    this.specialElements['pagination-garage-prev'].addEventListener('click', () => this.pageChange(-1));
+    this.specialElements['pagination-garage-next'].addEventListener('click', () => this.pageChange(1));
+  }
+
+  pageChange(bias: number) {
+    const nextPage = this.states.currentPage + bias;
+    if (nextPage < 1 || nextPage > Math.ceil(this.states.totalCars / this.states.limitCars)) return;
+    this.states.currentPage = nextPage;
+    this.racePool.createPool(this.states.currentPage, this.states.limitCars);
   }
 
   hide() {

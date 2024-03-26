@@ -64,7 +64,7 @@
   margin: 20px 0;
   gap: 30px;
   overflow-y: auto;
-  height: calc(100vh - 400px);
+  max-height: calc(100vh - 400px);
 }
 
 .race-line {

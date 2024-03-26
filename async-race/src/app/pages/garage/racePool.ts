@@ -1,3 +1,4 @@
+import { SpecialElements } from '../types';
 import { Cars } from '../../services/api/types';
 import { Garage } from '../../services/stateManager/types';
 import * as requests from '../../services/api/requests';
@@ -11,19 +12,25 @@ class RacePool {
 
   private raceLines: RaceLine[];
 
-  private SpecialElements: { [key: string]: HTMLElement } = {};
+  private specialElements: SpecialElements = {};
 
-  constructor(location: HTMLElement, states: Garage) {
+  constructor(specialElements: SpecialElements, states: Garage) {
+    this.specialElements = specialElements;
     this.states = states;
-    this.location = location;
+    this.location = specialElements['race-pool'];
     this.raceLines = [];
     this.createPool(states.currentPage, states.limitCars);
   }
 
   createPool(page: number, limit: number) {
     fetch(requests.pageGarage(page, limit))
-      .then((response) => response.json())
+      .then((response) => {
+        const totalPages = response.headers.get('X-Total-Count');
+        if (totalPages) this.updateTotalCars(parseInt(totalPages));
+        return response.json();
+      })
       .then((cars: Cars) => {
+        this.raceLines = [];
         cars.forEach((car) => this.raceLines.push(new RaceLine(car)));
         const raceLines = this.raceLines.map((car) => car.selling);
         this.location.replaceChildren(...raceLines);
@@ -32,6 +39,12 @@ class RacePool {
         console.log(error);
         new AlertMessage('Server is not responding', 5000);
       });
+  }
+
+  updateTotalCars(totalCars: number) {
+    this.states.totalCars = totalCars;
+    const totalPages = Math.ceil(this.states.totalCars / this.states.limitCars);
+    this.specialElements['garage-page-number'].innerText = `Page #${this.states.currentPage} of ${totalPages}`;
   }
 }
 
