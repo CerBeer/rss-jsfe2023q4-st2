@@ -1,32 +1,32 @@
 export const templates = {
   templateRaceLine: {
-    tag: 'DIV',
+    tag: 'div',
     text: '',
     attributes: {},
     classes: 'race-line',
     child: [
       {
-        tag: 'DIV',
+        tag: 'div',
         text: '',
         attributes: {},
         classes: 'race-line-header',
         child: [
           {
-            tag: 'DIV',
+            tag: 'div',
             text: 'Select',
             attributes: { identifier: 'car-select-button' },
             classes: 'app-button',
             child: [],
           },
           {
-            tag: 'DIV',
+            tag: 'div',
             text: 'Remove',
             attributes: { identifier: 'car-remove-button' },
             classes: 'app-button',
             child: [],
           },
           {
-            tag: 'DIV',
+            tag: 'div',
             text: '',
             attributes: { identifier: 'car-name' },
             classes: 'race-car-name',
@@ -35,26 +35,26 @@ export const templates = {
         ],
       },
       {
-        tag: 'DIV',
+        tag: 'div',
         text: '',
         attributes: {},
         classes: 'race-track',
         child: [
           {
-            tag: 'DIV',
+            tag: 'div',
             text: '',
             attributes: {},
             classes: 'race-car-button',
             child: [
               {
-                tag: 'DIV',
+                tag: 'div',
                 text: 'A',
                 attributes: { identifier: 'car-start-engine' },
                 classes: 'app-button race-car-button-action race-car-button-action-a',
                 child: [],
               },
               {
-                tag: 'DIV',
+                tag: 'div',
                 text: 'B',
                 attributes: { identifier: 'car-stop-engine' },
                 classes: 'app-button race-car-button-action race-car-button-action-b disabled-button',
@@ -63,13 +63,13 @@ export const templates = {
             ],
           },
           {
-            tag: 'DIV',
+            tag: 'div',
             text: '',
             attributes: {},
             classes: 'race-track-flag',
             child: [
               {
-                tag: 'IMG',
+                tag: 'img',
                 text: '',
                 attributes: { src: './assets/images/flag.svg' },
                 classes: 'race-track-flag-image',
@@ -80,7 +80,7 @@ export const templates = {
         ],
       },
       {
-        tag: 'DIV',
+        tag: 'div',
         text: '',
         attributes: { identifier: 'race-track-car' },
         classes: 'race-track-car',
@@ -89,7 +89,7 @@ export const templates = {
     ],
   },
   templateCar: {
-    tag: 'DIV',
+    tag: 'div',
     text: '',
     attributes: { identifier: 'race-track-car' },
     classes: 'race-track-car',

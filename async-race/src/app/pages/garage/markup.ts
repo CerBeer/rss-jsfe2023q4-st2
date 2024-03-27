@@ -1,43 +1,43 @@
 export const garage = {
-  tag: 'MAIN',
+  tag: 'main',
   text: '',
   attributes: { identifier: 'page-garage' },
   classes: 'main element-user-not-select element-none',
   child: [
     {
-      tag: 'SECTION',
+      tag: 'section',
       text: '',
       attributes: {},
       classes: 'garage',
       child: [
         {
-          tag: 'DIV',
+          tag: 'div',
           text: '',
           attributes: {},
           classes: 'garage-menu',
           child: [
             {
-              tag: 'DIV',
+              tag: 'div',
               text: '',
               attributes: {},
               classes: 'garage-menu-line',
               child: [
                 {
-                  tag: 'INPUT',
+                  tag: 'input',
                   text: '',
                   attributes: { identifier: 'car-create-name', type: 'text' },
                   classes: 'garage-menu-line-input',
                   child: [],
                 },
                 {
-                  tag: 'INPUT',
+                  tag: 'input',
                   text: '',
                   attributes: { identifier: 'car-create-color', type: 'color' },
                   classes: 'garage-menu-line-color',
                   child: [],
                 },
                 {
-                  tag: 'DIV',
+                  tag: 'div',
                   text: 'create',
                   attributes: { identifier: 'car-create-button' },
                   classes: 'app-button app-button-white',
@@ -46,27 +46,27 @@ export const garage = {
               ],
             },
             {
-              tag: 'DIV',
+              tag: 'div',
               text: '',
               attributes: {},
               classes: 'garage-menu-line',
               child: [
                 {
-                  tag: 'INPUT',
+                  tag: 'input',
                   text: '',
                   attributes: { identifier: 'car-update-name', type: 'text' },
                   classes: 'garage-menu-line-input',
                   child: [],
                 },
                 {
-                  tag: 'INPUT',
+                  tag: 'input',
                   text: '',
                   attributes: { identifier: 'car-update-color', type: 'color' },
                   classes: 'garage-menu-line-color',
                   child: [],
                 },
                 {
-                  tag: 'DIV',
+                  tag: 'div',
                   text: 'update',
                   attributes: { identifier: 'car-update-button' },
                   classes: 'app-button app-button-white',
@@ -75,27 +75,27 @@ export const garage = {
               ],
             },
             {
-              tag: 'DIV',
+              tag: 'div',
               text: '',
               attributes: {},
               classes: 'garage-menu-buttons-group',
               child: [
                 {
-                  tag: 'DIV',
+                  tag: 'div',
                   text: 'Race',
                   attributes: { identifier: 'cars-race-button' },
                   classes: 'app-button',
                   child: [],
                 },
                 {
-                  tag: 'DIV',
+                  tag: 'div',
                   text: 'Reset',
                   attributes: { identifier: 'cars-reset-button' },
                   classes: 'app-button',
                   child: [],
                 },
                 {
-                  tag: 'DIV',
+                  tag: 'div',
                   text: 'Generate\n            cars',
                   attributes: { identifier: 'cars-generate-button' },
                   classes: 'app-button app-button-white app-button-generate-cars',
@@ -106,41 +106,41 @@ export const garage = {
           ],
         },
         {
-          tag: 'DIV',
+          tag: 'div',
           text: 'Garage',
           attributes: { identifier: 'garage-title' },
           classes: 'garage-title',
           child: [],
         },
         {
-          tag: 'DIV',
+          tag: 'div',
           text: 'Page #1',
           attributes: { identifier: 'garage-page-number' },
           classes: 'garage-page-number',
           child: [],
         },
         {
-          tag: 'SECTION',
+          tag: 'section',
           text: '',
           attributes: { identifier: 'race-pool' },
           classes: 'race',
           child: [],
         },
         {
-          tag: 'DIV',
+          tag: 'div',
           text: '',
           attributes: {},
           classes: 'pagination-buttons',
           child: [
             {
-              tag: 'DIV',
+              tag: 'div',
               text: 'Prev',
               attributes: { identifier: 'pagination-garage-prev' },
               classes: 'app-button',
               child: [],
             },
             {
-              tag: 'DIV',
+              tag: 'div',
               text: 'Next',
               attributes: { identifier: 'pagination-garage-next' },
               classes: 'app-button',
@@ -149,7 +149,7 @@ export const garage = {
           ],
         },
         {
-          tag: 'DIV',
+          tag: 'div',
           text: 'Winner',
           attributes: { identifier: 'race-winner' },
           classes: 'race-winner element-none',

@@ -1,71 +1,79 @@
 export const winners = {
-  tag: 'DIV',
+  tag: 'div',
   text: '',
   attributes: { identifier: 'page-winners' },
   classes: 'main element-user-not-select element-none',
   child: [
     {
-      tag: 'SECTION',
+      tag: 'section',
       text: '',
       attributes: {},
       classes: 'winners',
       child: [
-        { tag: 'DIV', text: 'Winners', attributes: {}, classes: 'winners-title', child: [] },
+        { tag: 'div', text: 'Winners', attributes: {}, classes: 'winners-title', child: [] },
         {
-          tag: 'DIV',
+          tag: 'div',
           text: 'Page #1',
           attributes: { identifier: 'winners-page-number' },
           classes: 'winners-page-number',
           child: [],
         },
         {
-          tag: 'TABLE',
+          tag: 'table',
           text: '',
           attributes: {},
           classes: 'winners-table',
           child: [
             {
-              tag: 'THEAD',
+              tag: 'thead',
               text: '',
               attributes: {},
               classes: 'winners-table-header',
               child: [
                 {
-                  tag: 'TR',
+                  tag: 'tr',
                   text: '',
                   attributes: {},
                   classes: 'winners-table-header-row',
                   child: [
                     {
-                      tag: 'TD',
+                      tag: 'td',
                       text: 'Number',
                       attributes: { identifier: 'winners-header-id' },
                       classes: 'winners-table-header-cell',
                       child: [],
                     },
                     {
-                      tag: 'TD',
+                      tag: 'td',
                       text: 'Car',
                       attributes: { identifier: 'winners-header-car' },
                       classes: 'winners-table-header-cell',
                       child: [],
                     },
                     {
-                      tag: 'TD',
-                      text: 'Name',
+                      tag: 'td',
+                      text: '',
                       attributes: { identifier: 'winners-header-name' },
                       classes: 'winners-table-header-cell',
-                      child: [],
+                      child: [
+                        {
+                          tag: 'div',
+                          text: 'Name',
+                          attributes: { identifier: 'pagination-winners-prev' },
+                          classes: 'winners-table-header-cell-name',
+                          child: [],
+                        },
+                      ],
                     },
                     {
-                      tag: 'TD',
+                      tag: 'td',
                       text: 'Wins',
                       attributes: { identifier: 'winners-header-wins' },
                       classes: 'winners-table-header-cell winners-header-wins',
                       child: [],
                     },
                     {
-                      tag: 'TD',
+                      tag: 'td',
                       text: 'Best time (seconds)',
                       attributes: { identifier: 'winners-header-time' },
                       classes: 'winners-table-header-cell winners-header-time',
@@ -76,7 +84,7 @@ export const winners = {
               ],
             },
             {
-              tag: 'TBODY',
+              tag: 'tbody',
               text: '',
               attributes: { identifier: 'winners-table-body' },
               classes: 'winners-table-body',
@@ -87,20 +95,20 @@ export const winners = {
       ],
     },
     {
-      tag: 'DIV',
+      tag: 'div',
       text: '',
       attributes: {},
       classes: 'pagination-buttons',
       child: [
         {
-          tag: 'DIV',
+          tag: 'div',
           text: 'Prev',
           attributes: { identifier: 'pagination-winners-prev' },
           classes: 'app-button',
           child: [],
         },
         {
-          tag: 'DIV',
+          tag: 'div',
           text: 'Next',
           attributes: { identifier: 'pagination-winners-next' },
           classes: 'app-button',

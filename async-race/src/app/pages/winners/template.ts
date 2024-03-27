@@ -1,25 +1,25 @@
 export const templates = {
   templateTableLine: {
-    tag: 'TR',
+    tag: 'tr',
     text: '',
     attributes: {},
     classes: 'winners-table-row',
     child: [
       {
-        tag: 'TD',
+        tag: 'td',
         text: '',
         attributes: { identifier: 'winners-cell-id' },
         classes: 'winners-table-cell',
         child: [],
       },
       {
-        tag: 'TD',
+        tag: 'td',
         text: '',
         attributes: { identifier: 'winners-cell-car' },
         classes: 'winners-table-cell',
         child: [
           {
-            tag: 'DIV',
+            tag: 'div',
             text: '',
             attributes: { identifier: 'winners-cell-car-car' },
             classes: 'winners-table-cell-car',
@@ -28,21 +28,21 @@ export const templates = {
         ],
       },
       {
-        tag: 'TD',
+        tag: 'td',
         text: '',
         attributes: { identifier: 'winners-cell-name' },
         classes: 'winners-table-cell',
         child: [],
       },
       {
-        tag: 'TD',
+        tag: 'td',
         text: '',
         attributes: { identifier: 'winners-cell-wins' },
         classes: 'winners-table-cell',
         child: [],
       },
       {
-        tag: 'TD',
+        tag: 'td',
         text: '',
         attributes: { identifier: 'winners-cell-time' },
         classes: 'winners-table-cell',
