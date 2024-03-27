@@ -1,4 +1,4 @@
-import { Sort, Order } from './types';
+import { Sort, Order, Car } from './types';
 
 const base = 'http://127.0.0.1:3000/';
 
@@ -31,5 +31,18 @@ export const deleteCar = (id: number) => {
 export const deleteWinner = (id: number) => {
   return fetch(`${base}winners/${id}`, {
     method: 'DELETE',
+  });
+};
+
+export const updateCar = (car: Car) => {
+  return fetch(`${base}garage/${car.id}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      name: car.name,
+      color: car.color,
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
   });
 };

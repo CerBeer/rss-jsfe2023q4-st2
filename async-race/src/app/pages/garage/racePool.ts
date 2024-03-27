@@ -1,5 +1,5 @@
 import { SpecialElements } from '../types';
-import { Cars, Winner } from '../../services/api/types';
+import { Car, Cars, Winner } from '../../services/api/types';
 import { Garage, Winners } from '../../services/stateManager/types';
 import * as requests from '../../services/api/requests';
 import { AlertMessage } from '../alertMessage';
@@ -50,6 +50,7 @@ class RacePool {
 
   creatingEventHandlers() {
     this.location.addEventListener('click', (e) => this.onClickHandler(e));
+    this.specialElements['car-update-button'].addEventListener('click', () => this.updateCar());
   }
 
   onClickHandler(e: Event) {
@@ -76,6 +77,7 @@ class RacePool {
         this.deleteWinner(carID);
         this.updateTotalCars(this.states.totalCars - 1);
         this.createPool(this.states.currentPage, this.states.limitCars);
+        this.unSelectCar();
       })
       .catch((error: Error) => {
         console.log(error);
@@ -106,13 +108,49 @@ class RacePool {
   }
 
   selectCar(carID: number) {
+    const selectedCar = this.raceLines.find((line) => line.car.id === carID);
+    if (!selectedCar) return;
     this.states.currentCarId = carID;
-    const selectesCar = this.raceLines.find((line) => line.car.id === carID);
-    if (!selectesCar) return;
     const namePicker = this.specialElements['car-update-name'] as HTMLInputElement;
-    namePicker.value = selectesCar?.car.name;
+    namePicker.value = selectedCar?.car.name;
     const colorPicker = this.specialElements['car-update-color'] as HTMLInputElement;
-    colorPicker.value = selectesCar?.car.color;
+    colorPicker.value = selectedCar?.car.color;
+  }
+
+  unSelectCar() {
+    this.states.currentCarId = 0;
+    const namePicker = this.specialElements['car-update-name'] as HTMLInputElement;
+    namePicker.value = '';
+  }
+
+  updateCar() {
+    if (this.states.currentCarId === 0) return;
+    const namePicker = this.specialElements['car-update-name'] as HTMLInputElement;
+    if (!namePicker.value || namePicker.value.length === 0) return;
+    const colorPicker = this.specialElements['car-update-color'] as HTMLInputElement;
+    const car = {
+      name: namePicker.value,
+      color: colorPicker.value,
+      id: this.states.currentCarId,
+    };
+    requests
+      .updateCar(car)
+      .then((response) => {
+        if (!response.ok) {
+          const error = response.status;
+          return Promise.reject(error);
+        }
+        return response.json();
+      })
+      .then((updatedCar: Car) => {
+        const selectedCar = this.raceLines.find((line) => line.car.id === this.states.currentCarId);
+        if (!selectedCar) return;
+        selectedCar.updateCar(updatedCar);
+      })
+      .catch((error: Error) => {
+        console.log(error);
+        new AlertMessage('Server is not responding', 5000);
+      });
   }
 
   updateTotalCars(totalCars: number) {

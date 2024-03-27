@@ -26,6 +26,12 @@ export class RaceLine {
     return this._car;
   }
 
+  updateCar(car: Car) {
+    this._car = car;
+    this.setCarName(car.name);
+    this.setCarColor(car.color);
+  }
+
   setCarColor(color: string) {
     this.SpecialElements['race-track-car'].style.backgroundColor = color;
   }
