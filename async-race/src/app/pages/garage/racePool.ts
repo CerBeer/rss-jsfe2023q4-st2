@@ -5,6 +5,8 @@ import * as requests from '../../services/api/requests';
 import { AlertMessage } from '../alertMessage';
 import { RaceLine } from './raceLine';
 
+// type ElementWithIdentifier<T> = Partial<T> & { getAttribute: string | undefined };
+
 class RacePool {
   private location: HTMLElement;
 
@@ -20,6 +22,8 @@ class RacePool {
     this.location = specialElements['race-pool'];
     this.raceLines = [];
     this.createPool(states.currentPage, states.limitCars);
+
+    this.creatingEventHandlers();
   }
 
   createPool(page: number, limit: number) {
@@ -41,9 +45,44 @@ class RacePool {
       });
   }
 
+  creatingEventHandlers() {
+    this.location.addEventListener('click', (e) => this.onClickHandler(e));
+  }
+
+  onClickHandler(e: Event) {
+    e.stopPropagation();
+    const target = e.target as HTMLElement;
+    if (!target) return;
+    const targetIdentifier = target.getAttribute('identifier');
+    if (!targetIdentifier) return;
+    if (targetIdentifier !== 'car-remove-button') return;
+    const carID = target.parentElement?.parentElement?.dataset.carId;
+    if (!carID) return;
+    this.deleteCar(parseInt(carID));
+  }
+
+  deleteCar(carID: number) {
+    requests
+      .deleteCar(carID)
+      .then((response) => {
+        if (!response.ok) {
+          const error = response.status;
+          return Promise.reject(error);
+        }
+        requests.deleteWinner(carID);
+        this.updateTotalCars(this.states.totalCars - 1);
+        this.createPool(this.states.currentPage, this.states.limitCars);
+      })
+      .catch((error: Error) => {
+        console.log(error);
+        new AlertMessage(error.message, 2000);
+      });
+  }
+
   updateTotalCars(totalCars: number) {
     this.states.totalCars = totalCars;
     const totalPages = Math.ceil(this.states.totalCars / this.states.limitCars);
+    if (this.states.currentPage > totalPages) this.states.currentPage = totalPages;
     this.specialElements['garage-page-number'].innerText = `Page #${this.states.currentPage} of ${totalPages}`;
   }
 }

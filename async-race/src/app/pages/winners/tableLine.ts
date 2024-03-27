@@ -1,7 +1,7 @@
 import { ElementsDefinitions, createElement } from '../../utils/elements';
 import { templates } from './template';
 import * as requests from '../../services/api/requests';
-import { Car, Cars, Winner } from '../../services/api/types';
+import { Car, Winner } from '../../services/api/types';
 
 export class TableLine {
   private car: Car;
@@ -26,10 +26,10 @@ export class TableLine {
   getCar(carId: number) {
     fetch(requests.getCar(carId))
       .then((response) => response.json())
-      .then((cars: Cars) => {
-        this.car = cars[0];
-        this.setCarName(cars[0].name);
-        this.setCarColor(cars[0].color);
+      .then((car: Car) => {
+        this.car = car;
+        this.setCarName(car.name);
+        this.setCarColor(car.color);
       });
   }
 

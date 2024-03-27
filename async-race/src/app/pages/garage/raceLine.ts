@@ -1,3 +1,4 @@
+import { SpecialElements } from '../types';
 import { ElementsDefinitions, createElement } from '../../utils/elements';
 import { templates } from './template';
 import { Car } from '../../services/api/types';
@@ -7,7 +8,7 @@ export class RaceLine {
 
   private sellingHTML;
 
-  private SpecialElements: { [key: string]: HTMLElement } = {};
+  private SpecialElements: SpecialElements = {};
 
   constructor(car: Car) {
     this.car = car;
