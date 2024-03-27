@@ -14,6 +14,14 @@ export const getCar = (id: number) => {
   return `${base}garage/${id}`;
 };
 
+export const getWinner = (id: number) => {
+  return fetch(`${base}winners/${id}`);
+};
+
+export const getWinners = () => {
+  return fetch(`${base}winners`);
+};
+
 export const deleteCar = (id: number) => {
   return fetch(`${base}garage/${id}`, {
     method: 'DELETE',

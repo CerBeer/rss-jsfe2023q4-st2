@@ -1,5 +1,5 @@
 import { SpecialElements } from '../types';
-import { Cars } from '../../services/api/types';
+import { Cars, Winner } from '../../services/api/types';
 import { Garage } from '../../services/stateManager/types';
 import * as requests from '../../services/api/requests';
 import { AlertMessage } from '../alertMessage';
@@ -70,14 +70,30 @@ class RacePool {
           const error = response.status;
           return Promise.reject(error);
         }
-        requests.deleteWinner(carID);
+        this.deleteWinner(carID);
         this.updateTotalCars(this.states.totalCars - 1);
         this.createPool(this.states.currentPage, this.states.limitCars);
       })
       .catch((error: Error) => {
         console.log(error);
-        new AlertMessage(error.message, 2000);
+        new AlertMessage(error.name, 2000);
       });
+  }
+
+  deleteWinner(carID: number) {
+    requests
+      .getWinners()
+      .then((response) => {
+        if (!response.ok) {
+          const error = response.status;
+          return Promise.reject(error);
+        }
+        return response.json();
+      })
+      .then((winners) => {
+        if (winners.find((winner: Winner) => winner.id === carID)) requests.deleteWinner(carID);
+      })
+      .catch(() => {});
   }
 
   selectCar(carID: number) {
