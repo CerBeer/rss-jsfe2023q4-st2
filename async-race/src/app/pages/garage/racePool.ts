@@ -55,10 +55,11 @@ class RacePool {
     if (!target) return;
     const targetIdentifier = target.getAttribute('identifier');
     if (!targetIdentifier) return;
-    if (targetIdentifier !== 'car-remove-button') return;
+    if (targetIdentifier !== 'car-remove-button' && targetIdentifier !== 'car-select-button') return;
     const carID = target.parentElement?.parentElement?.dataset.carId;
     if (!carID) return;
-    this.deleteCar(parseInt(carID));
+    if (targetIdentifier === 'car-remove-button') this.deleteCar(parseInt(carID));
+    else this.selectCar(parseInt(carID));
   }
 
   deleteCar(carID: number) {
@@ -77,6 +78,16 @@ class RacePool {
         console.log(error);
         new AlertMessage(error.message, 2000);
       });
+  }
+
+  selectCar(carID: number) {
+    this.states.currentCarId = carID;
+    const selectesCar = this.raceLines.find((line) => line.car.id === carID);
+    if (!selectesCar) return;
+    const namePicker = this.specialElements['car-update-name'] as HTMLInputElement;
+    namePicker.value = selectesCar?.car.name;
+    const colorPicker = this.specialElements['car-update-color'] as HTMLInputElement;
+    colorPicker.value = selectesCar?.car.color;
   }
 
   updateTotalCars(totalCars: number) {
