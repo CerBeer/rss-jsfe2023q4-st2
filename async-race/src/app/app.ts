@@ -18,7 +18,7 @@ class App {
   constructor() {
     this.stateManager = new StateManager();
     this.pageHeader = new Header(this.stateManager.states.header);
-    this.pageGarage = new Garage(this.stateManager.states.garage);
+    this.pageGarage = new Garage(this.stateManager.states.garage, this.stateManager.states.winners);
     this.pageWinners = new Winners(this.stateManager.states.winners);
     this.pageFooter = new Footer();
     this.initCurrentStates();
