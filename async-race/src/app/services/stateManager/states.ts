@@ -12,7 +12,7 @@ export const states: States = {
     specialElements: {},
   },
   winners: {
-    limitCars: 2,
+    limitCars: 10,
     totalCars: 0,
     currentPage: 1,
     specialElements: {},

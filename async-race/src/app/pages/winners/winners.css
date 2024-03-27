@@ -34,6 +34,18 @@
   /* border: 1px solid #949494; */
 }
 
+.winners-table-header-cell-asc::after {
+  content: '↓';
+  position: relative;
+  left: 5px;
+}
+
+.winners-table-header-cell-desc::after {
+  content: '↑';
+  position: relative;
+  left: 5px;
+}
+
 .winners-header-wins,
 .winners-header-time {
   cursor: pointer;

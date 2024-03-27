@@ -19,6 +19,30 @@ class RacePool {
     this.location = specialElements['winners-table-body'];
     this.tableLines = [];
     this.createPool(states.currentPage, states.limitCars, states.sort, states.order);
+    this.creatingEventHandlers();
+  }
+
+  creatingEventHandlers() {
+    this.specialElements['winners-header-wins'].addEventListener('click', (e) => this.orderChange(e, 'wins'));
+    this.specialElements['winners-header-time'].addEventListener('click', (e) => this.orderChange(e, 'time'));
+  }
+
+  orderChange(e: Event, sort: Sort) {
+    if (sort === this.states.sort) {
+      if (this.states.order === 'ASC') this.states.order = 'DESC';
+      else this.states.order = 'ASC';
+    } else {
+      this.states.sort = sort;
+      this.states.order = 'ASC';
+    }
+    this.specialElements['winners-header-wins'].classList.remove('winners-table-header-cell-asc');
+    this.specialElements['winners-header-wins'].classList.remove('winners-table-header-cell-desc');
+    this.specialElements['winners-header-time'].classList.remove('winners-table-header-cell-asc');
+    this.specialElements['winners-header-time'].classList.remove('winners-table-header-cell-desc');
+    const classOrder = 'winners-table-header-cell-' + this.states.order.toLowerCase();
+    const el = e.target as HTMLElement;
+    el.classList.add(classOrder);
+    this.createPool(this.states.currentPage, this.states.limitCars, this.states.sort, this.states.order);
   }
 
   createPool(page: number, limit: number, sort: Sort, order: Order) {
@@ -36,10 +60,6 @@ class RacePool {
         const tableLines = this.tableLines.map((car) => car.selling);
         this.location.replaceChildren(...tableLines);
       });
-    // .catch((error: Error) => {
-    //   console.log(error);
-    //   new AlertMessage('Server is not responding', 5000);
-    // });
   }
 
   updateTotalCars(totalCars: number) {
