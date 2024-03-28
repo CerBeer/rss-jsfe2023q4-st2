@@ -50,6 +50,7 @@ class RacePool {
   creatingEventHandlers() {
     this.location.addEventListener('click', (e) => this.onClickHandler(e));
     this.specialElements['car-update-button'].addEventListener('click', () => this.updateCar());
+    this.specialElements['car-create-button'].addEventListener('click', () => this.createCar());
   }
 
   onClickHandler(e: Event) {
@@ -79,7 +80,6 @@ class RacePool {
         this.unSelectCar();
       })
       .catch((error: Error) => {
-        console.log(error);
         new AlertMessage(`${error.message}`, 'Check that the server is available at http:\\\\172.0.0.1:3000', 2000);
       });
   }
@@ -114,12 +114,19 @@ class RacePool {
     namePicker.value = selectedCar?.car.name;
     const colorPicker = this.specialElements['car-update-color'] as HTMLInputElement;
     colorPicker.value = selectedCar?.car.color;
+    namePicker.classList.remove('disabled-input');
+    colorPicker.classList.remove('disabled-input');
+    this.specialElements['car-update-button'].classList.remove('disabled-button');
   }
 
   unSelectCar() {
     this.states.currentCarId = 0;
     const namePicker = this.specialElements['car-update-name'] as HTMLInputElement;
+    const colorPicker = this.specialElements['car-update-color'] as HTMLInputElement;
     namePicker.value = '';
+    namePicker.classList.add('disabled-input');
+    colorPicker.classList.add('disabled-input');
+    this.specialElements['car-update-button'].classList.add('disabled-button');
   }
 
   updateCar() {
@@ -145,9 +152,42 @@ class RacePool {
         const selectedCar = this.raceLines.find((line) => line.car.id === this.states.currentCarId);
         if (!selectedCar) return;
         selectedCar.updateCar(updatedCar);
+        this.unSelectCar();
       })
       .catch((error: Error) => {
-        console.log(error);
+        new AlertMessage(`${error.message}`, 'Check that the server is available at http:\\\\172.0.0.1:3000', 2000);
+      });
+  }
+
+  createCar() {
+    const namePicker = this.specialElements['car-create-name'] as HTMLInputElement;
+    if (!namePicker.value || namePicker.value.length === 0) return;
+    const colorPicker = this.specialElements['car-create-color'] as HTMLInputElement;
+    const car = {
+      name: namePicker.value,
+      color: colorPicker.value,
+    };
+    requests
+      .createCar(car)
+      .then((response) => {
+        if (!response.ok) {
+          const error = response.status;
+          return Promise.reject(error);
+        }
+        return response.json();
+      })
+      .then((newCar: Car) => {
+        this.states.totalCars += 1;
+        this.updateTotalCars(this.states.totalCars);
+        const totalPages = Math.ceil(this.states.totalCars / this.states.limitCars);
+        if (this.states.currentPage === totalPages) {
+          const newCarImplement = new RaceLine(newCar);
+          this.raceLines.push(newCarImplement);
+          this.location.appendChild(newCarImplement.selling);
+        }
+        namePicker.value = '';
+      })
+      .catch((error: Error) => {
         new AlertMessage(`${error.message}`, 'Check that the server is available at http:\\\\172.0.0.1:3000', 2000);
       });
   }

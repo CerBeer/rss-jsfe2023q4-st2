@@ -4,6 +4,11 @@ export type Car = {
   id: number;
 };
 
+export type NewCar = {
+  name: string;
+  color: string;
+};
+
 export type Cars = [car: Car];
 
 export type Winner = {
