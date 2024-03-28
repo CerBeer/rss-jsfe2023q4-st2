@@ -4,6 +4,7 @@ import { Garage, Winners } from '../../services/stateManager/types';
 import * as requests from '../../services/api/requests';
 import { AlertMessage } from '../alertMessage';
 import { RaceLine } from './raceLine';
+import { CarDescriptionGenerator } from '../../services/carGenerator/generator';
 
 class RacePool {
   private location: HTMLElement;
@@ -51,6 +52,9 @@ class RacePool {
     this.location.addEventListener('click', (e) => this.onClickHandler(e));
     this.specialElements['car-update-button'].addEventListener('click', () => this.updateCar());
     this.specialElements['car-create-button'].addEventListener('click', () => this.createCar());
+    this.specialElements['cars-generate-button'].addEventListener('click', () =>
+      this.generateCar(this.states.numberCarsToGenerate)
+    );
   }
 
   onClickHandler(e: Event) {
@@ -177,14 +181,7 @@ class RacePool {
         return response.json();
       })
       .then((newCar: Car) => {
-        this.states.totalCars += 1;
-        this.updateTotalCars(this.states.totalCars);
-        const totalPages = Math.ceil(this.states.totalCars / this.states.limitCars);
-        if (this.states.currentPage === totalPages) {
-          const newCarImplement = new RaceLine(newCar);
-          this.raceLines.push(newCarImplement);
-          this.location.appendChild(newCarImplement.selling);
-        }
+        this.addCreatedCar(newCar);
         namePicker.value = '';
       })
       .catch((error: Error) => {
@@ -192,12 +189,47 @@ class RacePool {
       });
   }
 
+  addCreatedCar(newCar: Car) {
+    const newCarImplement = new RaceLine(newCar);
+    this.updateTotalCars(this.states.totalCars + 1);
+    const totalPages = Math.ceil(this.states.totalCars / this.states.limitCars);
+    if (this.states.currentPage === 0) this.states.currentPage = totalPages;
+    if (this.states.currentPage === totalPages) {
+      this.raceLines.push(newCarImplement);
+      this.location.appendChild(newCarImplement.selling);
+    }
+  }
+
+  async generateCar(carToCreate: number) {
+    let i = 0;
+    while (i < carToCreate) {
+      const car = CarDescriptionGenerator.newDecription();
+      await requests
+        .createCar(car)
+        .then((response) => {
+          if (!response.ok) {
+            const error = response.status;
+            return Promise.reject(error);
+          }
+          return response.json();
+        })
+        .then((newCar: Car) => {
+          this.addCreatedCar(newCar);
+        })
+        .catch(() => {});
+      i += 1;
+    }
+    // new AlertMessage(errorMessage, 'Check that the server is available at http:\\\\172.0.0.1:3000', 2000);
+  }
+
   updateTotalCars(totalCars: number) {
     this.states.totalCars = totalCars;
-    const totalPages = Math.ceil(this.states.totalCars / this.states.limitCars);
+    let totalPages = Math.ceil(this.states.totalCars / this.states.limitCars);
+    if (totalPages < 1) totalPages = 1;
     if (this.states.currentPage > totalPages) this.states.currentPage = totalPages;
-    // if (this.states.currentPage < 1) this.states.currentPage = 1;
+    if (this.states.currentPage < 1) this.states.currentPage = 1;
     this.specialElements['garage-page-number'].innerText = `Page #${this.states.currentPage} of ${totalPages}`;
+    this.specialElements['garage-title'].innerText = `Garage (${this.states.totalCars})`;
   }
 }
 

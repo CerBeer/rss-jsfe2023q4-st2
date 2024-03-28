@@ -7,6 +7,7 @@ export type Garage = {
   totalCars: number;
   currentCarId: number;
   specialElements: pageTypes.SpecialElements;
+  numberCarsToGenerate: number;
 };
 
 export type Winners = {

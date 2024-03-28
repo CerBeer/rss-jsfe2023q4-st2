@@ -10,6 +10,7 @@ export const states: States = {
     totalCars: 0,
     currentCarId: 0,
     specialElements: {},
+    numberCarsToGenerate: 100,
   },
   winners: {
     limitCars: 10,
