@@ -154,8 +154,7 @@ class RacePool {
       })
       .then((updatedCar: Car) => {
         const selectedCar = this.raceLines.find((line) => line.car.id === this.states.currentCarId);
-        if (!selectedCar) return;
-        selectedCar.updateCar(updatedCar);
+        if (selectedCar) selectedCar.updateCar(updatedCar);
         this.unSelectCar();
       })
       .catch((error: Error) => {
