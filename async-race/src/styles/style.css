@@ -81,12 +81,33 @@ body {
 
 .alert-window {
   position: absolute;
-  top: 10%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 50vw;
+  max-width: 800px;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 50px;
-  color: #ca468f;
+  background-color: #472b3a;
+  font-weight: 600;
+  border-radius: 20px;
+  z-index: 1;
+  align-items: center;
+}
+
+.alert-window-head {
+  font-size: 40px;
+  color: #aa6a6a;
   font-weight: 600;
   text-shadow: 0 0 10px #ff0000;
-  z-index: 1;
+  text-align: center;
+}
+
+.alert-window-alert {
+  font-size: 30px;
+  color: #aa6a6a;
+  font-weight: 600;
+  text-align: center;
 }

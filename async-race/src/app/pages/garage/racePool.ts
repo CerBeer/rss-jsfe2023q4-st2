@@ -5,8 +5,6 @@ import * as requests from '../../services/api/requests';
 import { AlertMessage } from '../alertMessage';
 import { RaceLine } from './raceLine';
 
-// type ElementWithIdentifier<T> = Partial<T> & { getAttribute: string | undefined };
-
 class RacePool {
   private location: HTMLElement;
 
@@ -43,8 +41,9 @@ class RacePool {
         this.location.replaceChildren(...raceLines);
       })
       .catch((error: Error) => {
-        console.log(error);
-        new AlertMessage('Server is not responding', 5000);
+        const timeout = 5000;
+        new AlertMessage(`${error.message}`, 'Check that the server is available at http:\\\\172.0.0.1:3000', timeout);
+        setTimeout(() => this.createPool(this.states.currentPage, this.states.limitCars), timeout * 2);
       });
   }
 
@@ -81,7 +80,7 @@ class RacePool {
       })
       .catch((error: Error) => {
         console.log(error);
-        new AlertMessage(error.name, 2000);
+        new AlertMessage(`${error.message}`, 'Check that the server is available at http:\\\\172.0.0.1:3000', 2000);
       });
   }
 
@@ -149,7 +148,7 @@ class RacePool {
       })
       .catch((error: Error) => {
         console.log(error);
-        new AlertMessage('Server is not responding', 5000);
+        new AlertMessage(`${error.message}`, 'Check that the server is available at http:\\\\172.0.0.1:3000', 2000);
       });
   }
 

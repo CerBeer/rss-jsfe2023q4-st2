@@ -2,6 +2,7 @@ import { SpecialElements } from '../types';
 import { AllWinners, Sort, Order } from '../../services/api/types';
 import { Winners } from '../../services/stateManager/types';
 import * as requests from '../../services/api/requests';
+import { AlertMessage } from '../alertMessage';
 import { TableLine } from './tableLine';
 
 class RacePool {
@@ -59,6 +60,10 @@ class RacePool {
         );
         const tableLines = this.tableLines.map((car) => car.selling);
         this.location.replaceChildren(...tableLines);
+      })
+      .catch((error: Error) => {
+        const timeout = 5000;
+        new AlertMessage(`${error.message}`, 'Check that the server is available at http:\\\\172.0.0.1:3000', timeout);
       });
   }
 

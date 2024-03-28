@@ -1,13 +1,28 @@
 import { ElementsDefinitions, createElement } from '../utils/elements';
 
 export class AlertMessage {
-  constructor(alert: string, timeout: number) {
+  constructor(head: string, alert: string, timeout: number) {
     const markup = {
       tag: 'DIV',
-      text: alert,
+      text: ``,
       attributes: {},
       classes: 'alert-window',
-      child: [],
+      child: [
+        {
+          tag: 'DIV',
+          text: head,
+          attributes: {},
+          classes: 'alert-window-head',
+          child: [],
+        },
+        {
+          tag: 'DIV',
+          text: alert,
+          attributes: {},
+          classes: 'alert-window-alert',
+          child: [],
+        },
+      ],
     };
 
     const sellingHTML = createElement(markup as ElementsDefinitions);
