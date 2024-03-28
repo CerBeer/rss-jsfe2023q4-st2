@@ -71,6 +71,7 @@ class RacePool {
     this.states.totalCars = totalCars;
     const totalPages = Math.ceil(this.states.totalCars / this.states.limitCars);
     this.specialElements['winners-page-number'].innerText = `Page #${this.states.currentPage} of ${totalPages}`;
+    this.specialElements['winners-title'].innerText = `Winners (${this.states.totalCars})`;
   }
 }
 

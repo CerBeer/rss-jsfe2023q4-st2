@@ -10,7 +10,13 @@ export const winners = {
       attributes: {},
       classes: 'winners',
       child: [
-        { tag: 'div', text: 'Winners', attributes: {}, classes: 'winners-title', child: [] },
+        {
+          tag: 'div',
+          text: 'Winners',
+          attributes: { identifier: 'winners-title' },
+          classes: 'winners-title',
+          child: [],
+        },
         {
           tag: 'div',
           text: 'Page #1',
