@@ -1,6 +1,12 @@
 import * as pageTypes from '../../pages/types';
 import { Sort, Order } from '../api/types';
 
+export type RaceTrackConfiguration = {
+  leftIndent: number;
+  rightIndent: number;
+  carWidth: number;
+};
+
 export type Garage = {
   limitCars: number;
   currentPage: number;
@@ -8,6 +14,7 @@ export type Garage = {
   currentCarId: number;
   specialElements: pageTypes.SpecialElements;
   numberCarsToGenerate: number;
+  raceTrackConfiguration: RaceTrackConfiguration;
 };
 
 export type Winners = {

@@ -22,3 +22,8 @@ export type AllWinners = [winner: Winner];
 export type Sort = 'id' | 'wins' | 'time';
 
 export type Order = 'ASC' | 'DESC';
+
+export type EngineStates = {
+  velocity: number;
+  distance: number;
+};

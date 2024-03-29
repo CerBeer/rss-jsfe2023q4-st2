@@ -3,6 +3,7 @@ import Header from './pages/header/header';
 import Garage from './pages/garage/garage';
 import Winners from './pages/winners/winners';
 import Footer from './pages/footer/footer';
+import { Console } from './pages/console';
 
 class App {
   private stateManager;
@@ -15,6 +16,8 @@ class App {
 
   private pageFooter;
 
+  private console;
+
   constructor() {
     this.stateManager = new StateManager();
     this.pageHeader = new Header(this.stateManager.states.header);
@@ -23,6 +26,7 @@ class App {
     this.pageFooter = new Footer();
     this.initCurrentStates();
     this.creatingEventHandlers();
+    this.console = new Console();
   }
 
   initCurrentStates() {

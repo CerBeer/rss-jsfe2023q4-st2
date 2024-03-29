@@ -3,20 +3,20 @@ import { ElementsDefinitions, createElement } from '../utils/elements';
 export class AlertMessage {
   constructor(head: string, alert: string, timeout: number) {
     const markup = {
-      tag: 'DIV',
+      tag: 'div',
       text: ``,
       attributes: {},
       classes: 'alert-window',
       child: [
         {
-          tag: 'DIV',
+          tag: 'div',
           text: head,
           attributes: {},
           classes: 'alert-window-head',
           child: [],
         },
         {
-          tag: 'DIV',
+          tag: 'div',
           text: alert,
           attributes: {},
           classes: 'alert-window-alert',

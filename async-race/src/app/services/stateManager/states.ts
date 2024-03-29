@@ -11,6 +11,11 @@ export const states: States = {
     currentCarId: 0,
     specialElements: {},
     numberCarsToGenerate: 100,
+    raceTrackConfiguration: {
+      leftIndent: 65,
+      rightIndent: 75,
+      carWidth: 65,
+    },
   },
   winners: {
     limitCars: 10,

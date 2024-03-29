@@ -5,17 +5,28 @@ import * as requests from '../../services/api/requests';
 import { AlertMessage } from '../alertMessage';
 import { RaceLine } from './raceLine';
 import { CarDescriptionGenerator } from '../../services/carGenerator/generator';
+import { Console } from '../console';
 
-class RacePool {
+export class RacePool {
   private location: HTMLElement;
 
   private states: Garage;
 
   private statesWinners: Winners;
 
+  private nowGenerateCars = false;
+
+  private nowRace = false;
+
+  private carsInRace = 0;
+
+  private lastWinner = { id: 0, time: 0 };
+
   private raceLines: RaceLine[];
 
   private specialElements: SpecialElements = {};
+
+  private queryResetInProgress = 0;
 
   constructor(specialElements: SpecialElements, states: Garage, statesWinners: Winners) {
     this.specialElements = specialElements;
@@ -28,6 +39,46 @@ class RacePool {
     this.creatingEventHandlers();
   }
 
+  get now() {
+    return { nowRace: this.nowRace, nowGenerateCars: this.nowGenerateCars };
+  }
+
+  get winner() {
+    return this.lastWinner;
+  }
+
+  winnerRegistration(id: number, name: string, time: number) {
+    if (this.lastWinner.id === 0) {
+      this.lastWinner.id = id;
+      this.lastWinner.time = Math.round(time / 10) / 100;
+      if (this.lastWinner.time < 1) return;
+      new AlertMessage(`${name} went first`, `time: ${this.lastWinner.time.toFixed(2)}`, 3000);
+      requests
+        .getWinners()
+        .then((response) => {
+          if (!response.ok) {
+            const error = response.status;
+            return Promise.reject(error);
+          }
+          return response.json();
+        })
+        .then((winners) => {
+          const winnerExists = winners.find((winner: Winner) => winner.id === id);
+          if (winnerExists) {
+            const bestTime = Math.min(parseFloat(winnerExists.time), this.lastWinner.time);
+            Console.appendText(`Update winner ${parseFloat(winnerExists.id)}: - ${bestTime}`);
+            requests.updateWinner(id, winnerExists.wins + 1, bestTime.toFixed(2));
+          } else {
+            Console.appendText(`Create winner ${id}: - ${this.lastWinner.time}`);
+            requests.addWinner(id, 1, this.lastWinner.time.toFixed(2));
+          }
+        })
+        .catch((error: Error) => {
+          Console.appendText(`Create winner error ${error.message}`);
+        });
+    }
+  }
+
   createPool(page: number, limit: number) {
     fetch(requests.pageGarage(page, limit))
       .then((response) => {
@@ -37,7 +88,7 @@ class RacePool {
       })
       .then((cars: Cars) => {
         this.raceLines = [];
-        cars.forEach((car) => this.raceLines.push(new RaceLine(car)));
+        cars.forEach((car) => this.raceLines.push(new RaceLine(car, this.states.raceTrackConfiguration, this)));
         const raceLines = this.raceLines.map((car) => car.selling);
         this.location.replaceChildren(...raceLines);
       })
@@ -50,24 +101,105 @@ class RacePool {
 
   creatingEventHandlers() {
     this.location.addEventListener('click', (e) => this.onClickHandler(e));
-    this.specialElements['car-update-button'].addEventListener('click', () => this.updateCar());
-    this.specialElements['car-create-button'].addEventListener('click', () => this.createCar());
-    this.specialElements['cars-generate-button'].addEventListener('click', () =>
-      this.generateCar(this.states.numberCarsToGenerate)
-    );
+    this.specialElements['car-update-button'].addEventListener('click', () => {
+      if (this.specialElements['car-update-button'].classList.contains('disabled-button')) return;
+      this.updateCar();
+    });
+    this.specialElements['car-create-button'].addEventListener('click', () => {
+      if (this.specialElements['car-create-button'].classList.contains('disabled-button')) return;
+      this.createCar();
+    });
+    this.specialElements['cars-generate-button'].addEventListener('click', () => {
+      if (this.specialElements['cars-generate-button'].classList.contains('disabled-button')) return;
+      this.generateCars(this.states.numberCarsToGenerate);
+    });
+    this.specialElements['cars-race-button'].addEventListener('click', () => {
+      if (this.specialElements['cars-race-button'].classList.contains('disabled-button')) return;
+      this.nowRace = true;
+      this.setAvailableButtons();
+      // this.raceLines.forEach((line) => line.engineCarReset());
+      this.raceLines.forEach((line) => line.engineCarStart(window.innerWidth));
+    });
+    this.specialElements['cars-reset-button'].addEventListener('click', () => {
+      if (this.specialElements['cars-reset-button'].classList.contains('disabled-button')) return;
+      this.specialElements['cars-reset-button'].classList.add('disabled-button');
+      this.raceLines.forEach((line) => line.engineCarReset());
+    });
+    this.specialElements['pagination-garage-prev'].addEventListener('click', () => {
+      if (this.specialElements['pagination-garage-prev'].classList.contains('disabled-button')) return;
+      this.pageChange(-1);
+    });
+    this.specialElements['pagination-garage-next'].addEventListener('click', () => {
+      if (this.specialElements['pagination-garage-next'].classList.contains('disabled-button')) return;
+      this.pageChange(1);
+    });
+  }
+
+  setAvailableButtons() {
+    if (this.nowGenerateCars || this.nowRace || this.queryResetInProgress > 0) {
+      this.specialElements['car-update-button'].classList.add('disabled-button');
+      this.specialElements['car-create-button'].classList.add('disabled-button');
+      this.specialElements['cars-generate-button'].classList.add('disabled-button');
+      this.specialElements['cars-race-button'].classList.add('disabled-button');
+    } else {
+      this.specialElements['car-update-button'].classList.remove('disabled-button');
+      this.specialElements['car-create-button'].classList.remove('disabled-button');
+      this.specialElements['cars-generate-button'].classList.remove('disabled-button');
+      this.specialElements['cars-race-button'].classList.remove('disabled-button');
+    }
+    if (this.nowGenerateCars || this.queryResetInProgress > 0) {
+      this.specialElements['cars-reset-button'].classList.add('disabled-button');
+    } else {
+      this.specialElements['cars-reset-button'].classList.remove('disabled-button');
+    }
+    if (this.nowRace) {
+      this.specialElements['pagination-garage-prev'].classList.add('disabled-button');
+      this.specialElements['pagination-garage-next'].classList.add('disabled-button');
+    } else {
+      this.specialElements['pagination-garage-prev'].classList.remove('disabled-button');
+      this.specialElements['pagination-garage-next'].classList.remove('disabled-button');
+    }
   }
 
   onClickHandler(e: Event) {
     e.stopPropagation();
+    // if (this.nowGenerateCars || this.nowRace) return;
     const target = e.target as HTMLElement;
     if (!target) return;
+    if (target.classList.contains('disabled-button')) return;
     const targetIdentifier = target.getAttribute('identifier');
     if (!targetIdentifier) return;
-    if (targetIdentifier !== 'car-remove-button' && targetIdentifier !== 'car-select-button') return;
-    const carID = target.parentElement?.parentElement?.dataset.carId;
+    if (
+      targetIdentifier !== 'car-remove-button' &&
+      targetIdentifier !== 'car-select-button' &&
+      targetIdentifier !== 'car-start-engine' &&
+      targetIdentifier !== 'car-stop-engine'
+    )
+      return;
+    let carID = target.parentElement?.parentElement?.dataset.carId;
+    if (!carID) carID = target.parentElement?.parentElement?.parentElement?.dataset.carId;
     if (!carID) return;
     if (targetIdentifier === 'car-remove-button') this.deleteCar(parseInt(carID));
-    else this.selectCar(parseInt(carID));
+    else if (targetIdentifier === 'car-select-button') this.selectCar(parseInt(carID));
+    else if (targetIdentifier === 'car-start-engine') this.engineCarStart(parseInt(carID));
+    else if (targetIdentifier === 'car-stop-engine') this.engineCarReset(parseInt(carID));
+  }
+
+  engineCarStart(carID: number) {
+    if (this.specialElements['cars-race-button'].classList.contains('disabled-button')) return;
+    const selectedCar = this.raceLines.find((line) => line.car.id === carID);
+    if (!selectedCar) return;
+    const mainWindowWidth = window.innerWidth;
+    selectedCar.engineCarStart(mainWindowWidth);
+    // new AlertMessage(`${carID}`, 'Car start engine', 2000);
+  }
+
+  engineCarReset(carID: number) {
+    if (this.specialElements['cars-reset-button'].classList.contains('disabled-button')) return;
+    const selectedCar = this.raceLines.find((line) => line.car.id === carID);
+    if (!selectedCar) return;
+    selectedCar.engineCarReset();
+    // new AlertMessage(`${carID}`, 'Car stop engine', 2000);
   }
 
   deleteCar(carID: number) {
@@ -134,6 +266,7 @@ class RacePool {
   }
 
   updateCar() {
+    if (this.specialElements['car-update-button'].classList.contains('disabled-button')) return;
     if (this.states.currentCarId === 0) return;
     const namePicker = this.specialElements['car-update-name'] as HTMLInputElement;
     if (!namePicker.value || namePicker.value.length === 0) return;
@@ -163,6 +296,7 @@ class RacePool {
   }
 
   createCar() {
+    if (this.specialElements['car-create-button'].classList.contains('disabled-button')) return;
     const namePicker = this.specialElements['car-create-name'] as HTMLInputElement;
     if (!namePicker.value || namePicker.value.length === 0) return;
     const colorPicker = this.specialElements['car-create-color'] as HTMLInputElement;
@@ -189,7 +323,7 @@ class RacePool {
   }
 
   addCreatedCar(newCar: Car) {
-    const newCarImplement = new RaceLine(newCar);
+    const newCarImplement = new RaceLine(newCar, this.states.raceTrackConfiguration, this);
     this.updateTotalCars(this.states.totalCars + 1);
     const totalPages = Math.ceil(this.states.totalCars / this.states.limitCars);
     if (this.states.currentPage === 0) this.states.currentPage = totalPages;
@@ -199,7 +333,10 @@ class RacePool {
     }
   }
 
-  async generateCar(carToCreate: number) {
+  async generateCars(carToCreate: number) {
+    if (this.nowGenerateCars) return;
+    this.nowGenerateCars = true;
+    this.setAvailableButtons();
     let i = 0;
     while (i < carToCreate) {
       const car = CarDescriptionGenerator.newDecription();
@@ -218,7 +355,8 @@ class RacePool {
         .catch(() => {});
       i += 1;
     }
-    // new AlertMessage(errorMessage, 'Check that the server is available at http:\\\\172.0.0.1:3000', 2000);
+    this.nowGenerateCars = false;
+    this.setAvailableButtons();
   }
 
   updateTotalCars(totalCars: number) {
@@ -230,6 +368,44 @@ class RacePool {
     this.specialElements['garage-page-number'].innerText = `Page #${this.states.currentPage} of ${totalPages}`;
     this.specialElements['garage-title'].innerText = `Garage (${this.states.totalCars})`;
   }
-}
 
-export default RacePool;
+  pageChange(bias: number) {
+    const nextPage = this.states.currentPage + bias;
+    if (nextPage < 1 || nextPage > Math.ceil(this.states.totalCars / this.states.limitCars)) return;
+    this.states.currentPage = nextPage;
+    this.createPool(this.states.currentPage, this.states.limitCars);
+  }
+
+  addCarInRace() {
+    if (this.nowRace) this.carsInRace += 1;
+  }
+
+  subCarInRace() {
+    if (!this.nowRace) {
+      // this.specialElements['cars-reset-button'].classList.remove('disabled-button');
+      return;
+    }
+    this.carsInRace -= 1;
+    if (this.carsInRace <= 0) {
+      this.specialElements['cars-reset-button'].classList.remove('disabled-button');
+      this.nowRace = false;
+      this.lastWinner = { id: 0, time: 0 };
+      this.setAvailableButtons();
+    }
+  }
+
+  addQueryReset() {
+    this.specialElements['cars-reset-button'].classList.add('disabled-button');
+    this.queryResetInProgress += 1;
+    this.setAvailableButtons();
+  }
+
+  subQueryReset() {
+    this.queryResetInProgress -= 1;
+    if (this.queryResetInProgress <= 0) {
+      this.queryResetInProgress = 0;
+      this.specialElements['cars-reset-button'].classList.remove('disabled-button');
+      this.setAvailableButtons();
+    }
+  }
+}

@@ -59,3 +59,36 @@ export const createCar = (car: NewCar) => {
     },
   });
 };
+
+export const engineStatus = (carID: number, status: string) => {
+  return fetch(`${base}engine?id=${carID}&status=${status}`, {
+    method: 'PATCH',
+  });
+};
+
+export const updateWinner = (id: number, wins: number, time: string) => {
+  return fetch(`${base}winners/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      wins: wins,
+      time: time,
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
+};
+
+export const addWinner = (id: number, wins: number, time: string) => {
+  return fetch(`${base}winners`, {
+    method: 'POST',
+    body: JSON.stringify({
+      id: id,
+      wins: wins,
+      time: time,
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
+};
