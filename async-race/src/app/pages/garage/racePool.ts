@@ -117,8 +117,8 @@ export class RacePool {
       if (this.specialElements['cars-race-button'].classList.contains('disabled-button')) return;
       this.nowRace = true;
       this.setAvailableButtons();
-      // this.raceLines.forEach((line) => line.engineCarReset());
-      this.raceLines.forEach((line) => line.engineCarStart(window.innerWidth));
+      const parentElementWidth = this.specialElements['race-pool'].getBoundingClientRect().width;
+      this.raceLines.forEach((line) => line.engineCarStart(parentElementWidth));
     });
     this.specialElements['cars-reset-button'].addEventListener('click', () => {
       if (this.specialElements['cars-reset-button'].classList.contains('disabled-button')) return;
@@ -163,7 +163,6 @@ export class RacePool {
 
   onClickHandler(e: Event) {
     e.stopPropagation();
-    // if (this.nowGenerateCars || this.nowRace) return;
     const target = e.target as HTMLElement;
     if (!target) return;
     if (target.classList.contains('disabled-button')) return;
@@ -189,9 +188,10 @@ export class RacePool {
     if (this.specialElements['cars-race-button'].classList.contains('disabled-button')) return;
     const selectedCar = this.raceLines.find((line) => line.car.id === carID);
     if (!selectedCar) return;
-    const mainWindowWidth = window.innerWidth;
-    selectedCar.engineCarStart(mainWindowWidth);
-    // new AlertMessage(`${carID}`, 'Car start engine', 2000);
+    // const mainWindowWidth = window.innerWidth;
+    // selectedCar.engineCarStart(mainWindowWidth);
+    const parentElementWidth = this.specialElements['race-pool'].getBoundingClientRect().width;
+    selectedCar.engineCarStart(parentElementWidth);
   }
 
   engineCarReset(carID: number) {
@@ -199,7 +199,6 @@ export class RacePool {
     const selectedCar = this.raceLines.find((line) => line.car.id === carID);
     if (!selectedCar) return;
     selectedCar.engineCarReset();
-    // new AlertMessage(`${carID}`, 'Car stop engine', 2000);
   }
 
   deleteCar(carID: number) {
@@ -339,7 +338,7 @@ export class RacePool {
     this.setAvailableButtons();
     let i = 0;
     while (i < carToCreate) {
-      const car = CarDescriptionGenerator.newDecription();
+      const car = CarDescriptionGenerator.newDescription();
       await requests
         .createCar(car)
         .then((response) => {
@@ -382,7 +381,6 @@ export class RacePool {
 
   subCarInRace() {
     if (!this.nowRace) {
-      // this.specialElements['cars-reset-button'].classList.remove('disabled-button');
       return;
     }
     this.carsInRace -= 1;

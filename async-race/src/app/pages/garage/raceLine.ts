@@ -184,7 +184,6 @@ export class RaceLine {
 
   startAnimation() {
     this.animationRequestId = window.requestAnimationFrame((timestamp: number) => this.animate(timestamp));
-    // animationButton.style.opacity = 0;
   }
 
   animate(timestamp: number) {
@@ -198,10 +197,11 @@ export class RaceLine {
 
     const progress = timestamp - this.animationStart;
 
+    const pxInMlSec = ((this.mainWindowWidth - 180) / this.engineStates.distance) * this.engineStates.velocity;
     const animationBox = this.SpecialElements['race-track-car'];
-    animationBox.style.transform = `translateX(${progress / 5 + this.raceTrackConfiguration.leftIndent}px)`;
+    animationBox.style.transform = `translateX(${progress * pxInMlSec + this.raceTrackConfiguration.leftIndent}px)`;
 
-    const x = animationBox.getBoundingClientRect().x + 100;
+    const x = animationBox.getBoundingClientRect().x + 80;
 
     const rightBound = this.mainWindowWidth - this.raceTrackConfiguration.carWidth / 2;
 

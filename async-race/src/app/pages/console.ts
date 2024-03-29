@@ -46,7 +46,6 @@ export class Console {
     const consoleText = Console.itThis.SpecialElements['console-text'];
     consoleText.appendChild(createElement(markup as ElementsDefinitions));
     consoleText.scrollTop = consoleText.scrollHeight;
-    // Console.itThis.SpecialElements['console-text'].append(`${text}/n/t`);
   }
 }
 

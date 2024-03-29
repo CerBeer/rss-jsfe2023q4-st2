@@ -1,7 +1,7 @@
 import * as dataset from './dataset';
 
 export class CarDescriptionGenerator {
-  static newDecription() {
+  static newDescription() {
     const numberCardBrands = dataset.brands.length - 1;
     const numberCardModels = dataset.models.length - 1;
     const newBrand = dataset.brands[Math.ceil(Math.random() * numberCardBrands)];
