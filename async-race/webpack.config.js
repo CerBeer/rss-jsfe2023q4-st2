@@ -31,10 +31,10 @@ const baseConfig = {
         },
       },
       {
-        test: /\.(jpg|ico)$/,
+        test: /\.(gif|jpg|ico)$/,
         type: 'asset/resource',
         generator: {
-          filename: 'assets/img/[name][ext]',
+          filename: 'assets/images/[name][ext]',
         },
       },
     ],
