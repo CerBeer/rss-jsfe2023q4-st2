@@ -28,6 +28,8 @@ export class RacePool {
 
   private queryResetInProgress = 0;
 
+  private _mainWindowWidth = 0;
+
   constructor(specialElements: SpecialElements, states: Garage, statesWinners: Winners) {
     this.specialElements = specialElements;
     this.states = states;
@@ -45,6 +47,10 @@ export class RacePool {
 
   get winner() {
     return this.lastWinner;
+  }
+
+  get mainWindowWidth() {
+    return this._mainWindowWidth;
   }
 
   winnerRegistration(id: number, name: string, time: number) {
@@ -118,6 +124,7 @@ export class RacePool {
       this.nowRace = true;
       this.setAvailableButtons();
       const parentElementWidth = this.specialElements['race-pool'].getBoundingClientRect().width;
+      this._mainWindowWidth = parentElementWidth;
       this.raceLines.forEach((line) => line.engineCarStart(parentElementWidth));
     });
     this.specialElements['cars-reset-button'].addEventListener('click', () => {

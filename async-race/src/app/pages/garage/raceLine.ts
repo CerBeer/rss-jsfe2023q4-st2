@@ -133,7 +133,7 @@ export class RaceLine {
       .then((newStates: EngineStates) => {
         if (this.timeLastReset > startRequest) return;
         if (this.carStates === CARSTATES.MOVEMENT) this.carStates = CARSTATES.STOP;
-        this.cancelAnimation();
+        // this.cancelAnimation();
         if (this.racePool.now.nowRace) {
           this.racePool.winnerRegistration(this.car.id, this.car.name, performance.now() - this.startMovement);
         }
@@ -187,9 +187,9 @@ export class RaceLine {
   }
 
   animate(timestamp: number) {
-    if (this.carStates !== CARSTATES.MOVEMENT) {
-      this.cancelAnimation();
-    }
+    // if (this.carStates !== CARSTATES.MOVEMENT) {
+    //   this.cancelAnimation();
+    // }
 
     if (!this.animationStart) {
       this.animationStart = timestamp;
@@ -197,13 +197,15 @@ export class RaceLine {
 
     const progress = timestamp - this.animationStart;
 
-    const pxInMlSec = ((this.mainWindowWidth - 180) / this.engineStates.distance) * this.engineStates.velocity;
+    const pxInMlSec = ((this.racePool.mainWindowWidth - 275) / this.engineStates.distance) * this.engineStates.velocity;
+    const translateX = progress * pxInMlSec + this.raceTrackConfiguration.leftIndent;
     const animationBox = this.SpecialElements['race-track-car'];
-    animationBox.style.transform = `translateX(${progress * pxInMlSec + this.raceTrackConfiguration.leftIndent}px)`;
+    animationBox.style.transform = `translateX(${translateX}px)`;
 
-    const x = animationBox.getBoundingClientRect().x + 80;
+    let x = animationBox.getBoundingClientRect().x + 80;
+    x = translateX + 70;
 
-    const rightBound = this.mainWindowWidth - this.raceTrackConfiguration.carWidth / 2;
+    const rightBound = this.racePool.mainWindowWidth - this.raceTrackConfiguration.carWidth / 2;
 
     if (x < rightBound) {
       this.animationRequestId = window.requestAnimationFrame((timestamp2: number) => this.animate(timestamp2));

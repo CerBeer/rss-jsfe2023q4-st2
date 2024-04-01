@@ -14,7 +14,7 @@ export class Console {
       tag: 'div',
       text: ``,
       attributes: {},
-      classes: 'console-window',
+      classes: 'console-window element-hide',
       child: [
         {
           tag: 'code',
@@ -35,6 +35,7 @@ export class Console {
 
   static appendText(text: string) {
     if (!Console.itThis) return;
+    if (Console.itThis.sellingHTML?.classList.contains('element-hide')) return;
     const markup = {
       tag: 'p',
       text: `${Math.round(performance.now())}: ${text}`,
