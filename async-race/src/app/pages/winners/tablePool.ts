@@ -49,8 +49,8 @@ class RacePool {
   createPool(page: number, limit: number, sort: Sort, order: Order) {
     fetch(requests.pageWinners(page, limit, sort, order))
       .then((response) => {
-        const totalPages = response.headers.get('X-Total-Count');
-        if (totalPages) this.updateTotalCars(parseInt(totalPages));
+        const totalCars = response.headers.get('X-Total-Count');
+        if (totalCars) this.updateTotalCars(parseInt(totalCars));
         return response.json();
       })
       .then((allWinners: AllWinners) => {
@@ -68,8 +68,10 @@ class RacePool {
   }
 
   updateTotalCars(totalCars: number) {
+    if (this.states.currentPage < 1) this.states.currentPage = 1;
     this.states.totalCars = totalCars;
-    const totalPages = Math.ceil(this.states.totalCars / this.states.limitCars);
+    let totalPages = Math.ceil(this.states.totalCars / this.states.limitCars);
+    if (totalPages < 1) totalPages = 1;
     this.specialElements['winners-page-number'].innerText = `Page #${this.states.currentPage} of ${totalPages}`;
     this.specialElements['winners-title'].innerText = `Winners (${this.states.totalCars})`;
   }
