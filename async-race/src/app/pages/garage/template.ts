@@ -84,7 +84,22 @@ export const templates = {
         text: '',
         attributes: { identifier: 'race-track-car' },
         classes: 'race-track-car',
-        child: [],
+        child: [
+          {
+            tag: 'div',
+            text: '',
+            attributes: { identifier: 'race-track-car-car' },
+            classes: 'race-track-car-car',
+            child: [],
+          },
+          {
+            tag: 'div',
+            text: '',
+            attributes: { identifier: 'race-track-car-broken' },
+            classes: 'car-broken-engine element-none',
+            child: [],
+          },
+        ],
       },
     ],
   },

@@ -132,6 +132,11 @@
   height: 50px;
   transform: translateX(60px);
   margin-top: -40px;
+}
+
+.race-track-car-car {
+  width: 65px;
+  height: 50px;
   background-color: #8966cd;
   -webkit-mask-image: url(../../../assets/images/car.svg);
   -webkit-mask-size: 100% 100%;
@@ -155,6 +160,16 @@
 
 .car {
   fill: red;
+}
+
+.car-broken-engine {
+  background-image: url(../../../assets/images/200.gif);
+  height: 30px;
+  width: 30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-top: -54px;
+  margin-left: 30px;
 }
 
 .race-winner {

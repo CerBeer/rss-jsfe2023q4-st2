@@ -71,7 +71,7 @@ export class RaceLine {
   }
 
   setCarColor(color: string) {
-    this.SpecialElements['race-track-car'].style.backgroundColor = color;
+    this.SpecialElements['race-track-car-car'].style.backgroundColor = color;
   }
 
   setCarName(name: string) {
@@ -110,6 +110,7 @@ export class RaceLine {
         this.engineStates = newStates;
       })
       .catch((error: Error) => {
+        this.SpecialElements['race-track-car-broken'].classList.remove('element-none');
         this.carStates = CARSTATES.STOP;
         Console.appendText(`${this.car.id}: Error car start engine ${error.message}`);
       });
@@ -141,6 +142,7 @@ export class RaceLine {
         Console.appendText(`${this.car.id}: Car stop movement ${Object.keys(newStates)}`);
       })
       .catch((error: Error) => {
+        this.SpecialElements['race-track-car-broken'].classList.remove('element-none');
         if (this.timeLastReset > startRequest) return;
         if (this.carStates === CARSTATES.MOVEMENT) this.carStates = CARSTATES.STOP;
         this.cancelAnimation();
@@ -173,6 +175,7 @@ export class RaceLine {
         this.SpecialElements['car-start-engine'].classList.remove('disabled-button');
         this.SpecialElements['car-stop-engine'].classList.add('disabled-button');
         this.racePool.subCarInRace();
+        this.SpecialElements['race-track-car-broken'].classList.add('element-none');
         Console.appendText(`${this.car.id}: Car reset`);
       })
       .catch((error: Error) => {
