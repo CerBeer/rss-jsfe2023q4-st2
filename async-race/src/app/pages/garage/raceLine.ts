@@ -95,7 +95,8 @@ export class RaceLine {
     this.SpecialElements['car-remove-button'].classList.add('disabled-button');
     this.SpecialElements['car-start-engine'].classList.add('disabled-button');
     this.SpecialElements['car-stop-engine'].classList.toggle('disabled-button', this.racePool.now.nowRace);
-    this.mainWindowWidth = mainWindowWidth;
+    if (mainWindowWidth > 0) this.mainWindowWidth = mainWindowWidth;
+    else this.mainWindowWidth = this.racePool.mainWindowWidth;
     this.racePool.addCarInRace();
     await requests
       .engineStatus(this._car.id, CARSTATES.START)
@@ -200,7 +201,7 @@ export class RaceLine {
 
     const progress = timestamp - this.animationStart;
 
-    const pxInMlSec = ((this.racePool.mainWindowWidth - 275) / this.engineStates.distance) * this.engineStates.velocity;
+    const pxInMlSec = ((this.mainWindowWidth - 275) / this.engineStates.distance) * this.engineStates.velocity;
     const translateX = progress * pxInMlSec + this.raceTrackConfiguration.leftIndent;
     const animationBox = this.SpecialElements['race-track-car'];
     animationBox.style.transform = `translateX(${translateX}px)`;
@@ -208,7 +209,7 @@ export class RaceLine {
     let x = animationBox.getBoundingClientRect().x + 80;
     x = translateX + 70;
 
-    const rightBound = this.racePool.mainWindowWidth - this.raceTrackConfiguration.carWidth / 2;
+    const rightBound = this.mainWindowWidth - this.raceTrackConfiguration.carWidth / 2;
 
     if (x < rightBound) {
       this.animationRequestId = window.requestAnimationFrame((timestamp2: number) => this.animate(timestamp2));

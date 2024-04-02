@@ -125,7 +125,7 @@ export class RacePool {
       this.setAvailableButtons();
       const parentElementWidth = this.specialElements['race-pool'].getBoundingClientRect().width;
       this._mainWindowWidth = parentElementWidth;
-      this.raceLines.forEach((line) => line.engineCarStart(parentElementWidth));
+      this.raceLines.forEach((line) => line.engineCarStart(0));
     });
     this.specialElements['cars-reset-button'].addEventListener('click', () => {
       if (this.specialElements['cars-reset-button'].classList.contains('disabled-button')) return;
