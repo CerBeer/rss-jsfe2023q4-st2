@@ -22,6 +22,16 @@
   text-align: center;
 }
 
+.winners-pool {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin: 20px 0;
+  gap: 30px;
+  overflow-y: auto;
+  max-height: calc(100vh - 300px);
+}
+
 .winners-table {
   background-color: #272831;
 }
