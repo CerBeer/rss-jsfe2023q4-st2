@@ -57,6 +57,15 @@ export class RacePool {
     return this.raceLines.find((car) => !car.isCarReadyToGo) === undefined;
   }
 
+  get isLastPage() {
+    const maxPage = Math.ceil(this.states.totalCars / this.states.limitCars);
+    return this.states.currentPage === maxPage;
+  }
+
+  get isFirstPage() {
+    return this.states.currentPage === 1;
+  }
+
   winnerRegistration(id: number, name: string, time: number) {
     if (this.lastWinner.id === 0) {
       this.lastWinner.id = id;
@@ -101,6 +110,7 @@ export class RacePool {
         cars.forEach((car) => this.raceLines.push(new RaceLine(car, this.states.raceTrackConfiguration, this)));
         const raceLines = this.raceLines.map((car) => car.selling);
         this.location.replaceChildren(...raceLines);
+        this.setAvailableButtons();
       })
       .catch((error: Error) => {
         const timeout = 5000;
@@ -163,14 +173,15 @@ export class RacePool {
     } else {
       this.specialElements['cars-reset-button'].classList.remove('disabled-button');
     }
-    if (this.nowRace) {
-      this.specialElements['pagination-garage-prev'].classList.add('disabled-button');
-      this.specialElements['pagination-garage-next'].classList.add('disabled-button');
-    } else {
-      this.specialElements['pagination-garage-prev'].classList.remove('disabled-button');
-      this.specialElements['pagination-garage-next'].classList.remove('disabled-button');
-    }
     this.specialElements['cars-race-button'].classList.toggle('disabled-button', !this.isCarsReadyToGo);
+    this.specialElements['pagination-garage-prev'].classList.toggle(
+      'disabled-button',
+      !this.isCarsReadyToGo || this.isFirstPage
+    );
+    this.specialElements['pagination-garage-next'].classList.toggle(
+      'disabled-button',
+      !this.isCarsReadyToGo || this.isLastPage
+    );
   }
 
   onClickHandler(e: Event) {
@@ -197,17 +208,13 @@ export class RacePool {
   }
 
   engineCarStart(carID: number) {
-    // if (this.specialElements['cars-race-button'].classList.contains('disabled-button')) return;
     const selectedCar = this.raceLines.find((line) => line.car.id === carID);
     if (!selectedCar) return;
-    // const mainWindowWidth = window.innerWidth;
-    // selectedCar.engineCarStart(mainWindowWidth);
     const parentElementWidth = this.specialElements['race-pool'].getBoundingClientRect().width;
     selectedCar.engineCarStart(parentElementWidth);
   }
 
   engineCarReset(carID: number) {
-    // if (this.specialElements['cars-reset-button'].classList.contains('disabled-button')) return;
     const selectedCar = this.raceLines.find((line) => line.car.id === carID);
     if (!selectedCar) return;
     selectedCar.engineCarReset();
@@ -385,6 +392,7 @@ export class RacePool {
     if (nextPage < 1 || nextPage > Math.ceil(this.states.totalCars / this.states.limitCars)) return;
     this.states.currentPage = nextPage;
     this.createPool(this.states.currentPage, this.states.limitCars);
+    this.setAvailableButtons();
   }
 
   addCarInRace() {

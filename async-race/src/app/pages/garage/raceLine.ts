@@ -140,7 +140,6 @@ export class RaceLine {
       .then((newStates: EngineStates) => {
         if (this.timeLastReset > startRequest) return;
         if (this.carStates === CARSTATES.MOVEMENT) this.carStates = CARSTATES.STOP;
-        // this.cancelAnimation();
         if (this.racePool.now.nowRace) {
           this.racePool.winnerRegistration(this.car.id, this.car.name, performance.now() - this.startMovement);
         }
@@ -198,10 +197,6 @@ export class RaceLine {
   }
 
   animate(timestamp: number) {
-    // if (this.carStates !== CARSTATES.MOVEMENT) {
-    //   this.cancelAnimation();
-    // }
-
     if (!this.animationStart) {
       this.animationStart = timestamp;
     }
