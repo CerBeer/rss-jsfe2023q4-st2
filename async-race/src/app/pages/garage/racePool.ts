@@ -135,6 +135,7 @@ export class RacePool {
     });
     this.specialElements['cars-race-button'].addEventListener('click', () => {
       if (this.specialElements['cars-race-button'].classList.contains('disabled-button')) return;
+      this.unSelectCar();
       this.nowRace = true;
       this.setAvailableButtons();
       const parentElementWidth = this.specialElements['race-pool'].getBoundingClientRect().width;
@@ -143,6 +144,7 @@ export class RacePool {
     });
     this.specialElements['cars-reset-button'].addEventListener('click', () => {
       if (this.specialElements['cars-reset-button'].classList.contains('disabled-button')) return;
+      this.unSelectCar();
       this.specialElements['cars-reset-button'].classList.add('disabled-button');
       this.raceLines.forEach((line) => line.engineCarReset());
     });
@@ -158,12 +160,12 @@ export class RacePool {
 
   setAvailableButtons() {
     if (this.nowGenerateCars || this.nowRace || this.queryResetInProgress > 0) {
-      this.specialElements['car-update-button'].classList.add('disabled-button');
+      // this.specialElements['car-update-button'].classList.add('disabled-button');
       this.specialElements['car-create-button'].classList.add('disabled-button');
       this.specialElements['cars-generate-button'].classList.add('disabled-button');
       this.specialElements['cars-race-button'].classList.add('disabled-button');
     } else {
-      this.specialElements['car-update-button'].classList.remove('disabled-button');
+      // this.specialElements['car-update-button'].classList.toggle('disabled-button', this.states.currentCarId > 0);
       this.specialElements['car-create-button'].classList.remove('disabled-button');
       this.specialElements['cars-generate-button'].classList.remove('disabled-button');
       this.specialElements['cars-race-button'].classList.remove('disabled-button');
@@ -390,6 +392,7 @@ export class RacePool {
   pageChange(bias: number) {
     const nextPage = this.states.currentPage + bias;
     if (nextPage < 1 || nextPage > Math.ceil(this.states.totalCars / this.states.limitCars)) return;
+    this.unSelectCar();
     this.states.currentPage = nextPage;
     this.createPool(this.states.currentPage, this.states.limitCars);
     this.setAvailableButtons();
