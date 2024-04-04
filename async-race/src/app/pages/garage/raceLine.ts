@@ -203,13 +203,14 @@ export class RaceLine {
 
     const progress = timestamp - this.animationStart;
 
-    const pxInMlSec = ((this.mainWindowWidth - 275) / this.engineStates.distance) * this.engineStates.velocity;
+    const pxInMlSec =
+      ((this.mainWindowWidth - this.raceTrackConfiguration.rightIndent) / this.engineStates.distance) *
+      this.engineStates.velocity;
     const translateX = progress * pxInMlSec + this.raceTrackConfiguration.leftIndent;
     const animationBox = this.SpecialElements['race-track-car'];
     animationBox.style.transform = `translateX(${translateX}px)`;
 
-    let x = animationBox.getBoundingClientRect().x + 80;
-    x = translateX + 70;
+    const x = translateX + this.raceTrackConfiguration.carWidth;
 
     const rightBound = this.mainWindowWidth - this.raceTrackConfiguration.carWidth / 2;
 

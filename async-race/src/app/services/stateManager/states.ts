@@ -13,7 +13,7 @@ export const states: States = {
     numberCarsToGenerate: 100,
     raceTrackConfiguration: {
       leftIndent: 65,
-      rightIndent: 75,
+      rightIndent: 275,
       carWidth: 65,
     },
   },
