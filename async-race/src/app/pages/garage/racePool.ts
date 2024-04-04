@@ -53,6 +53,10 @@ export class RacePool {
     return this._mainWindowWidth;
   }
 
+  get isCarsReadyToGo() {
+    return this.raceLines.find((car) => !car.isCarReadyToGo) === undefined;
+  }
+
   winnerRegistration(id: number, name: string, time: number) {
     if (this.lastWinner.id === 0) {
       this.lastWinner.id = id;
@@ -166,6 +170,7 @@ export class RacePool {
       this.specialElements['pagination-garage-prev'].classList.remove('disabled-button');
       this.specialElements['pagination-garage-next'].classList.remove('disabled-button');
     }
+    this.specialElements['cars-race-button'].classList.toggle('disabled-button', !this.isCarsReadyToGo);
   }
 
   onClickHandler(e: Event) {
@@ -192,7 +197,7 @@ export class RacePool {
   }
 
   engineCarStart(carID: number) {
-    if (this.specialElements['cars-race-button'].classList.contains('disabled-button')) return;
+    // if (this.specialElements['cars-race-button'].classList.contains('disabled-button')) return;
     const selectedCar = this.raceLines.find((line) => line.car.id === carID);
     if (!selectedCar) return;
     // const mainWindowWidth = window.innerWidth;
@@ -202,7 +207,7 @@ export class RacePool {
   }
 
   engineCarReset(carID: number) {
-    if (this.specialElements['cars-reset-button'].classList.contains('disabled-button')) return;
+    // if (this.specialElements['cars-reset-button'].classList.contains('disabled-button')) return;
     const selectedCar = this.raceLines.find((line) => line.car.id === carID);
     if (!selectedCar) return;
     selectedCar.engineCarReset();

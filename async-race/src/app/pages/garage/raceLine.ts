@@ -64,6 +64,10 @@ export class RaceLine {
     return this._car;
   }
 
+  get isCarReadyToGo() {
+    return this.carStates === CARSTATES.RESET;
+  }
+
   updateCar(car: Car) {
     this._car = car;
     this.setCarName(car.name);
@@ -91,6 +95,7 @@ export class RaceLine {
     if (this.carStates !== CARSTATES.RESET) return;
     const startRequest = performance.now();
     this.carStates = CARSTATES.START;
+    this.racePool.setAvailableButtons();
     this.SpecialElements['car-select-button'].classList.add('disabled-button');
     this.SpecialElements['car-remove-button'].classList.add('disabled-button');
     this.SpecialElements['car-start-engine'].classList.add('disabled-button');
@@ -176,11 +181,13 @@ export class RaceLine {
         this.SpecialElements['car-start-engine'].classList.remove('disabled-button');
         this.SpecialElements['car-stop-engine'].classList.add('disabled-button');
         this.racePool.subCarInRace();
+        this.racePool.setAvailableButtons();
         this.SpecialElements['race-track-car-broken'].classList.add('element-none');
         Console.appendText(`${this.car.id}: Car reset`);
       })
       .catch((error: Error) => {
         this.racePool.subQueryReset();
+        this.racePool.setAvailableButtons();
         Console.appendText(`${this.car.id}: Error car reset ${error.message}`);
       });
     this.queryResetInProgress = false;
