@@ -1,31 +1,31 @@
 export const login = {
-  tag: 'FORM',
+  tag: 'form',
   text: '',
   attributes: {},
   classes: 'login-form',
   child: [
     {
-      tag: 'FIELDSET',
+      tag: 'fieldset',
       text: '',
       attributes: {},
       classes: 'login-form-fieldset',
       child: [
-        { tag: 'LEGEND', text: 'Авторизация', attributes: {}, classes: '', child: [] },
+        { tag: 'legend', text: 'Авторизация', attributes: {}, classes: '', child: [] },
         {
-          tag: 'DIV',
+          tag: 'div',
           text: '',
           attributes: {},
           classes: 'login-form-fieldset-field',
           child: [
-            { tag: 'LABEL', text: 'Имя', attributes: {}, classes: '', child: [] },
+            { tag: 'label', text: 'Имя', attributes: {}, classes: '', child: [] },
             {
-              tag: 'DIV',
+              tag: 'div',
               text: '',
               attributes: {},
               classes: 'login-form-fieldset-field-container',
               child: [
                 {
-                  tag: 'INPUT',
+                  tag: 'input',
                   text: '',
                   attributes: {
                     placeholder: 'Имя пользователя',
@@ -37,7 +37,7 @@ export const login = {
                   child: [],
                 },
                 {
-                  tag: 'LABEL',
+                  tag: 'label',
                   text: 'Длина должна быть более 4 символов',
                   attributes: { identifier: 'login-name-tooltip' },
                   classes: 'login-form-fieldset-field-container-tooltip',
@@ -48,20 +48,20 @@ export const login = {
           ],
         },
         {
-          tag: 'DIV',
+          tag: 'div',
           text: '',
           attributes: {},
           classes: 'login-form-fieldset-field',
           child: [
-            { tag: 'LABEL', text: 'Пароль', attributes: {}, classes: '', child: [] },
+            { tag: 'label', text: 'Пароль', attributes: {}, classes: '', child: [] },
             {
-              tag: 'DIV',
+              tag: 'div',
               text: '',
               attributes: {},
               classes: 'login-form-fieldset-field-container',
               child: [
                 {
-                  tag: 'INPUT',
+                  tag: 'input',
                   text: '',
                   attributes: {
                     placeholder: 'Пароль',
@@ -73,14 +73,14 @@ export const login = {
                   child: [],
                 },
                 {
-                  tag: 'LABEL',
+                  tag: 'label',
                   text: 'Длина должна быть более 4 символов',
                   attributes: { identifier: 'login-password-tooltip-length' },
                   classes: 'login-form-fieldset-field-container-tooltip',
                   child: [],
                 },
                 {
-                  tag: 'LABEL',
+                  tag: 'label',
                   text: 'Используйте прописные и заглавные буквы',
                   attributes: { identifier: 'login-password-tooltip-contains' },
                   classes: 'login-form-fieldset-field-container-tooltip',
@@ -91,13 +91,13 @@ export const login = {
           ],
         },
         {
-          tag: 'DIV',
+          tag: 'div',
           text: '',
           attributes: {},
           classes: 'login-form-fieldset-buttons',
           child: [
-            { tag: 'BUTTON', text: 'Вход', attributes: { type: 'submit' }, classes: 'app-button', child: [] },
-            { tag: 'BUTTON', text: 'i', attributes: { type: 'button' }, classes: 'app-button-info', child: [] },
+            { tag: 'button', text: 'Вход', attributes: { type: 'submit' }, classes: 'app-button', child: [] },
+            { tag: 'button', text: 'i', attributes: { type: 'button' }, classes: 'app-button-info', child: [] },
           ],
         },
       ],

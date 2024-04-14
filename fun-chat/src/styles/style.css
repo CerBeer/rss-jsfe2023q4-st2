@@ -71,7 +71,7 @@ body {
   border: none;
   font-size: 16px;
   font-weight: 400;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .element-user-not-select {
