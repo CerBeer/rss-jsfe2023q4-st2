@@ -5,9 +5,9 @@ import * as markup from './markup';
 import './login.css';
 
 class Login extends Element {
-  constructor() {
+  constructor(parent: HTMLElement) {
     super(markup.login as ElementsDefinitions);
-    document.body.appendChild(this.sellingHTML);
+    parent.appendChild(this.sellingHTML);
     Console.appendText('Create Login page');
   }
 }

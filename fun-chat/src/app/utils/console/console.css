@@ -2,16 +2,16 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  width: 22vw;
-  max-width: 800px;
+  width: 70vw;
+  max-width: 260px;
   height: 22vh;
   top: 1%;
-  left: 78%;
-  background-color: var(--background-color);
+  background-color: unset;
   color: var(--color);
   border-radius: 2px;
   z-index: 10;
   align-items: start;
+  align-self: flex-end;
 }
 
 .console-window-text {

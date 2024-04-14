@@ -3,10 +3,10 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  padding: 1%;
+  padding: 2px;
   position: relative;
   top: 20vh;
-  width: 360px;
+  width: 340px;
 }
 
 .login-form-fieldset {

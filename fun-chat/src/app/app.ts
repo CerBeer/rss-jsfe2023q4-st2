@@ -13,7 +13,7 @@ class App {
     this.console = new Console();
     Console.appendText('Start app');
     this.states = new StateManager();
-    this.pageLogin = new Login();
+    this.pageLogin = new Login(document.body);
   }
 }
 
