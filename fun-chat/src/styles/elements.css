@@ -1,0 +1,22 @@
+.app-button {
+  min-width: 140px;
+  height: 32px;
+  margin: 1%;
+  max-width: 200px;
+  width: 50%;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.app-button-info {
+  height: 32px;
+  margin: 1%;
+  width: 32px;
+  border: 1px solid;
+  border-radius: 35%;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 800;
+  position: absolute;
+  right: 10%;
+}

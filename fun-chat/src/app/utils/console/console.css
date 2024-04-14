@@ -1,0 +1,30 @@
+.console-window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 22vw;
+  max-width: 800px;
+  height: 22vh;
+  top: 1%;
+  left: 78%;
+  background-color: var(--background-color);
+  color: var(--color);
+  border-radius: 2px;
+  z-index: 10;
+  align-items: start;
+}
+
+.console-window-text {
+  width: 100%;
+  font-size: 12px;
+  font-weight: 200;
+  text-align: left;
+  padding: 2px 4px;
+  overflow-y: hidden;
+}
+
+.console-window-text p {
+  padding: 0;
+  margin: 0;
+  line-height: 12px;
+}
