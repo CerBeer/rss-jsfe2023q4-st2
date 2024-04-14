@@ -51,9 +51,11 @@
       // Single Page Apps for GitHub Pages
       // MIT License
       // based on https://github.com/rafgraph/spa-github-pages
+      // place this page on root of gh-pages
+      // this is only to support the SPA in chat application,
+      // for other applications you need to add the publication path and the transition condition by analogy 
       var pathPublication = 'https://rolling-scopes-school.github.io/cerbeer-JSFE2023Q4/fun-chat/';
       var pagePublication = 'index.html';
-      console.log(window.location.href);
       if (window.location.href.includes(pathPublication)) {
         window.location.replace(
           `${pathPublication}${pagePublication}#${window.location.href.replace(pathPublication, '')}`
