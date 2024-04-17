@@ -43,7 +43,8 @@ class Router {
 
   setHistoryByPage(pageName: types.PageNames) {
     Console.appendText(`Change URL to ${pageName}`);
-    // window.history.replaceState(null, '', `${this.rootURL}/${pageName}`);
+    if (this.states.states.enableSPAStyleURLAdjustments)
+      window.history.replaceState(null, '', `${this.rootURL}/${pageName}`);
   }
 
   goToPage(pageName: types.PageNames) {

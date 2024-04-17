@@ -14,6 +14,7 @@ const session: Session = {
 };
 
 export const states: State = {
+  enableSPAStyleURLAdjustments: false,
   lastQueryLoginID: 0,
   isUserLogged: false,
   router: undefined,

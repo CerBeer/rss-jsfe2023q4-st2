@@ -19,6 +19,7 @@ export type ServerInfo = {
 export type CurrentPage = Login | About | Chat | undefined;
 
 export type State = {
+  enableSPAStyleURLAdjustments: boolean;
   lastQueryLoginID: number;
   isUserLogged: boolean;
   router: Router | undefined;
