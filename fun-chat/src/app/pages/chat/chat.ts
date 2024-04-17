@@ -14,12 +14,17 @@ class Chat extends Element {
     parent.appendChild(this.sellingHTML);
     this.states = states;
     this.createListeners();
+    this.configureDateWhenCreate();
     Console.appendText('Create Chat page');
   }
 
   createListeners() {
     this.specialElements['chat-info'].addEventListener('click', () => this.states.router.goToPage(PAGE_NAMES.ABOUT));
     this.specialElements['chat-logout'].addEventListener('click', () => this.states.dispatcher.processLogOut());
+  }
+
+  configureDateWhenCreate() {
+    this.specialElements['user-info'].innerText = `Пользователь: ${this.states.loggedUser.login}`;
   }
 }
 
