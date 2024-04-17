@@ -1,7 +1,7 @@
 export const login = {
   tag: 'form',
   text: '',
-  attributes: {},
+  attributes: { identifier: 'login-form' },
   classes: 'login-form',
   child: [
     {
@@ -21,7 +21,7 @@ export const login = {
             {
               tag: 'div',
               text: '',
-              attributes: {},
+              attributes: { identifier: 'field-login-name' },
               classes: 'login-form-fieldset-field-container',
               child: [
                 {
@@ -33,14 +33,14 @@ export const login = {
                     identifier: 'login-name',
                     autocomplete: 'username',
                   },
-                  classes: 'login-form-fieldset-field-container-input input-error',
+                  classes: 'login-form-fieldset-field-container-input',
                   child: [],
                 },
                 {
                   tag: 'label',
                   text: 'Длина должна быть более 4 символов',
                   attributes: { identifier: 'login-name-tooltip' },
-                  classes: 'login-form-fieldset-field-container-tooltip',
+                  classes: 'login-form-fieldset-field-container-tooltip tooltip-name-length',
                   child: [],
                 },
               ],
@@ -57,7 +57,7 @@ export const login = {
             {
               tag: 'div',
               text: '',
-              attributes: {},
+              attributes: { identifier: 'field-login-password' },
               classes: 'login-form-fieldset-field-container',
               child: [
                 {
@@ -76,14 +76,14 @@ export const login = {
                   tag: 'label',
                   text: 'Длина должна быть более 4 символов',
                   attributes: { identifier: 'login-password-tooltip-length' },
-                  classes: 'login-form-fieldset-field-container-tooltip',
+                  classes: 'login-form-fieldset-field-container-tooltip tooltip-password-length',
                   child: [],
                 },
                 {
                   tag: 'label',
                   text: 'Используйте прописные и заглавные буквы',
                   attributes: { identifier: 'login-password-tooltip-contains' },
-                  classes: 'login-form-fieldset-field-container-tooltip',
+                  classes: 'login-form-fieldset-field-container-tooltip tooltip-password-contains',
                   child: [],
                 },
               ],

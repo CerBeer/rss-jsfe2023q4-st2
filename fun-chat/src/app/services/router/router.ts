@@ -76,6 +76,11 @@ class Router {
     this.setHistoryByPage(newPageName);
   }
 
+  sendToPage(pageName: types.PageNames, message: string) {
+    if (!this.currentPage.page) return;
+    if (this.currentPage.name === pageName) this.currentPage.page.receiveMessage(message);
+  }
+
   goToPageByStatus() {
     if (this.currentPage.name === PAGE_NAMES.ABOUT) return;
     this.goToPage(this.identifyingPageByStatus());

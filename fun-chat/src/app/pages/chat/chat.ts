@@ -19,7 +19,7 @@ class Chat extends Element {
 
   createListeners() {
     this.specialElements['chat-info'].addEventListener('click', () => this.states.router.goToPage(PAGE_NAMES.ABOUT));
-    this.specialElements['chat-logout'].addEventListener('click', () => this.states.dispatcher.setStateUserLogOut());
+    this.specialElements['chat-logout'].addEventListener('click', () => this.states.dispatcher.processLogOut());
   }
 }
 

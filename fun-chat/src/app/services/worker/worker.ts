@@ -33,8 +33,8 @@ class Worker {
     Console.appendText(`Query connect to ${this.serverInfo.URL}`);
     const socket = new WebSocket(this.serverInfo.URL);
     this.socket = socket;
-    socket.addEventListener('open', (event) => {
-      this.states.dispatcher.processOpen(event);
+    socket.addEventListener('open', () => {
+      this.states.dispatcher.processOpen();
       this.states.splashPage.putAway();
       if (!this.idSenderDeferredRequests)
         this.idSenderDeferredRequests = setTimeout(() => this.sendDeferredRequests(), 100);

@@ -39,13 +39,20 @@
   border-radius: 3px;
 }
 
-.input-error {
-  border: 1px solid red;
-}
-
 .login-form-fieldset-field-container-tooltip {
   color: red;
   font-size: 0.7rem;
+  display: none;
+}
+
+.input-error input {
+  border: 1px solid red;
+}
+
+.input-error .tooltip-name-length,
+.input-error .tooltip-password-length,
+.input-error-contains .tooltip-password-contains {
+  display: unset;
 }
 
 .login-form-fieldset-buttons {
@@ -54,4 +61,25 @@
   width: 100%;
   flex-direction: column;
   align-items: center;
+}
+
+.splash-error-background {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  background-color: unset;
+  top: 40px;
+  z-index: 1;
+}
+
+.splash-error {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  background-color: #ffe5e5;
+  border: 1px solid;
+  border-radius: 5px;
+  justify-content: center;
+  text-align: center;
 }

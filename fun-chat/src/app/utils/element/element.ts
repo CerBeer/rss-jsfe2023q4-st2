@@ -5,6 +5,8 @@ export class Element {
 
   private _specialElements: SpecialElements = {};
 
+  private _lastMessage = '';
+
   constructor(definition: ElementsDefinitions) {
     this._sellingHTML = Element.createElement(definition, this._specialElements);
   }
@@ -52,6 +54,10 @@ export class Element {
 
   get specialElements() {
     return this._specialElements;
+  }
+
+  receiveMessage(message: string) {
+    this._lastMessage = message;
   }
 }
 

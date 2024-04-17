@@ -16,16 +16,31 @@ class Dispatcher {
     this.states.dispatcher = this;
   }
 
-  processOpen(event: Event) {
-    Console.appendText(`WS open: ${event.type}`);
+  processOpen() {
+    Console.appendText('WS open: open');
     if (this.states.states.session.isEmptyVal('loggedUser')) {
       this.lastQueryLoginID = '';
       this.states.isUserLogged = false;
       this.states.router.goToPage(PAGE_NAMES.LOGIN);
     } else {
+      this.processLogIn();
+    }
+  }
+
+  processLogIn() {
+    if (!(this.states.states.session.isEmptyVal('loggedUser') || this.states.isUserLogged)) {
+      Console.appendText('Send: login');
       const loginRequest = requests.requestUserLogin(this.states.loggedUser);
       this.states.worker.sendMessage(loginRequest.request);
       this.lastQueryLoginID = loginRequest.id;
+    }
+  }
+
+  processLogOut() {
+    if (!this.states.states.session.isEmptyVal('loggedUser') && this.states.isUserLogged) {
+      Console.appendText('Send: logout');
+      const loginRequest = requests.requestUserLogout(this.states.loggedUser);
+      this.states.worker.sendMessage(loginRequest.request);
     }
   }
 
@@ -53,6 +68,7 @@ class Dispatcher {
     Console.appendText(`Received error: ${eventData.payload.error}`);
     if (this.lastQueryLoginID === eventData.id) {
       this.setStateUserLogOut();
+      this.states.router.sendToPage(PAGE_NAMES.LOGIN, eventData.payload.error);
     }
   }
 

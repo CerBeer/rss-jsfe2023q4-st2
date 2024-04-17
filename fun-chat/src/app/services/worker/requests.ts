@@ -17,6 +17,20 @@ export const requestUserLogin = (user: types.User) => {
   return { request: JSON.stringify(requestObject), id: requestObject.id };
 };
 
+export const requestUserLogout = (user: types.User) => {
+  const requestObject = {
+    id: GeneratorID.next(),
+    type: MESSAGES_TYPES.USER_LOGOUT,
+    payload: {
+      user: {
+        login: user.login,
+        password: user.password,
+      },
+    },
+  };
+  return { request: JSON.stringify(requestObject), id: requestObject.id };
+};
+
 export const userAuthenticationResponse = (response: string) => {
   const responseObject = JSON.parse(response);
   return responseObject;
