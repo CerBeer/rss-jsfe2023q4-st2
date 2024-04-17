@@ -12,6 +12,7 @@
 
   --background-color: #fcfcfc;
   --color: #1d1d1d;
+  --background-darkness-color: #f0f0f0;
 }
 
 * {
@@ -19,7 +20,7 @@
 }
 
 * {
-  scrollbar-color: #f0f0f0;
+  scrollbar-color: var(--background-darkness-color);
   scrollbar-width: thin;
 }
 
@@ -29,7 +30,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f0f0f0;
+  background: var(--background-darkness-color);
 }
 
 ::-webkit-scrollbar-thumb {

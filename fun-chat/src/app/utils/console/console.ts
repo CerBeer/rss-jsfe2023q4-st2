@@ -1,6 +1,7 @@
 import { Element } from '../element/element';
 import { ElementsDefinitions } from '../element/types';
 import * as markup from './markup';
+import { settings } from './settings';
 import './console.css';
 
 export class Console extends Element {
@@ -8,11 +9,8 @@ export class Console extends Element {
 
   constructor() {
     if (Console.itThis) return Console.itThis;
-
     super(markup.console as ElementsDefinitions);
-
     document.body.appendChild(this.sellingHTML);
-
     Console.itThis = this;
   }
 
@@ -21,7 +19,14 @@ export class Console extends Element {
     if (Console.itThis.sellingHTML?.classList.contains('element-hide')) return;
 
     const consoleText = Console.itThis.specialElements['console-text'];
-    consoleText.appendChild(super.createElement(markup.line(text) as ElementsDefinitions));
+    let childToDelete = consoleText.childNodes.length - settings.maxLines;
+    while (childToDelete > 0) {
+      consoleText.removeChild(consoleText.childNodes[0]);
+      childToDelete -= 1;
+    }
+
+    const newChild = Element.createElement(markup.line(text) as ElementsDefinitions);
+    consoleText.appendChild(newChild);
     consoleText.scrollTop = consoleText.scrollHeight;
   }
 }

@@ -2,9 +2,9 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  width: 70vw;
-  max-width: 260px;
-  height: 22vh;
+  width: 40vw;
+  max-width: 360px;
+  height: 25vh;
   top: 1%;
   background-color: unset;
   color: var(--color);
@@ -20,7 +20,7 @@
   font-weight: 200;
   text-align: left;
   padding: 2px 4px;
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 
 .console-window-text p {

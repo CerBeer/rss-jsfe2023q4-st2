@@ -1,0 +1,36 @@
+.splash-background {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: unset;
+  z-index: 1;
+}
+
+.splash {
+  margin: 25vh auto;
+  padding: 20px;
+  width: 350px;
+  height: 200px;
+  top: 25vh;
+  left: 36vw;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  font-size: 25px;
+  background-color: var(--background-darkness-color);
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.splash-icons {
+  width: 64px;
+  height: 64px;
+}
+
+.splash-text {
+  display: flex;
+  margin-left: 45px;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: column;
+}

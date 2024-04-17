@@ -6,9 +6,10 @@
   flex-direction: column;
   margin: 0 auto;
   min-width: 300px;
+  max-width: 1024px;
   padding: 1%;
   position: relative;
-  top: 10vh;
+  top: 20vh;
   width: 75%;
 }
 

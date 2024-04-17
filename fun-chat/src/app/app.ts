@@ -1,27 +1,23 @@
 import { Console } from './utils/console/console';
+import { GeneratorID } from './utils/generatorID/generatorID';
 import StateManager from './services/stateManager/stateManager';
-import Login from './pages/login/login';
-import About from './pages/about/about';
-import Chat from './pages/chat/chat';
+import Router from './services/router/router';
 
 class App {
+  private router;
+
   private states;
 
-  private pageLogin;
-
-  private pageAbout;
-
-  private pageChat;
-
   private console;
+
+  private generatorID;
 
   constructor() {
     this.console = new Console();
     Console.appendText('Start app');
+    this.generatorID = new GeneratorID();
     this.states = new StateManager();
-    this.pageLogin = new Login(document.body);
-    this.pageAbout = new About(document.body);
-    this.pageChat = new Chat(document.body);
+    this.router = new Router(this.states);
     // this.pageAbout.putAway();
   }
 }

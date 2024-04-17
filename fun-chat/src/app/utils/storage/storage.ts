@@ -44,6 +44,7 @@ export class Storage {
   }
 
   getVal(key: string) {
+    // Console.appendText(`getVal ${this.values[key]}`);
     return this.values[key];
   }
 

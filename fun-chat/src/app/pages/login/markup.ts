@@ -96,8 +96,20 @@ export const login = {
           attributes: {},
           classes: 'login-form-fieldset-buttons',
           child: [
-            { tag: 'button', text: 'Вход', attributes: { type: 'submit' }, classes: 'app-button', child: [] },
-            { tag: 'button', text: 'i', attributes: { type: 'button' }, classes: 'app-button-info', child: [] },
+            {
+              tag: 'button',
+              text: 'Вход',
+              attributes: { type: 'submit', identifier: 'button-login' },
+              classes: 'app-button',
+              child: [],
+            },
+            {
+              tag: 'button',
+              text: 'i',
+              attributes: { type: 'button', identifier: 'chat-info' },
+              classes: 'app-button-info',
+              child: [],
+            },
           ],
         },
       ],
