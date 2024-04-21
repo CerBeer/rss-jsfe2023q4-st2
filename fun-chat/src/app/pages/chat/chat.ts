@@ -29,7 +29,7 @@ class Chat extends Element {
   }
 
   configureDateWhenCreate() {
-    this.specialElements['user-info'].innerText = `Пользователь: ${this.states.loggedUser.login}`;
+    this.specialElements['user-info'].innerText = `${this.states.loggedUser.login}`;
     this.states.worker.sendMessage(requests.requestCompanionLoggedIn().request);
   }
 

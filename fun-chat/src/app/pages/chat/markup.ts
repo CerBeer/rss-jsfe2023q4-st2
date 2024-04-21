@@ -12,10 +12,25 @@ export const about = {
       child: [
         {
           tag: 'label',
-          text: 'Пользователь: Myname',
-          attributes: { identifier: 'user-info' },
+          text: '',
+          attributes: {},
           classes: 'chat-header-user-name',
-          child: [],
+          child: [
+            {
+              tag: 'div',
+              text: 'Пользователь: ',
+              attributes: {},
+              classes: '',
+              child: [],
+            },
+            {
+              tag: 'div',
+              text: 'Myname',
+              attributes: { identifier: 'user-info' },
+              classes: 'chat-header-user-name-name',
+              child: [],
+            },
+          ],
         },
         { tag: 'label', text: 'Fun Chat', attributes: {}, classes: 'chat-header-app-name', child: [] },
         {

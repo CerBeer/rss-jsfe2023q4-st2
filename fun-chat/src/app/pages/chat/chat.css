@@ -23,8 +23,19 @@
 }
 
 .chat-header-user-name {
+  display: flex;
   max-width: 50%;
   overflow: hidden;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.chat-header-user-name-name {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .chat-header-app-name {
