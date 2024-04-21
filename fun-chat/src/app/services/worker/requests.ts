@@ -31,7 +31,38 @@ export const requestUserLogout = (user: types.User) => {
   return { request: JSON.stringify(requestObject), id: requestObject.id };
 };
 
-export const userAuthenticationResponse = (response: string) => {
-  const responseObject = JSON.parse(response);
-  return responseObject;
+export const requestCompanionLoggedIn = () => {
+  const requestObject = {
+    id: GeneratorID.next(),
+    type: MESSAGES_TYPES.USER_ACTIVE,
+    payload: null,
+  };
+  return { request: JSON.stringify(requestObject), id: requestObject.id };
 };
+
+export const requestCompanionLoggedOut = () => {
+  const requestObject = {
+    id: GeneratorID.next(),
+    type: MESSAGES_TYPES.USER_INACTIVE,
+    payload: null,
+  };
+  return { request: JSON.stringify(requestObject), id: requestObject.id };
+};
+
+export const requestCompanionMessageHistory = (login: string) => {
+  const requestObject = {
+    id: GeneratorID.next(),
+    type: MESSAGES_TYPES.MSG_FROM_USER,
+    payload: {
+      user: {
+        login: login,
+      },
+    },
+  };
+  return { request: JSON.stringify(requestObject), id: requestObject.id };
+};
+
+// export const toDeleteUserAuthenticationResponse = (response: string) => {
+//   const responseObject = JSON.parse(response);
+//   return responseObject;
+// };

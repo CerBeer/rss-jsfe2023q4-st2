@@ -75,8 +75,8 @@ class Login extends Element {
     return false;
   }
 
-  receiveMessage(message: string): void {
-    Console.appendText(message);
+  receiveMessage(type: string, message: string): void {
+    Console.appendText(`Caught message in Login page: ${type}, ${message}`);
     const messageErrorMarkup = {
       tag: 'div',
       text: ``,

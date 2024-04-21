@@ -5,7 +5,7 @@ export class Element {
 
   private _specialElements: SpecialElements = {};
 
-  private _lastMessage = '';
+  private _lastMessage = { type: '', message: '' };
 
   constructor(definition: ElementsDefinitions) {
     this._sellingHTML = Element.createElement(definition, this._specialElements);
@@ -56,8 +56,8 @@ export class Element {
     return this._specialElements;
   }
 
-  receiveMessage(message: string) {
-    this._lastMessage = message;
+  receiveMessage(type: string, message: string) {
+    this._lastMessage = { type: type, message: message };
   }
 }
 

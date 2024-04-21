@@ -60,7 +60,7 @@ class Dispatcher {
         break;
 
       default:
-        Console.appendText(`Unresolving message: ${JSON.stringify(eventData)}`);
+        this.states.router.sendToPage(PAGE_NAMES.CHAT, eventData.type, event.data);
     }
   }
 
@@ -68,7 +68,7 @@ class Dispatcher {
     Console.appendText(`Received error: ${eventData.payload.error}`);
     if (this.lastQueryLoginID === eventData.id) {
       this.setStateUserLogOut();
-      this.states.router.sendToPage(PAGE_NAMES.LOGIN, eventData.payload.error);
+      this.states.router.sendToPage(PAGE_NAMES.LOGIN, 'ERROR', eventData.payload.error);
     }
   }
 
