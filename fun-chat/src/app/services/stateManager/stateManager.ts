@@ -5,6 +5,7 @@ import Router from '../router/router';
 import { LoggedUser } from '../../services/stateManager/types';
 import Worker from '../worker/worker';
 import Dispatcher from '../dispatcher/dispatcher';
+import ChatService from '../chatService/chatService';
 import Splash from '../../pages/splash/splash';
 
 class StateManager {
@@ -49,6 +50,14 @@ class StateManager {
 
   set dispatcher(dispatcher: Dispatcher) {
     this._states.dispatcher = dispatcher;
+  }
+
+  get chatService() {
+    return this._states.chatService!;
+  }
+
+  set chatService(chatService: ChatService) {
+    this._states.chatService = chatService;
   }
 
   get loggedUser() {

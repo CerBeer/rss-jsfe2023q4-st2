@@ -6,6 +6,7 @@ import { Storage } from '../../utils/storage/storage';
 import Router from '../router/router';
 import Worker from '../worker/worker';
 import Dispatcher from '../dispatcher/dispatcher';
+import ChatService from '../chatService/chatService';
 
 export type LoggedUser = {
   login: string;
@@ -25,6 +26,7 @@ export type State = {
   router: Router | undefined;
   worker: Worker | undefined;
   dispatcher: Dispatcher | undefined;
+  chatService: ChatService | undefined;
   splashPage: Splash;
   session: Storage;
 };

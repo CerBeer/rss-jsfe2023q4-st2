@@ -20,6 +20,7 @@ export const states: State = {
   router: undefined,
   worker: undefined,
   dispatcher: undefined,
+  chatService: undefined,
   splashPage: new Splash(document.body),
   session: new Storage(sessionStorage, session),
 };

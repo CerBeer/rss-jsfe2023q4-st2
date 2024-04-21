@@ -48,6 +48,7 @@ class Worker {
     });
     socket.addEventListener('close', (event) => {
       Console.appendText(`WS close: ${event.type}`);
+      this.states.isUserLogged = false;
       this.states.splashPage.retrieve();
       this.getNewConnection();
     });
