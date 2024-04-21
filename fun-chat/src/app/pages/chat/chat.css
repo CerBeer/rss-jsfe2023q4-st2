@@ -120,6 +120,11 @@
   flex-direction: row;
   justify-content: flex-start;
   border-radius: 2px;
+  cursor: pointer;
+}
+
+.chat-main-left-users-list-user:hover {
+  background-color: #eeeeee;
 }
 
 .chat-main-left-users-list-user-status {
@@ -129,6 +134,7 @@
   border: 1px solid;
   border-radius: 50%;
   background: #7a3100;
+  cursor: pointer;
 }
 
 .user-status-active {
@@ -141,6 +147,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   width: 88%;
+  cursor: pointer;
 }
 
 .chat-main-left-users-list-user-messages {
@@ -150,6 +157,7 @@
   border-radius: 50%;
   font-size: 10px;
   text-align: center;
+  cursor: pointer;
 }
 
 .chat-main-right {

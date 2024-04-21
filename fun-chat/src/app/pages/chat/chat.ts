@@ -38,6 +38,10 @@ class Chat extends Element {
         this.updateCompanionsList();
         break;
 
+      case MESSAGES_CHAT_SERVICE_TYPES.RECEIVING_MESSAGE_FROM_COMPANION:
+        this.updateCompanionsList();
+        break;
+
       default:
         Console.appendText(`Chat page received unresolved message: ${type}/${JSON.stringify(message)}`);
     }

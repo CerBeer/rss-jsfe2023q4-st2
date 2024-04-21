@@ -37,3 +37,16 @@ export type ResponseUserLogOut = {
     user: UserLogged;
   };
 };
+
+export type Message = {
+  id: string;
+  from: string;
+  to: string;
+  text: string;
+  datetime: number;
+  status: {
+    isDelivered: boolean;
+    isReaded: boolean;
+    isEdited: boolean;
+  };
+};

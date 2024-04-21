@@ -30,13 +30,13 @@ class ChatService {
 
   async processMessage(type: workerTypes.MessagesType, message: string) {
     const eventData = JSON.parse(message);
-    Console.appendText(`chatService received message: ${type}/${message}`);
     switch (type) {
       case MESSAGES_TYPES.ERROR:
         break;
 
       case MESSAGES_TYPES.USER_LOGIN:
         this.processUserLogin();
+        Console.appendText(`chatService received message: ${type}/${message}`);
         break;
 
       case MESSAGES_TYPES.USER_LOGOUT:
@@ -45,11 +45,13 @@ class ChatService {
       case MESSAGES_TYPES.USER_ACTIVE:
         this.createCompanionsList(eventData.payload.users);
         this.states.worker.sendMessage(requests.requestCompanionLoggedOut().request);
+        Console.appendText(`chatService received message: ${type}/${message}`);
         break;
 
       case MESSAGES_TYPES.USER_INACTIVE:
         this.createCompanionsList(eventData.payload.users);
         this.requestCompanionMessageHistory();
+        Console.appendText(`chatService received message: ${type}/${message}`);
         break;
 
       case MESSAGES_TYPES.MSG_FROM_USER:
@@ -59,6 +61,11 @@ class ChatService {
       case MESSAGES_TYPES.USER_EXTERNAL_LOGIN:
       case MESSAGES_TYPES.USER_EXTERNAL_LOGOUT:
         this.processCompanionLogInOut(eventData.payload.user.login, eventData.payload.user.isLogined);
+        Console.appendText(`chatService received message: ${type}/${message}`);
+        break;
+
+      case MESSAGES_TYPES.MSG_SEND:
+        this.processReceivingMessageFromCompanion(eventData.payload.message);
         break;
 
       default:
@@ -97,8 +104,9 @@ class ChatService {
   processCompanionMessageHistory(id: string, messagesCount: number) {
     const userWithID = this._companions.find((user) => user.id === id);
     if (userWithID !== undefined) {
-      Console.appendText(`User count messages: ${userWithID.login}/${messagesCount}`);
       userWithID.unreadMessages = messagesCount;
+      if (messagesCount > 0)
+        this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.UPDATE_COMPANIONS_LIST, '');
     }
     this.requestCompanionMessageHistory();
   }
@@ -115,6 +123,15 @@ class ChatService {
         return 1;
       });
       this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.UPDATE_COMPANIONS_LIST, '');
+    }
+  }
+
+  processReceivingMessageFromCompanion(message: workerTypes.Message) {
+    Console.appendText(`External user receiving message: ${message.from}/${message.datetime}`);
+    const companion = this._companions.find((user) => user.login === message.from);
+    if (companion !== undefined) {
+      companion.unreadMessages += 1;
+      this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.RECEIVING_MESSAGE_FROM_COMPANION, '');
     }
   }
 }

@@ -62,7 +62,6 @@ class Worker {
     if (this.socket && this.socket.readyState === WebSocket.OPEN) {
       const message = this.deferredRequests.shift();
       if (message) {
-        Console.appendText(`Send message ${message}`);
         this.socket.send(message);
       }
     }
