@@ -2,6 +2,7 @@ import { Console } from '../../utils/console/console';
 import StateManager from '../stateManager/stateManager';
 import Worker from '../worker/worker';
 import Dispatcher from '../dispatcher/dispatcher';
+import ChatService from '../chatService/chatService';
 import Login from '../../pages/login/login';
 import About from '../../pages/about/about';
 import Chat from '../../pages/chat/chat';
@@ -21,6 +22,7 @@ class Router {
     this.currentPage = { name: PAGE_NAMES.NONE, page: undefined };
     this.states = states;
     this.states.router = this;
+    new ChatService(this.states);
     new Worker(this.states);
     new Dispatcher(this.states);
     this.goToPageByUrlWithHash();

@@ -23,11 +23,11 @@ class Dispatcher {
       this.states.isUserLogged = false;
       this.states.router.goToPage(PAGE_NAMES.LOGIN);
     } else {
-      this.processLogIn();
+      this.sendLogIn();
     }
   }
 
-  processLogIn() {
+  sendLogIn() {
     if (!(this.states.states.session.isEmptyVal('loggedUser') || this.states.isUserLogged)) {
       Console.appendText('Send: login');
       const loginRequest = requests.requestUserLogin(this.states.loggedUser);
@@ -36,7 +36,7 @@ class Dispatcher {
     }
   }
 
-  processLogOut() {
+  sendLogOut() {
     if (!this.states.states.session.isEmptyVal('loggedUser') && this.states.isUserLogged) {
       Console.appendText('Send: logout');
       const loginRequest = requests.requestUserLogout(this.states.loggedUser);
@@ -60,7 +60,7 @@ class Dispatcher {
         break;
 
       default:
-        this.states.router.sendToPage(PAGE_NAMES.CHAT, eventData.type, event.data);
+        this.states.chatService.processMessage(eventData.type, event.data);
     }
   }
 
@@ -69,7 +69,9 @@ class Dispatcher {
     if (this.lastQueryLoginID === eventData.id) {
       this.setStateUserLogOut();
       this.states.router.sendToPage(PAGE_NAMES.LOGIN, 'ERROR', eventData.payload.error);
+      return;
     }
+    this.states.chatService.processMessage(MESSAGES_TYPES.ERROR, eventData.payload.error);
   }
 
   processMessageUserLogin(eventData: types.ResponseUserLogIn) {
@@ -90,13 +92,16 @@ class Dispatcher {
     this.lastQueryLoginID = '';
     this.states.loggedUser = user;
     this.states.isUserLogged = true;
+    this.states.chatService.processMessage(MESSAGES_TYPES.USER_LOGIN, JSON.stringify(user));
     this.states.router.goToPageByStatus();
   }
 
   setStateUserLogOut() {
+    const user = this.states.loggedUser;
     this.lastQueryLoginID = '';
     this.states.loggedUser = { login: '', password: '' };
     this.states.isUserLogged = false;
+    this.states.chatService.processMessage(MESSAGES_TYPES.USER_LOGOUT, JSON.stringify(user));
     this.states.router.goToPageByStatus();
   }
 }

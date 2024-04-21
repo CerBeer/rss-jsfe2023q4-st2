@@ -136,8 +136,20 @@
 }
 
 .chat-main-left-users-list-user-login {
-  /* overflow-x: hidden; */
-  width: 100%;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 88%;
+}
+
+.chat-main-left-users-list-user-messages {
+  /* width: 5%; */
+  min-width: 15px;
+  border: 1px solid #41e441;
+  border-radius: 50%;
+  font-size: 10px;
+  text-align: center;
 }
 
 .chat-main-right {
@@ -228,6 +240,10 @@
 
 .disabled {
   cursor: default;
+}
+
+.hide-element {
+  opacity: 0;
 }
 
 @media (max-width: 768px) {

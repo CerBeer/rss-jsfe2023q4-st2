@@ -4,8 +4,6 @@ import StateManager from './services/stateManager/stateManager';
 import Router from './services/router/router';
 
 class App {
-  private router;
-
   private states;
 
   private console;
@@ -17,8 +15,7 @@ class App {
     Console.appendText('Start app');
     this.generatorID = new GeneratorID();
     this.states = new StateManager();
-    this.router = new Router(this.states);
-    // this.pageAbout.putAway();
+    new Router(this.states);
   }
 }
 

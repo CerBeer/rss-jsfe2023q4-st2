@@ -1,5 +1,9 @@
 import { MESSAGES_TYPES } from './enums';
 
+export type MessagesTypeKeys = keyof typeof MESSAGES_TYPES;
+
+export type MessagesType = (typeof MESSAGES_TYPES)[MessagesTypeKeys];
+
 export type User = {
   login: string;
   password: string;
