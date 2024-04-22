@@ -346,6 +346,25 @@
   border-radius: 5px;
 }
 
+.chat-footer-about {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.chat-footer-about-link {
+  height: 32px;
+  width: 32px;
+}
+
+.chat-footer-about-link-img {
+  height: 32px;
+  width: 32px;
+  margin: 0;
+  padding: 0;
+}
+
 .disabled {
   cursor: default;
 }
