@@ -125,8 +125,8 @@ class ChatService {
         unreadMessages: 0,
         sellingHTML: undefined,
       });
-      this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.UPDATE_COMPANIONS_LIST, '');
     }
+    this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.UPDATE_COMPANIONS_LIST, '');
   }
 
   async requestCompanionMessageHistoryOnLogin() {

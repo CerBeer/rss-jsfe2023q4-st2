@@ -233,6 +233,8 @@ class Chat extends Element {
   async processDeleteMessage(id: string) {
     const messageWithID = this.messageWithID(id);
     if (messageWithID === undefined) return;
+    messageWithID.specialElements['dialog-message'].remove();
+    this._currentCompanionMessages.splice(this._currentCompanionMessages.indexOf(messageWithID), 1);
   }
 }
 
