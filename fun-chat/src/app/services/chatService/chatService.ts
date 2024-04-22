@@ -83,6 +83,22 @@ class ChatService {
         this.processReceivingMessageFrom(eventData.id, eventData.payload.message);
         break;
 
+      case MESSAGES_TYPES.MSG_DELIVER:
+        this.states.router.sendToPage(
+          PAGE_NAMES.CHAT,
+          MESSAGES_CHAT_SERVICE_TYPES.MESSAGE_DELIVERY_STATUS_CHANGE,
+          message
+        );
+        break;
+
+      case MESSAGES_TYPES.MSG_READ:
+        this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.MESSAGE_READ_STATUS_CHANGE, message);
+        break;
+
+      case MESSAGES_TYPES.MSG_EDIT:
+        this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.MESSAGE_EDITED, message);
+        break;
+
       default:
     }
   }
@@ -92,7 +108,7 @@ class ChatService {
     this.states.worker.sendMessage(requests.requestCompanionLoggedIn().request);
   }
 
-  createCompanionsList(users: workerTypes.UserLogged[]) {
+  async createCompanionsList(users: workerTypes.UserLogged[]) {
     for (const user of users) {
       this._companions.push({
         id: '',
@@ -105,7 +121,7 @@ class ChatService {
     }
   }
 
-  requestCompanionMessageHistoryOnLogin() {
+  async requestCompanionMessageHistoryOnLogin() {
     const firstUserWithoutID = this._companions.find(
       (user) => user.id === '' && user.login !== this.states.loggedUser.login
     );
@@ -116,7 +132,7 @@ class ChatService {
     }
   }
 
-  processCompanionMessageHistoryOnLogin(id: string, messagesCount: number) {
+  async processCompanionMessageHistoryOnLogin(id: string, messagesCount: number) {
     const userWithID = this._companions.find((user) => user.id === id);
     if (userWithID === undefined) return;
     userWithID.unreadMessages = messagesCount;
@@ -161,6 +177,14 @@ class ChatService {
     );
   }
 
+  updateCompanionUnreadMessage(login: string, count: number) {
+    const companion = this._companions.find((user) => user.login === login);
+    if (companion !== undefined) {
+      companion.unreadMessages = count;
+      this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.RECEIVING_MESSAGE_FROM_COMPANION, '');
+    }
+  }
+
   changeCurrentCompanion(login: string) {
     Console.appendText(`Change current companions: ${login}`);
     const companion = this._companions.find((user) => user.login === login);
@@ -181,6 +205,12 @@ class ChatService {
 
   requestSendMessage(to: string, text: string) {
     const request = requests.requestSendUserMessage(to, text);
+    this.states.worker.sendMessage(request.request);
+    return request.id;
+  }
+
+  requestReadMessage(id: string) {
+    const request = requests.requestReadMessage(id);
     this.states.worker.sendMessage(request.request);
     return request.id;
   }

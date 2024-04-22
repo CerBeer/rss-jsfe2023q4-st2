@@ -108,26 +108,65 @@ class Chat extends Element {
         this.proccessResponceMessageToCompanion(message);
         break;
 
+      case MESSAGES_CHAT_SERVICE_TYPES.MESSAGE_DELIVERY_STATUS_CHANGE:
+        this.processMessageStatusDeliveredChange(message);
+        break;
+
+      case MESSAGES_CHAT_SERVICE_TYPES.MESSAGE_READ_STATUS_CHANGE:
+        this.processMessageStatusReadedChange(message);
+        break;
+
+      case MESSAGES_CHAT_SERVICE_TYPES.MESSAGE_EDITED:
+        this.processMessageStatusEditedChange(message);
+        break;
+
       default:
         Console.appendText(`Chat page received unresolved message: ${type}/${JSON.stringify(message)}`);
     }
   }
 
+  messageWithID(id: string) {
+    return this._currentCompanionMessages.find((msg) => msg.messageID === id);
+  }
+
+  processMessageStatusDeliveredChange(message: string) {
+    const eventData = JSON.parse(message);
+    const messageWithID = this.messageWithID(eventData.payload.message.id);
+    if (messageWithID === undefined) return;
+    messageWithID.setMessgeStatusDelivered();
+  }
+
+  processMessageStatusReadedChange(message: string) {
+    const eventData = JSON.parse(message);
+    const messageWithID = this.messageWithID(eventData.payload.message.id);
+    if (messageWithID === undefined) return;
+    messageWithID.setMessgeStatusReaded();
+  }
+
+  processMessageStatusEditedChange(message: string) {
+    const eventData = JSON.parse(message);
+    const messageWithID = this.messageWithID(eventData.payload.message.id);
+    if (messageWithID === undefined) return;
+    messageWithID.setMessgeStatusEdited(eventData.payload.message.text);
+  }
+
   proccessResponceMessageToCompanion(message: string) {
-    const msg = JSON.parse(message);
-    if (msg.message.to !== this._currentCompanion) return;
+    const msgFull = JSON.parse(message);
+    const msg = msgFull.message;
+    if (msg.to !== this._currentCompanion) return;
     const parent = this.specialElements['right-dialog'];
     const newMessage = new Message(parent, msg, msg.to === this.states.loggedUser.login);
     this._currentCompanionMessages.push(newMessage);
     this.specialElements['right-dialog'].scrollTop = this.specialElements['right-dialog'].scrollHeight;
-    if (this.lastRequestIDSendMessage === msg.id) {
+    if (this.lastRequestIDSendMessage === msgFull.id) {
       this.lastRequestIDSendMessage = '';
       this.setMessageSendDisabled();
       this.setButtonSendDisabled();
     }
+    this.setMessageStatusRead();
   }
 
-  updateCompanionsList() {
+  async updateCompanionsList() {
     const companionList = this.states.chatService.companions;
     const companions = this.companions;
     const markupElement = markup.companionListElement as ElementsDefinitions;
@@ -172,11 +211,13 @@ class Chat extends Element {
     });
   }
 
-  statusMessageToString(message: workerTypes.Message) {
-    // if (message.from === this._currentCompanion) return message.status.isEdited ? 'изменено' : '';
-    if (message.status.isReaded) return 'прочитано';
-    if (message.status.isEdited) return 'изменено';
-    return 'доставлено';
+  setMessageStatusRead() {
+    this._currentCompanionMessages.forEach((message) => {
+      if (message.message.to === this.states.loggedUser.login && !message.message.status.isReaded) {
+        this.states.chatService.requestReadMessage(message.messageID);
+      }
+    });
+    this.states.chatService.updateCompanionUnreadMessage(this._currentCompanion, 0);
   }
 
   setCurrentCompanionStatus() {

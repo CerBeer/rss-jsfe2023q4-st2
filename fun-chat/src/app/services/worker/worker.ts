@@ -65,7 +65,7 @@ class Worker {
         this.socket.send(message);
       }
     }
-    this.idSenderDeferredRequests = setTimeout(() => this.sendDeferredRequests(), 100);
+    this.idSenderDeferredRequests = setTimeout(() => this.sendDeferredRequests(), 10);
   }
 }
 

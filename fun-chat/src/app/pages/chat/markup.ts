@@ -144,7 +144,7 @@ export const chat = {
                 {
                   tag: 'button',
                   text: 'Отправить',
-                  attributes: { type: 'button', disabled: '', identifier: 'right-send-button' },
+                  attributes: { type: 'submit', disabled: '', identifier: 'right-send-button' },
                   classes: 'chat-main-right-send-button',
                   child: [],
                 },

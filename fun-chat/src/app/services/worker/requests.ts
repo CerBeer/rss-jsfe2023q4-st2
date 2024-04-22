@@ -76,6 +76,19 @@ export const requestSendUserMessage = (to: string, text: string) => {
   return { request: JSON.stringify(requestObject), id: requestObject.id };
 };
 
+export const requestReadMessage = (id: string) => {
+  const requestObject = {
+    id: GeneratorID.next(),
+    type: MESSAGES_TYPES.MSG_READ,
+    payload: {
+      message: {
+        id: id,
+      },
+    },
+  };
+  return { request: JSON.stringify(requestObject), id: requestObject.id };
+};
+
 // export const toDeleteUserAuthenticationResponse = (response: string) => {
 //   const responseObject = JSON.parse(response);
 //   return responseObject;
