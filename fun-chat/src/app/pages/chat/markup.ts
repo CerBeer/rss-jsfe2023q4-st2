@@ -197,3 +197,71 @@ export const companionListElement = {
     },
   ],
 };
+
+export const messageElement = {
+  tag: 'div',
+  text: '',
+  attributes: { identifier: 'dialog-message' },
+  classes: 'chat-main-right-dialog-message',
+  child: [
+    {
+      tag: 'div',
+      text: '',
+      attributes: {},
+      classes: 'chat-main-right-dialog-message-box',
+      child: [
+        {
+          tag: 'div',
+          text: '',
+          attributes: {},
+          classes: 'chat-main-right-dialog-message-box-header',
+          child: [
+            {
+              tag: 'label',
+              text: '',
+              attributes: { identifier: 'header-label-left' },
+              classes: 'chat-main-right-dialog-message-box-header-label-left',
+              child: [],
+            },
+            {
+              tag: 'label',
+              text: '',
+              attributes: { identifier: 'header-label-right' },
+              classes: 'chat-main-right-dialog-message-box-header-label-right',
+              child: [],
+            },
+          ],
+        },
+        {
+          tag: 'div',
+          text: '',
+          attributes: { identifier: 'box-text' },
+          classes: 'chat-main-right-dialog-message-box-text',
+          child: [],
+        },
+        {
+          tag: 'div',
+          text: '',
+          attributes: {},
+          classes: 'chat-main-right-dialog-message-box-footer',
+          child: [
+            {
+              tag: 'label',
+              text: '',
+              attributes: { identifier: 'footer-label-left' },
+              classes: 'chat-main-right-dialog-message-box-footer-label-left',
+              child: [],
+            },
+            {
+              tag: 'label',
+              text: '',
+              attributes: { identifier: 'footer-label-right' },
+              classes: 'chat-main-right-dialog-message-box-footer-label-right',
+              child: [],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};

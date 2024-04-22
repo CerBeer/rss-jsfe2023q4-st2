@@ -18,6 +18,8 @@ class ChatService {
     sellingHTML: HTMLElement | undefined;
   }[] = [];
 
+  private _currentCompanion = '';
+
   constructor(states: StateManager) {
     Console.appendText('Create Chat service');
     this.states = states;
@@ -26,6 +28,12 @@ class ChatService {
 
   get companions() {
     return this._companions.filter((user) => user.login !== this.states.loggedUser.login);
+  }
+
+  getCompanionStatus(login: string) {
+    const companion = this._companions.find((user) => user.login === login);
+    if (companion === undefined) return false;
+    return companion.isLogined;
   }
 
   async processMessage(type: workerTypes.MessagesType, message: string) {
@@ -50,12 +58,16 @@ class ChatService {
 
       case MESSAGES_TYPES.USER_INACTIVE:
         this.createCompanionsList(eventData.payload.users);
-        this.requestCompanionMessageHistory();
+        this.requestCompanionMessageHistoryOnLogin();
         Console.appendText(`chatService received message: ${type}/${message}`);
         break;
 
       case MESSAGES_TYPES.MSG_FROM_USER:
-        this.processCompanionMessageHistory(eventData.id, eventData.payload.messages.length);
+        if (this._companions.find((user) => user.id === eventData.id) !== undefined) {
+          this.processCompanionMessageHistoryOnLogin(eventData.id, eventData.payload.messages.length);
+          return;
+        }
+        this.processCompanionMessageHistory(eventData.payload.messages);
         break;
 
       case MESSAGES_TYPES.USER_EXTERNAL_LOGIN:
@@ -90,7 +102,7 @@ class ChatService {
     }
   }
 
-  requestCompanionMessageHistory() {
+  requestCompanionMessageHistoryOnLogin() {
     const firstUserWithoutID = this._companions.find(
       (user) => user.id === '' && user.login !== this.states.loggedUser.login
     );
@@ -101,14 +113,13 @@ class ChatService {
     }
   }
 
-  processCompanionMessageHistory(id: string, messagesCount: number) {
+  processCompanionMessageHistoryOnLogin(id: string, messagesCount: number) {
     const userWithID = this._companions.find((user) => user.id === id);
-    if (userWithID !== undefined) {
-      userWithID.unreadMessages = messagesCount;
-      if (messagesCount > 0)
-        this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.UPDATE_COMPANIONS_LIST, '');
-    }
-    this.requestCompanionMessageHistory();
+    if (userWithID === undefined) return;
+    userWithID.unreadMessages = messagesCount;
+    if (messagesCount > 0)
+      this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.UPDATE_COMPANIONS_LIST, '');
+    this.requestCompanionMessageHistoryOnLogin();
   }
 
   processCompanionLogInOut(login: string, isLogined: boolean) {
@@ -122,7 +133,7 @@ class ChatService {
         if (a.isLogined) return -1;
         return 1;
       });
-      this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.UPDATE_COMPANIONS_LIST, '');
+      this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.COMPANION_STATUS_UPDATE, login);
     }
   }
 
@@ -133,6 +144,24 @@ class ChatService {
       companion.unreadMessages += 1;
       this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.RECEIVING_MESSAGE_FROM_COMPANION, '');
     }
+  }
+
+  changeCurrentCompanion(login: string) {
+    Console.appendText(`Change current companions: ${login}`);
+    const companion = this._companions.find((user) => user.login === login);
+    if (companion !== undefined) {
+      this._currentCompanion = login;
+      const request = requests.requestCompanionMessageHistory(login);
+      this.states.worker.sendMessage(request.request);
+    }
+  }
+
+  processCompanionMessageHistory(messages: workerTypes.Message[]) {
+    this.states.router.sendToPage(
+      PAGE_NAMES.CHAT,
+      MESSAGES_CHAT_SERVICE_TYPES.MESSAGE_HISTORY_WITH_USER,
+      JSON.stringify(messages)
+    );
   }
 }
 
