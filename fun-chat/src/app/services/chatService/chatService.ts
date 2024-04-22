@@ -64,7 +64,10 @@ class ChatService {
 
       case MESSAGES_TYPES.MSG_FROM_USER:
         if (this._companions.find((user) => user.id === eventData.id) !== undefined) {
-          this.processCompanionMessageHistoryOnLogin(eventData.id, eventData.payload.messages.length);
+          const messages = eventData.payload.messages.filter((msg: workerTypes.Message) => {
+            return msg.to === this.states.loggedUser.login && !msg.status.isReaded;
+          });
+          this.processCompanionMessageHistoryOnLogin(eventData.id, messages.length);
           return;
         }
         this.processCompanionMessageHistory(eventData.payload.messages);
