@@ -120,6 +120,10 @@ class Chat extends Element {
         this.processMessageStatusEditedChange(message);
         break;
 
+      case MESSAGES_CHAT_SERVICE_TYPES.MESSAGE_DELETED:
+        this.processDeleteMessage(message);
+        break;
+
       default:
         Console.appendText(`Chat page received unresolved message: ${type}/${JSON.stringify(message)}`);
     }
@@ -224,6 +228,11 @@ class Chat extends Element {
     const status = this.states.chatService.getCompanionStatus(this._currentCompanion);
     this.specialElements['right-companion-status'].innerText = status ? 'в сети' : 'не в сети';
     this.specialElements['right-companion-status'].classList.toggle('status-offline', !status);
+  }
+
+  async processDeleteMessage(id: string) {
+    const messageWithID = this.messageWithID(id);
+    if (messageWithID === undefined) return;
   }
 }
 

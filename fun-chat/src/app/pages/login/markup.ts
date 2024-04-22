@@ -104,13 +104,6 @@ export const login = {
               child: [],
             },
             {
-              tag: 'div',
-              text: 'Вход2',
-              attributes: { identifier: 'button-login2' },
-              classes: 'app-button',
-              child: [],
-            },
-            {
               tag: 'button',
               text: 'i',
               attributes: { type: 'button', identifier: 'chat-info' },

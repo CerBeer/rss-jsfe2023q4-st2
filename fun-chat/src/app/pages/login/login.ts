@@ -34,9 +34,6 @@ class Login extends Element {
       this.setButtonDisabled();
     });
     this.specialElements['login-form'].addEventListener('submit', (e) => this.submitLogin(e));
-    this.specialElements['button-login2'].addEventListener('click', () => {
-      this.states.states.session.setVal('serverInfo', { URL: 'wss://rs-chat-d66c4fe06a3a.herokuapp.com/' });
-    });
   }
 
   checkName() {

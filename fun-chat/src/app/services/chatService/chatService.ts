@@ -99,6 +99,14 @@ class ChatService {
         this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.MESSAGE_EDITED, message);
         break;
 
+      case MESSAGES_TYPES.MSG_DELETE:
+        this.states.router.sendToPage(
+          PAGE_NAMES.CHAT,
+          MESSAGES_CHAT_SERVICE_TYPES.MESSAGE_DELETED,
+          eventData.payload.message.id
+        );
+        break;
+
       default:
     }
   }
@@ -141,7 +149,7 @@ class ChatService {
     this.requestCompanionMessageHistoryOnLogin();
   }
 
-  processCompanionLogInOut(login: string, isLogined: boolean) {
+  async processCompanionLogInOut(login: string, isLogined: boolean) {
     Console.appendText(`External user isLogined: ${login}/${isLogined}`);
     const companion = this._companions.find((user) => user.login === login);
     if (companion !== undefined) {
@@ -156,7 +164,7 @@ class ChatService {
     }
   }
 
-  processReceivingMessageFrom(id: Text, message: workerTypes.Message) {
+  async processReceivingMessageFrom(id: Text, message: workerTypes.Message) {
     Console.appendText(`Receiving message: ${message.from}/${message.datetime}`);
     if (message.from !== this.states.loggedUser.login) {
       const companion = this._companions.find((user) => user.login === message.from);
