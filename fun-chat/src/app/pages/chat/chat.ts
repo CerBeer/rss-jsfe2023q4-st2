@@ -36,7 +36,11 @@ class Chat extends Element {
     this.specialElements['left-users-list'].addEventListener('click', (e) => this.selectCompanions(e));
     this.specialElements['right-send-input'].addEventListener('input', () => this.setButtonSendDisabled());
     this.specialElements['right-send-input-form'].addEventListener('submit', (e) => this.submitMessage(e));
-    this.specialElements['right-dialog'].addEventListener('click', () => this.setMessageStatusRead());
+    this.specialElements['right-dialog'].addEventListener('click', () => {
+      this.setMessageStatusRead();
+      const parent = this.specialElements['right-dialog'];
+      parent.scrollTop = parent.scrollHeight;
+    });
     this.specialElements['right-dialog'].addEventListener('scroll', () => this.setMessageStatusRead());
     this.specialElements['left-search'].addEventListener('input', () => this.setFilter());
   }
@@ -52,8 +56,9 @@ class Chat extends Element {
   }
 
   setMessageSendDisabled() {
-    const isCorrect = this.lastRequestIDSendMessage === '';
+    const isCorrect = this.lastRequestIDSendMessage === '' && this._currentCompanion !== '';
     const input = this.specialElements['right-send-input'] as HTMLInputElement;
+    if (!isCorrect) input.value = '';
     input.disabled = !isCorrect;
   }
 
@@ -128,6 +133,10 @@ class Chat extends Element {
         this.processDeleteMessage(message);
         break;
 
+      case MESSAGES_CHAT_SERVICE_TYPES.CLEAR_CURRENT_COMPANION:
+        this.clearCurrentCompanion();
+        break;
+
       default:
         Console.appendText(`Chat page received unresolved message: ${type}/${JSON.stringify(message)}`);
     }
@@ -163,6 +172,7 @@ class Chat extends Element {
     const msg = JSON.parse(message);
     if (msg.from !== this._currentCompanion) return;
     const parent = this.specialElements['right-dialog'];
+    if (this._currentCompanionMessages.length === 0) parent.innerHTML = '';
     const newMessage = new Message(parent, msg, msg.to === this.states.loggedUser.login);
     this._currentCompanionMessages.push(newMessage);
   }
@@ -172,6 +182,7 @@ class Chat extends Element {
     const msg = msgFull.message;
     if (msg.to !== this._currentCompanion) return;
     const parent = this.specialElements['right-dialog'];
+    if (this._currentCompanionMessages.length === 0) parent.innerHTML = '';
     const newMessage = new Message(parent, msg, msg.to === this.states.loggedUser.login);
     this._currentCompanionMessages.push(newMessage);
     this.specialElements['right-dialog'].scrollTop = this.specialElements['right-dialog'].scrollHeight;
@@ -181,6 +192,7 @@ class Chat extends Element {
       this.setButtonSendDisabled();
     }
     this.setMessageStatusRead();
+    parent.scrollTop = parent.scrollHeight;
   }
 
   setFilter() {
@@ -214,6 +226,25 @@ class Chat extends Element {
     this.specialElements['user-info'].innerText = `${this.states.loggedUser.login}`;
   }
 
+  clearCurrentCompanion() {
+    Console.appendText(`Clear current companions`);
+    this._currentCompanion = '';
+    this._currentCompanionMessages = [];
+    this.specialElements['right-dialog'].innerHTML = '';
+    const placeholderMarkup = {
+      tag: 'label',
+      text: 'Выберите пользователя для отправки сообщения...',
+      attributes: { identifier: 'right-dialog-placeholder' },
+      classes: 'chat-main-right-dialog-placeholder',
+      child: [],
+    };
+    this.specialElements['right-dialog'].appendChild(Element.createElement(placeholderMarkup as ElementsDefinitions));
+    this.specialElements['right-companion-login'].innerText = '';
+    this.specialElements['right-companion-status'].innerText = '';
+    this.setButtonSendDisabled();
+    this.setMessageSendDisabled();
+  }
+
   createMessagesList(messages: workerTypes.Message[]) {
     this.specialElements['right-companion-login'].innerText = this._currentCompanion;
     this.setCurrentCompanionStatus();
@@ -243,6 +274,7 @@ class Chat extends Element {
     this._currentCompanionMessages.forEach((message) => {
       if (message.message.to === this.states.loggedUser.login && !message.message.status.isReaded) {
         message.message.status.isReaded = true;
+        message.setMessgeStatusReaded();
         this.states.chatService.requestReadMessage(message.messageID);
       }
     });

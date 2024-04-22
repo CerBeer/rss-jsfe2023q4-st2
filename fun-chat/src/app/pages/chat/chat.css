@@ -184,6 +184,10 @@
 
 .chat-main-right-companion-login {
   font-weight: 600;
+  max-width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .chat-main-right-companion-status {
@@ -241,12 +245,10 @@
 }
 
 .chat-main-right-dialog-message-box-header-label-left {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   font-size: 0.7rem;
-  justify-content: space-between;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .chat-main-right-dialog-message-box-header-label-right {
@@ -256,6 +258,7 @@
   flex-wrap: wrap;
   font-size: 0.7rem;
   justify-content: space-between;
+  margin: 0 0 0 auto;
 }
 
 .chat-main-right-dialog-message-box-text {
@@ -266,6 +269,7 @@
   padding: 3%;
   text-align: justify;
   width: 100%;
+  word-wrap: break-word;
 }
 
 .chat-main-right-dialog-message-box-footer {
@@ -363,6 +367,29 @@
   width: 32px;
   margin: 0;
   padding: 0;
+}
+
+.line-before-unread-message {
+  font-size: 0.7em;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.line-before-unread-message:before {
+  border-bottom: 1px solid;
+  content: ' ';
+  left: 0;
+  position: absolute;
+  top: 8px;
+  width: 100%;
+}
+
+.line-before-unread-message-text {
+  background: #fff;
+  margin: 1%;
+  padding: 0 5%;
+  position: relative;
 }
 
 .disabled {

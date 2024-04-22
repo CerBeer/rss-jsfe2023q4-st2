@@ -25,7 +25,7 @@ class Message extends Element {
   }
 
   statusMessageToString(status: workerTypes.MessageStatus) {
-    if (this.isInput) return status.isEdited ? 'изменено' : '';
+    // if (this.isInput) return status.isEdited ? 'изменено' : '';
     if (status.isReaded) return 'прочитано';
     if (status.isEdited) return 'изменено';
     if (status.isDelivered) return 'доставлено';
@@ -42,12 +42,14 @@ class Message extends Element {
 
   setMessgeStatusDelivered() {
     this._message.status.isDelivered = true;
-    if (!this.isInput) this.setMessgeStatus('доставлено');
+    // if (!this.isInput)
+    this.setMessgeStatus('доставлено');
   }
 
   setMessgeStatusReaded() {
     this._message.status.isReaded = true;
-    if (!this.isInput) this.setMessgeStatus('прочитано');
+    // if (!this.isInput)
+    this.setMessgeStatus('прочитано');
   }
 
   setMessgeStatusEdited(text: string) {

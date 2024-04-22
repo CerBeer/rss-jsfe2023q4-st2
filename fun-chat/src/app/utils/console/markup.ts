@@ -2,7 +2,7 @@ export const console = {
   tag: 'div',
   text: ``,
   attributes: {},
-  classes: 'console-window',
+  classes: 'console-window element-hide',
   child: [
     {
       tag: 'code',

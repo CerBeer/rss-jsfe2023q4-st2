@@ -46,7 +46,7 @@ class ChatService {
     return companion.isLogined;
   }
 
-  async processMessage(type: workerTypes.MessagesType, message: string) {
+  processMessage(type: workerTypes.MessagesType, message: string) {
     const eventData = JSON.parse(message);
     switch (type) {
       case MESSAGES_TYPES.ERROR:
@@ -122,22 +122,26 @@ class ChatService {
   processUserLogin() {
     this._companions = [];
     this.states.worker.sendMessage(requests.requestCompanionLoggedIn().request);
+    this.clearCurrentCompanion();
   }
 
-  async createCompanionsList(users: workerTypes.UserLogged[]) {
+  createCompanionsList(users: workerTypes.UserLogged[]) {
     for (const user of users) {
-      this._companions.push({
-        id: '',
-        login: user.login,
-        isLogined: user.isLogined,
-        unreadMessages: 0,
-        sellingHTML: undefined,
-      });
+      const companion = this._companions.find((usr) => usr.login === user.login);
+      if (companion === undefined) {
+        this._companions.push({
+          id: '',
+          login: user.login,
+          isLogined: user.isLogined,
+          unreadMessages: 0,
+          sellingHTML: undefined,
+        });
+      }
     }
     this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.UPDATE_COMPANIONS_LIST, '');
   }
 
-  async requestCompanionMessageHistoryOnLogin() {
+  requestCompanionMessageHistoryOnLogin() {
     const firstUserWithoutID = this._companions.find(
       (user) => user.id === '' && user.login !== this.states.loggedUser.login
     );
@@ -157,22 +161,30 @@ class ChatService {
     this.requestCompanionMessageHistoryOnLogin();
   }
 
-  async processCompanionLogInOut(login: string, isLogined: boolean) {
+  processCompanionLogInOut(login: string, isLogined: boolean) {
     Console.appendText(`External user isLogined: ${login}/${isLogined}`);
-    const companion = this._companions.find((user) => user.login === login);
-    if (companion !== undefined) {
-      Console.appendText(`External user isLogined: ${login}/${isLogined}`);
-      companion.isLogined = isLogined;
-      this._companions.sort((a, b) => {
-        if (a.isLogined === b.isLogined) return 0;
-        if (a.isLogined) return -1;
-        return 1;
-      });
-      this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.COMPANION_STATUS_UPDATE, login);
+    let companion = this._companions.find((user) => user.login === login);
+    if (companion === undefined) {
+      companion = {
+        id: '',
+        login: login,
+        isLogined: isLogined,
+        unreadMessages: 0,
+        sellingHTML: undefined,
+      };
+      this._companions.push(companion);
     }
+    companion.isLogined = isLogined;
+    this._companions.sort((a, b) => {
+      if (a.isLogined === b.isLogined) return 0;
+      if (a.isLogined) return -1;
+      return 1;
+    });
+    this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.COMPANION_STATUS_UPDATE, login);
+    Console.appendText(`External users: ${JSON.stringify(this._companions)}`);
   }
 
-  async processReceivingMessageFrom(id: Text, message: workerTypes.Message) {
+  processReceivingMessageFrom(id: Text, message: workerTypes.Message) {
     Console.appendText(`Receiving message: ${message.from}/${JSON.stringify(message)}`);
     if (message.from !== this.states.loggedUser.login) {
       const companion = this._companions.find((user) => user.login === message.from);
@@ -209,6 +221,12 @@ class ChatService {
       const request = requests.requestCompanionMessageHistory(login);
       this.states.worker.sendMessage(request.request);
     }
+  }
+
+  clearCurrentCompanion() {
+    Console.appendText(`Clear current companions`);
+    this._currentCompanion = '';
+    this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.CLEAR_CURRENT_COMPANION, '');
   }
 
   processCompanionMessageHistory(messages: workerTypes.Message[]) {
