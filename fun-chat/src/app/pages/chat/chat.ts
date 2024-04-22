@@ -4,6 +4,7 @@ import { PAGE_NAMES } from '../../services/router/enums';
 import { Element } from '../../utils/element/element';
 import { ElementsDefinitions } from '../../utils/element/types';
 import { MESSAGES_CHAT_SERVICE_TYPES } from '../../services/chatService/enums';
+import Message from './message';
 import * as workerTypes from '../../services/worker/types';
 import * as markup from './markup';
 import './chat.css';
@@ -14,6 +15,8 @@ class Chat extends Element {
   private companions: Element[] = [];
 
   private _currentCompanion = '';
+
+  private _currentCompanionMessages: Message[] = [];
 
   private lastRequestIDSendMessage = '';
 
@@ -113,7 +116,9 @@ class Chat extends Element {
   proccessResponceMessageToCompanion(message: string) {
     const msg = JSON.parse(message);
     if (msg.message.to !== this._currentCompanion) return;
-    this.createMessage(msg.message);
+    const parent = this.specialElements['right-dialog'];
+    const newMessage = new Message(parent, msg, msg.to === this.states.loggedUser.login);
+    this._currentCompanionMessages.push(newMessage);
     this.specialElements['right-dialog'].scrollTop = this.specialElements['right-dialog'].scrollHeight;
     if (this.lastRequestIDSendMessage === msg.id) {
       this.lastRequestIDSendMessage = '';
@@ -146,6 +151,7 @@ class Chat extends Element {
     this.specialElements['right-companion-login'].innerText = this._currentCompanion;
     this.setCurrentCompanionStatus();
     this.specialElements['right-dialog'].innerHTML = '';
+    this._currentCompanionMessages = [];
     if (messages.length === 0) {
       const placeholderMarkup = {
         tag: 'label',
@@ -157,30 +163,17 @@ class Chat extends Element {
       this.specialElements['right-dialog'].appendChild(Element.createElement(placeholderMarkup as ElementsDefinitions));
       return;
     }
+    const parent = this.specialElements['right-dialog'];
     messages.forEach((message) => {
-      this.createMessage(message);
+      const newMessage = new Message(parent, message, message.to === this.states.loggedUser.login);
+      this._currentCompanionMessages.push(newMessage);
       if (message.status.isReaded || message.from === this.states.loggedUser.login)
-        this.specialElements['right-dialog'].scrollTop = this.specialElements['right-dialog'].scrollHeight;
+        parent.scrollTop = parent.scrollHeight;
     });
   }
 
-  createMessage(message: workerTypes.Message) {
-    const markupElement = markup.messageElement as ElementsDefinitions;
-    const newElement = new Element(markupElement);
-    this.specialElements['right-dialog'].appendChild(newElement.sellingHTML);
-    newElement.specialElements['header-label-left'].innerText = message.from;
-    newElement.specialElements['header-label-right'].innerText = new Date(message.datetime).toLocaleString();
-    newElement.specialElements['box-text'].innerText = message.text;
-    newElement.specialElements['footer-label-left'].innerText = '';
-    newElement.specialElements['footer-label-right'].innerText = this.statusMessageToString(message);
-    newElement.specialElements['dialog-message'].classList.toggle(
-      'message-from-companion',
-      message.to === this.states.loggedUser.login
-    );
-  }
-
   statusMessageToString(message: workerTypes.Message) {
-    if (message.from === this._currentCompanion) return message.status.isEdited ? 'изменено' : '';
+    // if (message.from === this._currentCompanion) return message.status.isEdited ? 'изменено' : '';
     if (message.status.isReaded) return 'прочитано';
     if (message.status.isEdited) return 'изменено';
     return 'доставлено';
