@@ -36,6 +36,8 @@ class Chat extends Element {
     this.specialElements['left-users-list'].addEventListener('click', (e) => this.selectCompanions(e));
     this.specialElements['right-send-input'].addEventListener('input', () => this.setButtonSendDisabled());
     this.specialElements['right-send-input-form'].addEventListener('submit', (e) => this.submitMessage(e));
+    this.specialElements['right-dialog'].addEventListener('click', () => this.setMessageStatusRead());
+    this.specialElements['right-dialog'].addEventListener('scroll', () => this.setMessageStatusRead());
   }
 
   configureDateWhenCreate() {
@@ -228,6 +230,7 @@ class Chat extends Element {
   setMessageStatusRead() {
     this._currentCompanionMessages.forEach((message) => {
       if (message.message.to === this.states.loggedUser.login && !message.message.status.isReaded) {
+        message.message.status.isReaded = true;
         this.states.chatService.requestReadMessage(message.messageID);
       }
     });

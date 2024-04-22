@@ -187,7 +187,7 @@ class ChatService {
     const companion = this._companions.find((user) => user.login === login);
     if (companion !== undefined) {
       companion.unreadMessages = count;
-      this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.RECEIVING_MESSAGE_FROM_COMPANION, '');
+      this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.UPDATE_COMPANIONS_LIST, '');
     }
   }
 
