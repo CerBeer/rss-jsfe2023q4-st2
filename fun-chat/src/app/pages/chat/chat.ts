@@ -92,6 +92,7 @@ class Chat extends Element {
         break;
 
       case MESSAGES_CHAT_SERVICE_TYPES.RECEIVING_MESSAGE_FROM_COMPANION:
+        this.processReceivingMessageFromCompanion(message);
         this.updateCompanionsList();
         break;
 
@@ -105,7 +106,7 @@ class Chat extends Element {
         break;
 
       case MESSAGES_CHAT_SERVICE_TYPES.RESPONSE_MESSAGE_TO_COMPANION:
-        this.proccessResponceMessageToCompanion(message);
+        this.processResponseMessageToCompanion(message);
         break;
 
       case MESSAGES_CHAT_SERVICE_TYPES.MESSAGE_DELIVERY_STATUS_CHANGE:
@@ -154,7 +155,16 @@ class Chat extends Element {
     messageWithID.setMessgeStatusEdited(eventData.payload.message.text);
   }
 
-  proccessResponceMessageToCompanion(message: string) {
+  processReceivingMessageFromCompanion(message: string) {
+    Console.appendText(message);
+    const msg = JSON.parse(message);
+    if (msg.from !== this._currentCompanion) return;
+    const parent = this.specialElements['right-dialog'];
+    const newMessage = new Message(parent, msg, msg.to === this.states.loggedUser.login);
+    this._currentCompanionMessages.push(newMessage);
+  }
+
+  processResponseMessageToCompanion(message: string) {
     const msgFull = JSON.parse(message);
     const msg = msgFull.message;
     if (msg.to !== this._currentCompanion) return;

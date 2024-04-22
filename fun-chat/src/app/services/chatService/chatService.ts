@@ -53,13 +53,11 @@ class ChatService {
       case MESSAGES_TYPES.USER_ACTIVE:
         this.createCompanionsList(eventData.payload.users);
         this.states.worker.sendMessage(requests.requestCompanionLoggedOut().request);
-        Console.appendText(`chatService received message: ${type}/${message}`);
         break;
 
       case MESSAGES_TYPES.USER_INACTIVE:
         this.createCompanionsList(eventData.payload.users);
         this.requestCompanionMessageHistoryOnLogin();
-        Console.appendText(`chatService received message: ${type}/${message}`);
         break;
 
       case MESSAGES_TYPES.MSG_FROM_USER:
@@ -165,7 +163,7 @@ class ChatService {
   }
 
   async processReceivingMessageFrom(id: Text, message: workerTypes.Message) {
-    Console.appendText(`Receiving message: ${message.from}/${message.datetime}`);
+    Console.appendText(`Receiving message: ${message.from}/${JSON.stringify(message)}`);
     if (message.from !== this.states.loggedUser.login) {
       const companion = this._companions.find((user) => user.login === message.from);
       if (companion !== undefined) {
@@ -173,7 +171,7 @@ class ChatService {
         this.states.router.sendToPage(
           PAGE_NAMES.CHAT,
           MESSAGES_CHAT_SERVICE_TYPES.RECEIVING_MESSAGE_FROM_COMPANION,
-          ''
+          JSON.stringify(message)
         );
       }
       return;
