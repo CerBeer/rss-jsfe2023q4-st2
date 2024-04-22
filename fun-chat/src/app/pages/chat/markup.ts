@@ -196,7 +196,7 @@ export const chat = {
 export const companionListElement = {
   tag: 'li',
   text: '',
-  attributes: {},
+  attributes: { identifier: 'companion-element' },
   classes: 'chat-main-left-users-list-user',
   child: [
     {

@@ -38,6 +38,7 @@ class Chat extends Element {
     this.specialElements['right-send-input-form'].addEventListener('submit', (e) => this.submitMessage(e));
     this.specialElements['right-dialog'].addEventListener('click', () => this.setMessageStatusRead());
     this.specialElements['right-dialog'].addEventListener('scroll', () => this.setMessageStatusRead());
+    this.specialElements['left-search'].addEventListener('input', () => this.setFilter());
   }
 
   configureDateWhenCreate() {
@@ -87,7 +88,7 @@ class Chat extends Element {
   }
 
   receiveMessage(type: string, message: string): void {
-    Console.appendText(`Chat page received: ${type}/${message}`);
+    // Console.appendText(`Chat page received: ${type}/${message}`);
     switch (type) {
       case MESSAGES_CHAT_SERVICE_TYPES.UPDATE_COMPANIONS_LIST:
         this.updateCompanionsList();
@@ -182,6 +183,12 @@ class Chat extends Element {
     this.setMessageStatusRead();
   }
 
+  setFilter() {
+    const searchfield = this.specialElements['left-search'] as HTMLInputElement;
+    this.states.chatService.filter = searchfield.value;
+    this.updateCompanionsList();
+  }
+
   async updateCompanionsList() {
     const companionList = this.states.chatService.companions;
     const companions = this.companions;
@@ -199,6 +206,11 @@ class Chat extends Element {
       companion.specialElements['user-messages'].innerText = user.unreadMessages.toString();
       companion.specialElements['user-messages'].classList.toggle('hide-element', user.unreadMessages === 0);
     });
+    const indexToDelete = companionList.length;
+    while (indexToDelete < companions.length) {
+      companions[indexToDelete].specialElements['companion-element'].remove();
+      companions.splice(indexToDelete, 1);
+    }
     this.specialElements['user-info'].innerText = `${this.states.loggedUser.login}`;
   }
 

@@ -20,14 +20,24 @@ class ChatService {
 
   private _currentCompanion = '';
 
+  private _filter = '';
+
   constructor(states: StateManager) {
     Console.appendText('Create Chat service');
     this.states = states;
     this.states.chatService = this;
   }
 
+  set filter(filter: string) {
+    this._filter = filter;
+  }
+
   get companions() {
-    return this._companions.filter((user) => user.login !== this.states.loggedUser.login);
+    if (this._filter.length === 0)
+      return this._companions.filter((user) => user.login !== this.states.loggedUser.login);
+    return this._companions.filter(
+      (user) => user.login !== this.states.loggedUser.login && user.login.includes(this._filter)
+    );
   }
 
   getCompanionStatus(login: string) {

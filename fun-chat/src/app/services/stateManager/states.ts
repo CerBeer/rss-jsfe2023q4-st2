@@ -9,7 +9,6 @@ const session: Session = {
   },
   serverInfo: {
     URL: 'ws://127.0.0.1:4000/',
-    // URL: 'wss://rs-chat-d66c4fe06a3a.herokuapp.com/',
   },
 };
 
