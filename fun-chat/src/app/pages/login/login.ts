@@ -69,7 +69,6 @@ class Login extends Element {
 
   submitLogin(event: Event) {
     event.preventDefault();
-    Console.appendText('OnSubmit');
     if (!(this.checkName() && this.checkPassword())) return;
     const elementName = this.specialElements['login-name'] as HTMLInputElement;
     const elementPassword = this.specialElements['login-password'] as HTMLInputElement;

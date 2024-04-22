@@ -131,7 +131,7 @@ export const chat = {
             {
               tag: 'form',
               text: '',
-              attributes: {},
+              attributes: { identifier: 'right-send-input-form' },
               classes: 'chat-main-right-send',
               child: [
                 {

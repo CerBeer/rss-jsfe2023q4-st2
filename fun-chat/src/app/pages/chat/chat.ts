@@ -15,6 +15,8 @@ class Chat extends Element {
 
   private _currentCompanion = '';
 
+  private lastRequestIDSendMessage = '';
+
   constructor(parent: HTMLElement, states: StateManager) {
     super(markup.chat as ElementsDefinitions);
     parent.appendChild(this.sellingHTML);
@@ -29,10 +31,44 @@ class Chat extends Element {
     this.specialElements['chat-info'].addEventListener('click', () => this.states.router.goToPage(PAGE_NAMES.ABOUT));
     this.specialElements['chat-logout'].addEventListener('click', () => this.states.dispatcher.sendLogOut());
     this.specialElements['left-users-list'].addEventListener('click', (e) => this.selectCompanions(e));
+    this.specialElements['right-send-input'].addEventListener('input', () => this.setButtonSendDisabled());
+    this.specialElements['right-send-input-form'].addEventListener('submit', (e) => this.submitMessage(e));
   }
 
   configureDateWhenCreate() {
     this.specialElements['user-info'].innerText = `${this.states.loggedUser.login}`;
+  }
+
+  setButtonSendDisabled() {
+    const isCorrect = this.checkAvailableMessageSubmit();
+    const button = this.specialElements['right-send-button'] as HTMLButtonElement;
+    button.disabled = !isCorrect;
+  }
+
+  setMessageSendDisabled() {
+    const isCorrect = this.lastRequestIDSendMessage === '';
+    const input = this.specialElements['right-send-input'] as HTMLInputElement;
+    input.disabled = !isCorrect;
+  }
+
+  submitMessage(event: Event) {
+    event.preventDefault();
+    Console.appendText(`Chat page: submit message to ${this._currentCompanion}`);
+    if (!this.checkAvailableMessageSubmit()) return;
+    const currentElement = this.specialElements['right-send-input'] as HTMLInputElement;
+    const message = currentElement.value;
+    this.lastRequestIDSendMessage = this.states.chatService.requestSendMessage(this._currentCompanion, message);
+    currentElement.value = '';
+    this.setMessageSendDisabled();
+    this.setButtonSendDisabled();
+    return false;
+  }
+
+  checkAvailableMessageSubmit() {
+    const currentElement = this.specialElements['right-send-input'] as HTMLInputElement;
+    const valueElement = currentElement.value;
+    if (valueElement.length === 0) return false;
+    return true;
   }
 
   selectCompanions(e: Event) {
@@ -42,6 +78,7 @@ class Chat extends Element {
     if (!login) return;
     this._currentCompanion = login;
     this.states.chatService.changeCurrentCompanion(login);
+    this.setMessageSendDisabled();
   }
 
   receiveMessage(type: string, message: string): void {
@@ -64,8 +101,24 @@ class Chat extends Element {
         if (message === this._currentCompanion) this.setCurrentCompanionStatus();
         break;
 
+      case MESSAGES_CHAT_SERVICE_TYPES.RESPONSE_MESSAGE_TO_COMPANION:
+        this.proccessResponceMessageToCompanion(message);
+        break;
+
       default:
         Console.appendText(`Chat page received unresolved message: ${type}/${JSON.stringify(message)}`);
+    }
+  }
+
+  proccessResponceMessageToCompanion(message: string) {
+    const msg = JSON.parse(message);
+    if (msg.message.to !== this._currentCompanion) return;
+    this.createMessage(msg.message);
+    this.specialElements['right-dialog'].scrollTop = this.specialElements['right-dialog'].scrollHeight;
+    if (this.lastRequestIDSendMessage === msg.id) {
+      this.lastRequestIDSendMessage = '';
+      this.setMessageSendDisabled();
+      this.setButtonSendDisabled();
     }
   }
 
@@ -104,26 +157,30 @@ class Chat extends Element {
       this.specialElements['right-dialog'].appendChild(Element.createElement(placeholderMarkup as ElementsDefinitions));
       return;
     }
-    const markupElement = markup.messageElement as ElementsDefinitions;
     messages.forEach((message) => {
-      const newElement = new Element(markupElement);
-      this.specialElements['right-dialog'].appendChild(newElement.sellingHTML);
-      newElement.specialElements['header-label-left'].innerText = message.from;
-      newElement.specialElements['header-label-right'].innerText = new Date(message.datetime).toLocaleString();
-      newElement.specialElements['box-text'].innerText = message.text;
-      newElement.specialElements['footer-label-left'].innerText = '';
-      newElement.specialElements['footer-label-right'].innerText = this.statusMessageToString(message);
-      newElement.specialElements['dialog-message'].classList.toggle(
-        'message-from-companion',
-        message.to === this.states.loggedUser.login
-      );
-      Console.appendText(
-        `${message.to} === ${this.states.loggedUser.login}:${message.to === this.states.loggedUser.login}`
-      );
+      this.createMessage(message);
+      if (message.status.isReaded || message.from === this.states.loggedUser.login)
+        this.specialElements['right-dialog'].scrollTop = this.specialElements['right-dialog'].scrollHeight;
     });
   }
 
+  createMessage(message: workerTypes.Message) {
+    const markupElement = markup.messageElement as ElementsDefinitions;
+    const newElement = new Element(markupElement);
+    this.specialElements['right-dialog'].appendChild(newElement.sellingHTML);
+    newElement.specialElements['header-label-left'].innerText = message.from;
+    newElement.specialElements['header-label-right'].innerText = new Date(message.datetime).toLocaleString();
+    newElement.specialElements['box-text'].innerText = message.text;
+    newElement.specialElements['footer-label-left'].innerText = '';
+    newElement.specialElements['footer-label-right'].innerText = this.statusMessageToString(message);
+    newElement.specialElements['dialog-message'].classList.toggle(
+      'message-from-companion',
+      message.to === this.states.loggedUser.login
+    );
+  }
+
   statusMessageToString(message: workerTypes.Message) {
+    if (message.from === this._currentCompanion) return message.status.isEdited ? 'изменено' : '';
     if (message.status.isReaded) return 'прочитано';
     if (message.status.isEdited) return 'изменено';
     return 'доставлено';

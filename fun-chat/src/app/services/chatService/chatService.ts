@@ -80,7 +80,7 @@ class ChatService {
         break;
 
       case MESSAGES_TYPES.MSG_SEND:
-        this.processReceivingMessageFromCompanion(eventData.payload.message);
+        this.processReceivingMessageFrom(eventData.id, eventData.payload.message);
         break;
 
       default:
@@ -140,13 +140,25 @@ class ChatService {
     }
   }
 
-  processReceivingMessageFromCompanion(message: workerTypes.Message) {
-    Console.appendText(`External user receiving message: ${message.from}/${message.datetime}`);
-    const companion = this._companions.find((user) => user.login === message.from);
-    if (companion !== undefined) {
-      companion.unreadMessages += 1;
-      this.states.router.sendToPage(PAGE_NAMES.CHAT, MESSAGES_CHAT_SERVICE_TYPES.RECEIVING_MESSAGE_FROM_COMPANION, '');
+  processReceivingMessageFrom(id: Text, message: workerTypes.Message) {
+    Console.appendText(`Receiving message: ${message.from}/${message.datetime}`);
+    if (message.from !== this.states.loggedUser.login) {
+      const companion = this._companions.find((user) => user.login === message.from);
+      if (companion !== undefined) {
+        companion.unreadMessages += 1;
+        this.states.router.sendToPage(
+          PAGE_NAMES.CHAT,
+          MESSAGES_CHAT_SERVICE_TYPES.RECEIVING_MESSAGE_FROM_COMPANION,
+          ''
+        );
+      }
+      return;
     }
+    this.states.router.sendToPage(
+      PAGE_NAMES.CHAT,
+      MESSAGES_CHAT_SERVICE_TYPES.RESPONSE_MESSAGE_TO_COMPANION,
+      JSON.stringify({ id: id, message: message })
+    );
   }
 
   changeCurrentCompanion(login: string) {
@@ -165,6 +177,12 @@ class ChatService {
       MESSAGES_CHAT_SERVICE_TYPES.MESSAGE_HISTORY_WITH_USER,
       JSON.stringify(messages)
     );
+  }
+
+  requestSendMessage(to: string, text: string) {
+    const request = requests.requestSendUserMessage(to, text);
+    this.states.worker.sendMessage(request.request);
+    return request.id;
   }
 }
 

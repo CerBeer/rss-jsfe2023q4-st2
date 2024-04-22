@@ -62,6 +62,20 @@ export const requestCompanionMessageHistory = (login: string) => {
   return { request: JSON.stringify(requestObject), id: requestObject.id };
 };
 
+export const requestSendUserMessage = (to: string, text: string) => {
+  const requestObject = {
+    id: GeneratorID.next(),
+    type: MESSAGES_TYPES.MSG_SEND,
+    payload: {
+      message: {
+        to: to,
+        text: text,
+      },
+    },
+  };
+  return { request: JSON.stringify(requestObject), id: requestObject.id };
+};
+
 // export const toDeleteUserAuthenticationResponse = (response: string) => {
 //   const responseObject = JSON.parse(response);
 //   return responseObject;
