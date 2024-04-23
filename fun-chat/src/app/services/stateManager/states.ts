@@ -4,8 +4,8 @@ import Splash from '../../pages/splash/splash';
 
 const session: Session = {
   loggedUser: {
-    login: 'Ellff1',
-    password: 'Ellff1',
+    login: '',
+    password: '',
   },
   serverInfo: {
     URL: 'ws://127.0.0.1:4000/',
